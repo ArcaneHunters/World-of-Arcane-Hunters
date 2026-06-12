@@ -36,8 +36,11 @@ class Client {
 
   connect(token, characterId) {
     return new Promise((resolve, reject) => {
-      this.ws = new WebSocket(`${WS_BASE}/ws?token=${token}&character=${characterId}`);
+      this.ws = new WebSocket(`${WS_BASE}/ws`);
       const timeout = setTimeout(() => reject(new Error('connect timeout')), 8000);
+      this.ws.on('open', () => {
+        this.send({ t: 'auth', token, character: characterId });
+      });
       this.ws.on('message', (data) => {
         const msg = JSON.parse(String(data));
         if (msg.t === 'hello') {

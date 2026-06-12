@@ -20,6 +20,15 @@ export interface CharacterSummary {
   online: boolean;
 }
 
+export function buildWebSocketUrl(protocol: string, host: string): string {
+  const proto = protocol === 'https:' ? 'wss' : 'ws';
+  return `${proto}://${host}/ws`;
+}
+
+export function buildWebSocketAuthMessage(token: string, characterId: number): { t: 'auth'; token: string; character: number } {
+  return { t: 'auth', token, character: characterId };
+}
+
 export class Api {
   token: string | null = null;
   username: string | null = null;
@@ -126,8 +135,10 @@ export class ClientWorld implements IWorld {
 
   constructor(token: string, characterId: number, cls: PlayerClass) {
     this.cfg = { seed: 20061, playerClass: cls };
-    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-    this.ws = new WebSocket(`${proto}://${location.host}/ws?token=${token}&character=${characterId}`);
+    this.ws = new WebSocket(buildWebSocketUrl(location.protocol, location.host));
+    this.ws.onopen = () => {
+      this.ws.send(JSON.stringify(buildWebSocketAuthMessage(token, characterId)));
+    };
     this.ws.onmessage = (ev) => this.onMessage(String(ev.data));
     this.ws.onclose = () => {
       this.connected = false;
@@ -163,7 +174,7 @@ export class ClientWorld implements IWorld {
   // -----------------------------------------------------------------------
 
   private sendInput(): void {
-    if (this.ws.readyState !== WebSocket.OPEN) return;
+    if (!this.connected || this.ws.readyState !== WebSocket.OPEN) return;
     const mi = this.moveInput;
     const msg: Record<string, unknown> = {
       t: 'input',
@@ -179,7 +190,7 @@ export class ClientWorld implements IWorld {
   }
 
   private cmd(payload: Record<string, unknown>): void {
-    if (this.ws.readyState !== WebSocket.OPEN) return;
+    if (!this.connected || this.ws.readyState !== WebSocket.OPEN) return;
     this.ws.send(JSON.stringify({ t: 'cmd', ...payload }));
   }
 

@@ -7,13 +7,19 @@
 // Regular players can never create these: the REST name rule rejects digits,
 // and is_gm is only ever set here / by an operator.
 //
-// Uses DATABASE_URL (falls back to the local docker-compose postgres).
+// Uses DATABASE_URL. For local dev, copy .env.example to .env first.
 // On the EC2 box (where this script isn't in the runtime image), create via
 // the db container instead:
 //   sudo docker exec eastbrook-db psql -U eastbrook eastbrook -c \
 //     "INSERT INTO characters (account_id, name, class, level, is_gm)
 //      SELECT id, 'GM01', 'paladin', 20, TRUE FROM accounts WHERE username = 'name';"
 import pg from 'pg';
+
+try {
+  process.loadEnvFile?.();
+} catch {
+  // .env is optional; production operators may pass DATABASE_URL directly.
+}
 
 const username = process.argv[2];
 const clsIdx = process.argv.indexOf('--class');
@@ -25,9 +31,13 @@ if (!username || username.startsWith('--') || !VALID.includes(cls)) {
   process.exit(1);
 }
 
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL ?? 'postgres://eastbrook:eastbrook_dev_pw@127.0.0.1:5433/eastbrook',
-});
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.error('DATABASE_URL is required. For local dev, copy .env.example to .env first.');
+  process.exit(1);
+}
+
+const pool = new pg.Pool({ connectionString });
 
 try {
   const acct = await pool.query('SELECT id FROM accounts WHERE username = $1', [username]);

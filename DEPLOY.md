@@ -11,14 +11,13 @@ One EC2 instance runs everything: the game server, Postgres, and Caddy
 (TLS reverse proxy). Sized for a small population — a `t4g.small`
 (~$14/month all-in) is comfortable for a handful of concurrent players.
 
-## 1. Create a GitHub token (the repo is private)
+## 1. Confirm the repo is public
 
-The instance clones the repo on first boot, so it needs a read-only token:
-
-1. GitHub → Settings → Developer settings → **Fine-grained personal access tokens** → Generate new token
-2. Resource owner: **levy-street** · Repository access: **Only select repositories** → `world-of-claudecraft`
-3. Permissions: **Contents → Read-only** (nothing else)
-4. Expiration: your call — it's only needed at boot and for `git pull` on updates
+The standalone first-boot script clones
+`https://github.com/levy-street/world-of-claudecraft.git` anonymously. If you
+are deploying a private fork instead, use a deploy key or another secret
+manager-specific flow; do not paste long-lived personal access tokens into EC2
+user data.
 
 ## 2. Launch the instance
 
@@ -30,7 +29,7 @@ In the EC2 console:
 | Instance type | `t4g.small` (2 vCPU Graviton, 2 GB) |
 | Storage | 20 GB gp3 |
 | Security group | Inbound: **22** (your IP only), **80**, **443** — nothing else |
-| User data | Paste `deploy/user-data.sh` with `DOMAIN` and `GITHUB_TOKEN` filled in |
+| User data | Paste `deploy/user-data.sh` with `DOMAIN` filled in |
 
 Leave `DOMAIN=""` if you want to test by IP first over plain HTTP —
 you can set the domain later (step 4).

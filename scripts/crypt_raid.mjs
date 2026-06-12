@@ -42,8 +42,11 @@ class Bot {
     const char = await api('/api/characters', { name: this.name + alpha, class: this.cls }, this.token);
     this.charId = char.body.id;
     await new Promise((resolve, reject) => {
-      this.ws = new WebSocket(`${WS_BASE}/ws?token=${this.token}&character=${this.charId}`);
+      this.ws = new WebSocket(`${WS_BASE}/ws`);
       const to = setTimeout(() => reject(new Error('join timeout')), 8000);
+      this.ws.on('open', () => {
+        this.ws.send(JSON.stringify({ t: 'auth', token: this.token, character: this.charId }));
+      });
       this.ws.on('message', (data) => {
         const msg = JSON.parse(String(data));
         if (msg.t === 'hello') { this.pid = msg.pid; clearTimeout(to); resolve(); }

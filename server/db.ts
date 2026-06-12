@@ -2,8 +2,16 @@ import { Pool } from 'pg';
 import type { CharacterState } from '../src/sim/sim';
 import type { PlayerClass } from '../src/sim/types';
 
+try {
+  process.loadEnvFile?.();
+} catch {
+  // .env is optional; production usually injects DATABASE_URL directly.
+}
+
 export const DATABASE_URL =
-  process.env.DATABASE_URL ?? 'postgres://eastbrook:eastbrook_dev_pw@localhost:5433/eastbrook';
+  process.env.DATABASE_URL ?? (() => {
+    throw new Error('DATABASE_URL is required. For local dev, copy .env.example to .env and run through docker compose.');
+  })();
 
 export const pool = new Pool({ connectionString: DATABASE_URL, max: 10 });
 

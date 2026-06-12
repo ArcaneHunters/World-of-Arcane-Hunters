@@ -214,13 +214,27 @@ async function main(): Promise<void> {
       return;
     }
     wss.handleUpgrade(req, socket, head, (ws) => {
-      void onConnection(ws, url);
+      void onConnection(ws);
     });
   });
 
-  async function onConnection(ws: WebSocket, url: URL): Promise<void> {
-    const token = url.searchParams.get('token') ?? '';
-    const characterId = Number(url.searchParams.get('character') ?? 'NaN');
+  async function authenticateWebSocket(ws: WebSocket, raw: string): Promise<void> {
+    let msg: any;
+    try {
+      msg = JSON.parse(raw);
+    } catch {
+      ws.send(JSON.stringify({ t: 'error', error: 'bad auth message' }));
+      ws.close();
+      return;
+    }
+    if (msg?.t !== 'auth') {
+      ws.send(JSON.stringify({ t: 'error', error: 'authentication required' }));
+      ws.close();
+      return;
+    }
+
+    const token = typeof msg.token === 'string' ? msg.token : '';
+    const characterId = Number(msg.character ?? 'NaN');
     const accountId = await accountForToken(token);
     if (accountId === null || !Number.isFinite(characterId)) {
       ws.send(JSON.stringify({ t: 'error', error: 'not authenticated' }));
@@ -253,11 +267,23 @@ async function main(): Promise<void> {
     });
   }
 
+  async function onConnection(ws: WebSocket): Promise<void> {
+    const authTimer = setTimeout(() => {
+      ws.send(JSON.stringify({ t: 'error', error: 'authentication timed out' }));
+      ws.close();
+    }, 10_000);
+
+    ws.once('message', (data) => {
+      clearTimeout(authTimer);
+      void authenticateWebSocket(ws, String(data));
+    });
+  }
+
   game.start();
   server.listen(PORT, () => {
     console.log(`World of Claudecraft server listening on http://localhost:${PORT}`);
     console.log(`  REST: /api/register /api/login /api/characters /api/status`);
-    console.log(`  WS:   /ws?token=...&character=...`);
+    console.log(`  WS:   /ws, then first message {t:"auth",token,character}`);
   });
 
   const shutdown = async () => {

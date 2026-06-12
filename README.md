@@ -18,6 +18,8 @@ the multiplayer server is the same rules engine running authoritatively.
 ## Host it (one command)
 
 ```bash
+cp .env.example .env
+# edit .env and set a long random POSTGRES_PASSWORD
 docker compose up -d --build     # postgres + game server, fully built
 # open http://localhost:8787 — accounts, characters, the whole world
 ```
@@ -35,6 +37,8 @@ by the test bots).
 
 ```bash
 npm install
+cp .env.example .env
+# edit .env and set POSTGRES_PASSWORD and DATABASE_URL to the same password
 npm run db:up        # postgres 16 in docker (port 5433, volume-persisted)
 npm run server       # authoritative game server on :8787 (REST + WebSocket)
 npm run dev          # client dev server on :5173 (proxies /api and /ws)

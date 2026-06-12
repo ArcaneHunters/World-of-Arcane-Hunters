@@ -27,8 +27,11 @@ class Bot {
     const reg = await api('/api/register', { username: `soc_${this.name}_${uniq}`, password: 'hunter22' });
     const char = await api('/api/characters', { name: this.name + alpha, class: this.cls }, reg.body.token);
     await new Promise((resolve, reject) => {
-      this.ws = new WebSocket(`${WS_BASE}/ws?token=${reg.body.token}&character=${char.body.id}`);
+      this.ws = new WebSocket(`${WS_BASE}/ws`);
       const to = setTimeout(() => reject(new Error('timeout')), 8000);
+      this.ws.on('open', () => {
+        this.ws.send(JSON.stringify({ t: 'auth', token: reg.body.token, character: char.body.id }));
+      });
       this.ws.on('message', (data) => {
         const msg = JSON.parse(String(data));
         if (msg.t === 'hello') { this.pid = msg.pid; clearTimeout(to); resolve(); }

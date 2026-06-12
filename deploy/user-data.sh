@@ -23,25 +23,14 @@ DOMAIN=""
 # is_admin account regardless of hostname (see DEPLOY.md).
 ADMIN_DOMAIN=""
 
-# The repo is private: a fine-grained GitHub PAT with read-only Contents
-# access to levy-street/world-of-claudecraft (see DEPLOY.md for the 5 clicks).
-GITHUB_TOKEN=""
-
 # ---------------------------------------------------------------------------
-REPO="github.com/levy-street/world-of-claudecraft.git"
+REPO="https://github.com/levy-street/world-of-claudecraft.git"
 APP_DIR="/opt/eastbrook"
 BACKUP_DIR="/var/backups/eastbrook"
 
 set -euo pipefail
 exec > >(tee -a /var/log/eastbrook-setup.log) 2>&1
 echo "=== World of Claudecraft setup started: $(date -u) ==="
-
-if [ -z "$GITHUB_TOKEN" ]; then
-  echo "FATAL: GITHUB_TOKEN is not set — cannot clone the private repo." >&2
-  echo "Edit the user data, add a token, and relaunch (or run this script" >&2
-  echo "manually over SSH after filling it in)." >&2
-  exit 1
-fi
 
 # --- swap: builds on a 2 GB instance want the headroom --------------------
 if [ ! -f /swapfile ]; then
@@ -68,7 +57,7 @@ systemctl enable --now docker
 
 # --- clone + secrets --------------------------------------------------------
 if [ ! -d "$APP_DIR" ]; then
-  git clone "https://x-access-token:${GITHUB_TOKEN}@${REPO}" "$APP_DIR"
+  git clone "$REPO" "$APP_DIR"
 fi
 cd "$APP_DIR"
 
