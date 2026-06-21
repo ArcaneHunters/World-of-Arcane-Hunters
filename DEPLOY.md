@@ -10,6 +10,7 @@
 > **Looking for a different deployment target?**
 > - [docs/SETUP-DIGITALOCEAN.md](docs/SETUP-DIGITALOCEAN.md) — DigitalOcean Droplet + Supabase + GitHub Actions CI/CD
 > - [docs/SETUP-LOCAL-MAC.md](docs/SETUP-LOCAL-MAC.md) — Local Mac development with local Supabase or Docker Compose
+> - [docs/SETUP-CLOUDFLARE.md](docs/SETUP-CLOUDFLARE.md) — Cloudflare DNS, proxy, WAF, and Turnstile integration (works alongside either deployment target)
 
 One EC2 instance runs everything: the game server, Postgres, MediaWiki, and Caddy
 (TLS reverse proxy). Sized for a small population — a `t4g.small`
@@ -427,6 +428,14 @@ TRUSTED_PROXY_IPS=203.0.113.10,203.0.113.11
 
 Comma-separated IPs or CIDR blocks. Setting this incorrectly can cause all
 players to be rate-limited under a single IP.
+
+> **Using Cloudflare as a proxy?** Do **not** list Cloudflare IPs in
+> `TRUSTED_PROXY_IPS`. Instead, configure Caddy's global `trusted_proxies`
+> block with Cloudflare's CIDR ranges — Caddy then resolves the real player IP
+> from Cloudflare's `CF-Connecting-IP` / `X-Forwarded-For` header and passes it
+> as a clean single-hop XFF to the game server, which already trusts the Docker
+> bridge (private range). See [docs/SETUP-CLOUDFLARE.md](docs/SETUP-CLOUDFLARE.md#5-update-caddy-for-cloudflare-ip-passthrough)
+> for the complete Caddyfile snippet.
 
 ---
 

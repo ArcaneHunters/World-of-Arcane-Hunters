@@ -212,6 +212,13 @@ TTL:   3600
 DNS propagation can take up to 48 hours but is usually under 5 minutes with a low TTL.
 Caddy cannot issue a TLS certificate until DNS resolves correctly.
 
+> **Routing traffic through Cloudflare?** If you plan to enable the Cloudflare proxy
+> (orange cloud icon), read [SETUP-CLOUDFLARE.md](SETUP-CLOUDFLARE.md) alongside this
+> guide before continuing. It covers DNS record types for proxied vs. DNS-only mode,
+> the SSL/TLS mode that must be set to avoid redirect loops with Caddy, which Cloudflare
+> speed features to disable (Rocket Loader and Auto Minify break the game), and the Caddy
+> `trusted_proxies` update required for rate limiting to see real player IPs.
+
 ---
 
 ## 5. Provision the Droplet
@@ -462,6 +469,21 @@ journalctl -u caddy --no-pager -n 20
 > **DNS must resolve before Caddy can issue a certificate.** If your DNS is not
 > propagated yet, Caddy will log an ACME challenge failure and retry automatically.
 > This is fine — just wait and it will succeed once DNS is live.
+
+> **Using Cloudflare proxy (orange cloud)?** The Caddy options above work as-is for
+> routing and TLS. However, two additional steps are required:
+>
+> 1. **Add a global `trusted_proxies` block** at the top of the Caddyfile (before any
+>    site blocks) with Cloudflare's published CIDR ranges. This tells Caddy to read the
+>    real player IP from the `X-Forwarded-For` header that Cloudflare sets, instead of
+>    treating all traffic as coming from Cloudflare's IPs. Without this, every player
+>    shares Cloudflare's IP and the rate limiter fires on the first login.
+> 2. **Set SSL/TLS mode to Full (strict)** in the Cloudflare dashboard for your domain.
+>    Flexible mode causes an infinite redirect loop because Caddy redirects HTTP → HTTPS
+>    while Cloudflare keeps sending HTTP to the origin.
+>
+> See [SETUP-CLOUDFLARE.md — Step 5](SETUP-CLOUDFLARE.md#5-update-caddy-for-cloudflare-ip-passthrough)
+> for the complete Caddyfile snippet with all Cloudflare CIDR ranges included.
 
 ### 5.7 Supabase free-tier keep-alive cron job
 
@@ -733,7 +755,7 @@ These are read by the game server process at startup. They never leave the Dropl
 | `RESTART_COUNTDOWN_SECRET` | No | — | Guards `POST /internal/restart-countdown`. Set a random 32-byte hex value if you use graceful restart announcements. |
 | `WIKI_URL` | No | `http://localhost:8080/wiki/...` | Where `/wiki` requests are 302-redirected. Set to your public wiki URL in production. |
 | `CHAT_LOG_RETENTION_DAYS` | No | `90` | Days to keep chat logs. `0` = keep forever. |
-| `TRUSTED_PROXY_IPS` | No | (loopback + private ranges) | Comma-separated IPs trusted to set `X-Forwarded-For` for rate limiting. Only change if your proxy connects from a non-private IP. |
+| `TRUSTED_PROXY_IPS` | No | (loopback + private ranges) | Comma-separated IPs trusted to set `X-Forwarded-For` for rate limiting. Only change if your proxy connects from a non-private IP. **Do not set this for Cloudflare** — use Caddy `trusted_proxies` instead (see [SETUP-CLOUDFLARE.md](SETUP-CLOUDFLARE.md#5-update-caddy-for-cloudflare-ip-passthrough)). |
 | `USERNAME_BANLIST` | No | — | Inline comma-separated banned username terms. |
 | `USERNAME_BANLIST_FILE` | No | — | Path to a newline- or comma-separated file of banned username terms. |
 | `CHAT_CENSOR_LIST` | No | — | Seeds the soft chat censor list on first boot only. Managed live in the admin dashboard thereafter. |
