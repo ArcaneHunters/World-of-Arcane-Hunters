@@ -40,6 +40,7 @@ conflict (not silently overwrite).
 | `docs/SETUP-CLOUDFLARE.md` | Cloudflare DNS, proxy, WAF, and Turnstile guide |
 | `docs/MAINTAINING-FORK.md` | This file |
 | `docs/CUSTOM-CONTENT.md` | Guide for adding custom game content via `src/sim/content/custom/` |
+| `docs/SETUP-LOCAL-SUPABASE.md` | Local development guide with local/production Supabase switching |
 | `FORK.md` | Fork rules — loaded by reference from `CLAUDE.md` |
 | `src/sim/content/custom/index.ts` | Custom game content scaffold (mobs, items, zones, quests, etc.) |
 | `src/sim/content/custom/CLAUDE.md` | Local authoring guide for the custom content directory |

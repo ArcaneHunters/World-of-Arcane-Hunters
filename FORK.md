@@ -90,7 +90,7 @@ grep -n "CUSTOM_CAMPS" src/sim/data.ts
 
 # Verify our docs files still exist
 ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
-   docs/MAINTAINING-FORK.md docs/CUSTOM-CONTENT.md FORK.md
+   docs/SETUP-LOCAL-SUPABASE.md docs/MAINTAINING-FORK.md docs/CUSTOM-CONTENT.md FORK.md
 
 # Verify README pointer survived (not the full upstream section)
 grep -c "docs/SETUP-DIGITALOCEAN.md" README.md
