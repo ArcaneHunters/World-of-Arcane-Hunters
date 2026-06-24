@@ -86,13 +86,29 @@ does the building. If you want to test locally before pushing, see
 
 ### 2.2 Copy the connection string
 
-1. In your Supabase project, go to **Project Settings** (gear icon) → **Database**.
-2. Scroll to **Connection string** → select the **Session** tab (not "Transaction").
-3. Copy the connection string for **port 5432**. It looks like:
-   ```
-   postgresql://postgres.[project-ref]:[your-password]@aws-0-us-east-1.pooler.supabase.com:5432/postgres
-   ```
-   Replace `[your-password]` with the password you set in step 2.1.5.
+The Supabase dashboard UI has two layouts depending on when your account was created.
+
+**Newer Supabase UI:** Look for a **Connect** button near the top of your project page.
+Click it and select the **Session** tab.
+
+**Older Supabase UI:** Go to **Project Settings** (gear icon) → **Database** → scroll
+to **Connection string** → select the **Session** tab.
+
+Copy the connection string for **port 5432**. It looks like:
+
+```
+postgresql://postgres.[project-ref]:[your-password]@aws-0-us-east-1.pooler.supabase.com:5432/postgres
+```
+
+Replace `[your-password]` with the password you set in step 2.1.5.
+
+> **Always use the Session pooler URL — not the direct connection URL.**
+> Supabase also provides a direct connection URL in the format
+> `postgresql://postgres:[password]@db.[ref].supabase.co:5432/postgres`. Do not
+> use this form. The direct URL resolves to an IPv6 address on most Supabase regions,
+> and DigitalOcean Droplets do not have IPv6 routing to Supabase — the connection will
+> fail with `Network is unreachable`. The Session pooler URL
+> (`aws-0-[region].pooler.supabase.com`) always resolves to IPv4 and works correctly.
 
 > **Why port 5432, not 6543?**
 > Port 6543 uses PgBouncer in transaction-pooling mode, which is incompatible with
@@ -252,11 +268,18 @@ caddy version
 
 ```bash
 mkdir -p /opt/eastbrook/media-cache
+chown -R 1000:1000 /opt/eastbrook/media-cache
+chmod 755 /opt/eastbrook/media-cache
 ```
 
 The `media-cache` directory is a persistent volume for content-hashed media files (GLB
 models, textures). It survives container replacements so players do not re-download assets
 on every deploy.
+
+> **Why `chown 1000:1000`?** The game container runs as a non-root user (uid 1000). If
+> this directory is owned by root, the container cannot write to it and will crash
+> immediately on startup with `Permission denied [/app/dist/media/textures]`. Setting
+> ownership to uid 1000 before the first deploy prevents this.
 
 ### 5.3 Write the runtime `.env` file
 
@@ -365,8 +388,15 @@ Copy the entire block including the `-----BEGIN OPENSSH PRIVATE KEY-----` and
 ### 5.6 Configure Caddy (TLS reverse proxy)
 
 Choose the Caddy configuration that matches your admin dashboard preference. All three
-options work — pick whichever suits your domain setup. Replace every `world.example.com`
-with your actual domain.
+options work — pick whichever suits your domain setup.
+
+> **Critical: replace every `world.example.com` with your actual domain before running
+> these commands.** If you write the Caddyfile with `world.example.com` or any other
+> placeholder, Caddy will attempt to get a TLS certificate for that name. Let's Encrypt
+> will reject `example.com` with a `rejectedIdentifier` policy error and your site will
+> never get an SSL certificate. Caddy retries on an exponential back-off so the failure
+> can persist for hours. If this happens, fix the Caddyfile and run
+> `systemctl restart caddy` to start fresh.
 
 ---
 
@@ -993,57 +1023,192 @@ when you have not set the new variable yet.
 
 ## 14. Troubleshooting
 
-### Container fails to start
+### ERR_SSL_PROTOCOL_ERROR in the browser
 
-```bash
-docker logs eastbrook-game
-```
-
-Common causes:
-- **`DATABASE_URL` incorrect or unreachable** — verify the connection string and that
-  the Supabase project is not paused (check the Supabase dashboard).
-- **Port conflict** — another process is on 8787. `lsof -i :8787` to find it.
-
-### Caddy not issuing TLS certificate
+Caddy has not yet obtained a TLS certificate. Check the Caddy logs:
 
 ```bash
 journalctl -u caddy --no-pager -n 50
 ```
 
-Common causes:
-- DNS not propagated yet — `dig world.example.com` (replace with your actual domain) should return your reserved IP.
-- Port 80 or 443 blocked by firewall — check DigitalOcean's Droplet Firewall or
-  `ufw status` if you have ufw enabled.
+**Cause 1 — Caddyfile still has the placeholder domain.**
+If the logs say `rejectedIdentifier` or `forbidden by policy` for `world.example.com`
+or any other placeholder, the Caddyfile was never updated with your real domain:
+
+```bash
+cat /etc/caddy/Caddyfile
+# Must show your actual domain, not world.example.com
+```
+
+Fix it:
+
+```bash
+cat > /etc/caddy/Caddyfile << 'EOF'
+your-actual-domain.com {
+    reverse_proxy localhost:8787
+    encode gzip
+}
+EOF
+systemctl restart caddy
+```
+
+Watch the logs — you should see `certificate obtained successfully` within 60 seconds.
+
+**Cause 2 — DNS not propagated yet.**
+Caddy cannot get a certificate until the domain points at the Droplet:
+
+```bash
+dig +short your-actual-domain.com
+# Must return your reserved IP
+```
+
+If it returns nothing or the wrong IP, fix the A record in your DNS provider and wait
+for propagation (usually under 5 minutes with a low TTL).
+
+**Cause 3 — Port 80 blocked.**
+Let's Encrypt uses port 80 for the HTTP-01 challenge. Check your DigitalOcean Firewall:
+Networking → Firewalls → your firewall → Inbound Rules. Both port 80 (HTTP) and 443
+(HTTPS) must allow All IPv4 and All IPv6.
+
+---
+
+### HTTP 502 Bad Gateway after SSL is working
+
+Caddy has a certificate but the game server is not running on port 8787.
+
+```bash
+docker ps -a
+docker logs eastbrook-game --tail 30
+```
+
+**Cause 1 — Container crashes with `Permission denied [/app/dist/media/textures]`.**
+The media-cache directory is owned by root; the container runs as uid 1000 and cannot
+write to it. Fix:
+
+```bash
+chown -R 1000:1000 /opt/eastbrook/media-cache
+chmod 755 /opt/eastbrook/media-cache
+```
+
+Then restart the container (see "Restarting the container manually" below).
+
+**Cause 2 — `DATABASE_URL` missing or wrong.**
+If the logs show `waiting for postgres` repeatedly and never reach `schema ready`,
+the server cannot connect to Supabase. See the "Supabase: Network is unreachable"
+section below.
+
+**Cause 3 — `.env` file missing.**
+```bash
+ls -la /opt/eastbrook/.env
+cat /opt/eastbrook/.env | grep DATABASE_URL
+```
+
+If the file is missing, re-create it following Step 5.3 above.
+
+---
+
+### Supabase: `Network is unreachable` (IPv6 issue)
+
+If `docker logs eastbrook-game` shows `waiting for postgres` indefinitely, test the
+connection manually:
+
+```bash
+psql "$(grep DATABASE_URL /opt/eastbrook/.env | cut -d= -f2-)" -c "\conninfo"
+```
+
+If this returns `Network is unreachable` and the error shows an IPv6 address
+(starting with numbers like `2406:` or `2600:`), you are using the **direct connection
+URL** (`db.[ref].supabase.co`) instead of the **Session pooler URL**. DigitalOcean
+Droplets do not have IPv6 routing to Supabase's network.
+
+Fix: switch to the Session pooler URL from the Supabase dashboard (Connect button →
+Session tab → port 5432). The pooler URL uses the format:
+
+```
+postgresql://postgres.[ref]:[password]@aws-0-[region].pooler.supabase.com:5432/postgres
+```
+
+Edit the `.env` file:
+
+```bash
+nano /opt/eastbrook/.env
+# Replace DATABASE_URL with the Session pooler URL
+```
+
+Then verify the connection works:
+
+```bash
+psql "$(grep DATABASE_URL /opt/eastbrook/.env | cut -d= -f2-)" -c "\conninfo"
+# Should connect immediately
+```
+
+Then restart the container.
+
+---
+
+### Supabase project paused (free tier)
+
+If the connection test hangs or returns `Connection refused` and the database was
+working before, the free-tier project may have auto-paused. Log into
+[supabase.com](https://supabase.com), open your project, and click the **Restore
+project** button if it appears. The project takes about 30 seconds to wake up.
+
+Prevent future pauses by ensuring the cron job from Step 5.7 is active:
+
+```bash
+cat /etc/cron.d/supabase-keepalive
+```
+
+---
+
+### Restarting the container manually
+
+The `docker-compose.prod.yml` file uses a `$GAME_IMAGE` variable that must be set
+when running compose commands manually. The deploy workflow sets it automatically,
+but for manual restarts:
+
+```bash
+GAME_IMAGE=$(docker inspect eastbrook-game --format '{{.Config.Image}}')
+cd /opt/eastbrook
+GAME_IMAGE=$GAME_IMAGE docker compose -f docker-compose.prod.yml up -d --no-deps --force-recreate game
+```
+
+Watch the logs to confirm it starts cleanly:
+
+```bash
+docker logs -f eastbrook-game
+# Should show: [db] schema ready ... [server] listening on 0.0.0.0:8787
+```
+
+---
 
 ### GitHub Actions deploy fails at SSH step
 
 - Confirm `DROPLET_IP` matches the reserved IP exactly.
-- Confirm `DROPLET_SSH_KEY` includes the full PEM block including header/footer.
-- Verify the public key is in `/root/.ssh/authorized_keys` on the Droplet.
+- Confirm `DROPLET_SSH_KEY` includes the full PEM block including header/footer lines.
+- Verify the public key is in `/root/.ssh/authorized_keys` on the Droplet:
   ```bash
   cat /root/.ssh/authorized_keys | grep woc-deploy-ci
   ```
 
-### Supabase connection refused
-
-- Always use port **5432** (Session mode), not 6543.
-- Free-tier projects auto-pause — visit the Supabase dashboard and click **Restore project**.
-- Confirm the database password in `DATABASE_URL` matches what Supabase has. If you
-  lost the password, reset it in **Supabase → Project Settings → Database → Reset database password**.
+---
 
 ### "Name already taken" error on character creation
 
 Character names are globally unique across all realms. Use a different name, or if
-you are testing, delete the conflicting character from Supabase:
+you are testing, delete the conflicting character:
 
 ```bash
-psql "$DATABASE_URL" -c "DELETE FROM characters WHERE name = 'TestChar';"
+psql "$(grep DATABASE_URL /opt/eastbrook/.env | cut -d= -f2-)" \
+  -c "DELETE FROM characters WHERE name = 'TestChar';"
 ```
+
+---
 
 ### Checking whether the schema is installed
 
 ```bash
-psql "$DATABASE_URL" -c "\dt"
+psql "$(grep DATABASE_URL /opt/eastbrook/.env | cut -d= -f2-)" -c "\dt"
 ```
 
 You should see tables: `accounts`, `auth_tokens`, `characters`, `world_state`,
