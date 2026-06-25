@@ -59,24 +59,47 @@ export type {
 // Merged content tables
 // ---------------------------------------------------------------------------
 
-export const ITEMS: Record<string, ItemDef> = mergeItems(BASE_ITEMS, ZONE2_ITEMS, ZONE3_ITEMS, TEMPLE_ITEMS, CUSTOM_ITEMS);
+export const ITEMS: Record<string, ItemDef> = mergeItems(
+  BASE_ITEMS, 
+  ZONE2_ITEMS, 
+  ZONE3_ITEMS, 
+  TEMPLE_ITEMS, 
+  CUSTOM_ITEMS
+);
 
 export const MOBS: Record<string, MobTemplate> = {
-  ...ZONE1_MOBS, ...ZONE2_MOBS, ...ZONE3_MOBS, ...DUNGEON_MOBS,
-  ...WARLOCK_PET_MOBS, ...TEMPLE_MOBS, ...TEMPLE_DUNGEON_MOBS,
-  ...CUSTOM_MOBS, ...CUSTOM_DUNGEON_MOBS,
+  ...ZONE1_MOBS, 
+  ...ZONE2_MOBS, 
+  ...ZONE3_MOBS, 
+  ...DUNGEON_MOBS,
+  ...WARLOCK_PET_MOBS, 
+  ...TEMPLE_MOBS, 
+  ...TEMPLE_DUNGEON_MOBS,
+  ...CUSTOM_MOBS, 
+  ...CUSTOM_DUNGEON_MOBS,
 };
 
 export const NPCS: Record<string, NpcDef> = {
-  ...ZONE1_NPCS, ...ZONE2_NPCS, ...ZONE3_NPCS, ...TEMPLE_NPCS, ...CUSTOM_NPCS,
+  ...ZONE1_NPCS, 
+  ...ZONE2_NPCS, 
+  ...ZONE3_NPCS, 
+  ...TEMPLE_NPCS, 
+  ...CUSTOM_NPCS,
 };
 
 export const QUESTS: Record<string, QuestDef> = {
-  ...ZONE1_QUESTS, ...ZONE2_QUESTS, ...ZONE3_QUESTS, ...TEMPLE_QUESTS, ...CUSTOM_QUESTS,
+  ...ZONE1_QUESTS, 
+  ...ZONE2_QUESTS, 
+  ...ZONE3_QUESTS, 
+  ...TEMPLE_QUESTS, 
+  ...CUSTOM_QUESTS,
 };
 
 export const QUEST_ORDER: string[] = [
-  ...ZONE1_QUEST_ORDER, ...ZONE2_QUEST_ORDER, ...ZONE3_QUEST_ORDER, ...TEMPLE_QUEST_ORDER,
+  ...ZONE1_QUEST_ORDER, 
+  ...ZONE2_QUEST_ORDER, 
+  ...ZONE3_QUEST_ORDER, 
+  ...TEMPLE_QUEST_ORDER,
   ...CUSTOM_QUEST_ORDER,
 ];
 
@@ -86,16 +109,37 @@ export const QUEST_ORDER: string[] = [
 // existing zone camp keeps its exact draw order (determinism).
 // CUSTOM_CAMPS must also stay last -- see src/sim/content/custom/CLAUDE.md.
 export const CAMPS: CampDef[] = [
-  ...ZONE1_CAMPS, ...ZONE2_CAMPS, ...ZONE3_CAMPS, ...TEMPLE_CAMPS, ...ZONE1_CHAPEL_CAMPS,
+  ...ZONE1_CAMPS, 
+  ...ZONE2_CAMPS, 
+  ...ZONE3_CAMPS, 
+  ...TEMPLE_CAMPS, 
+  ...ZONE1_CHAPEL_CAMPS,
   { mobId: 'grix_the_tunnelking', center: { x: -95, z: -78 }, radius: 4, count: 1 },
   ...CUSTOM_CAMPS,
 ];
 
-export const GROUND_OBJECTS: GroundObjectDef[] = [...ZONE1_OBJECTS, ...ZONE2_OBJECTS, ...ZONE3_OBJECTS, ...TEMPLE_OBJECTS, ...CUSTOM_OBJECTS];
+export const GROUND_OBJECTS: GroundObjectDef[] = [
+  ...ZONE1_OBJECTS, 
+  ...ZONE2_OBJECTS, 
+  ...ZONE3_OBJECTS, 
+  ...TEMPLE_OBJECTS, 
+  ...CUSTOM_OBJECTS
+];
 
-export const ROADS: { x: number; z: number }[][] = [...ZONE1_ROADS, ...ZONE2_ROADS, ...ZONE3_ROADS, ...CUSTOM_ROADS];
+export const ROADS: { x: number; z: number }[][] = [
+  ...ZONE1_ROADS, 
+  ...ZONE2_ROADS, 
+  ...ZONE3_ROADS, 
+  ...CUSTOM_ROADS
+];
 
-export const PROPS: ZonePropsDef = mergeProps([ZONE1_PROPS, ZONE2_PROPS, ZONE3_PROPS, TEMPLE_PROPS, CUSTOM_PROPS]);
+export const PROPS: ZonePropsDef = mergeProps([
+  ZONE1_PROPS, 
+  ZONE2_PROPS, 
+  ZONE3_PROPS, 
+  TEMPLE_PROPS, 
+  CUSTOM_PROPS
+]);
 
 function mergeProps(sets: ZonePropsDef[]): ZonePropsDef {
   return {
