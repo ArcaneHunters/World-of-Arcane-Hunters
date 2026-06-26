@@ -44,6 +44,10 @@ conflict (not silently overwrite).
 | `FORK.md` | Fork rules — loaded by reference from `CLAUDE.md` |
 | `src/sim/content/custom/index.ts` | Custom game content scaffold (mobs, items, zones, quests, etc.) |
 | `src/sim/content/custom/CLAUDE.md` | Local authoring guide for the custom content directory |
+| `src/render/characters/custom/index.ts` | Custom creature visual overrides (CUSTOM_VISUALS + CUSTOM_MOB_KEYS) |
+| `src/render/characters/custom/CLAUDE.md` | Local authoring guide for the custom visual directory |
+| `public/models/creatures/custom/` | Fork-owned directory for custom GLB model files |
+| `docs/custom-content/CREATURE-MODELS.md` | Step-by-step guide for overriding and adding creature models |
 
 ---
 
@@ -130,6 +134,39 @@ new in `README.md` belongs in `docs/SETUP-DIGITALOCEAN.md` instead, then keep th
 2. A Cloudflare callout was added inside the "Rate limiting and trusted proxy IPs"
    section, explaining that `TRUSTED_PROXY_IPS` should not be used when Cloudflare
    proxy + Caddy `trusted_proxies` is in use.
+
+#### `src/render/characters/manifest.ts` -- custom visual hook
+
+Three additions wire `src/render/characters/custom/index.ts` into the upstream
+visual dispatch. Search for `CUSTOM_VISUALS` to find all three.
+
+**Import line added** (after the existing imports, before the first `export`):
+```typescript
+// Fork custom visuals -- never touched by upstream merges (see MAINTAINING-FORK.md).
+import { CUSTOM_MOB_KEYS, CUSTOM_VISUALS } from './custom';
+```
+
+**Spread added inside `VISUALS`** (last entry before the closing `};` of the VISUALS record):
+```typescript
+  // Fork custom visuals (entries here shadow any upstream key with the same name).
+  ...CUSTOM_VISUALS,
+};
+```
+
+**Spread added inside `MOB_KEYS`** (last entry before the closing `};` of the MOB_KEYS record):
+```typescript
+  // Fork custom mob-key overrides (entries here win over any upstream mapping).
+  ...CUSTOM_MOB_KEYS,
+};
+```
+
+To verify all three are present after a merge:
+```bash
+grep -n "CUSTOM_MOB_KEYS\|CUSTOM_VISUALS" src/render/characters/manifest.ts
+# Expect exactly 3 hits: the import line + the two spreads
+```
+
+---
 
 #### `src/sim/data.ts` — custom content hook
 

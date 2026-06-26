@@ -7,6 +7,8 @@ import { MOBS } from '../../sim/data';
 import type { Entity } from '../../sim/types';
 import { ITEM_WEAPON_VARIANTS } from '../../ui/weapon_variants';
 import type { OverheadEmoteId } from '../../world_api';
+// Fork custom visuals -- never touched by upstream merges (see MAINTAINING-FORK.md).
+import { CUSTOM_MOB_KEYS, CUSTOM_VISUALS } from './custom';
 
 export interface EmoteClipSpec {
   clips: readonly string[];
@@ -813,6 +815,8 @@ export const VISUALS: Record<string, VisualDef> = {
     height: HUMANOID_H,
     clips: kaykit(['1H_Melee_Attack_Chop']),
   },
+  // Fork custom visuals (entries here shadow any upstream key with the same name).
+  ...CUSTOM_VISUALS,
 };
 
 // ---------------------------------------------------------------------------
@@ -865,6 +869,8 @@ const MOB_KEYS: Record<string, string> = {
   vision_aldren_warrior: 'player_warrior',
   vision_malric_mage: 'player_mage',
   vision_deathstalker_voss: 'player_rogue',
+  // Fork custom mob-key overrides (entries here win over any upstream mapping).
+  ...CUSTOM_MOB_KEYS,
 };
 
 const FAMILY_KEYS: Record<string, string> = {
