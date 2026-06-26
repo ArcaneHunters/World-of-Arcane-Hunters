@@ -125,8 +125,8 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
    scripts/brand_inject.mjs src/ui/i18n.catalog/fork_brand.ts
 
 # Verify brand injection survived in vite.config.ts
-grep -n "brandTokenPlugin\|__SITE_URL__\|VITE_SITE_URL" vite.config.ts
-# Expect: env reads, define block entries, and brandTokenPlugin in plugins
+grep -n "brandTokenPlugin\|__SITE_URL__\|VITE_SITE_URL\|VITE_GA_ID\|WOC:GA" vite.config.ts
+# Expect: env reads for gaId/metaPixelId, define block entries, brandTokenPlugin in plugins
 
 # Verify Dockerfile brand args survived
 grep -n "VITE_SITE_URL\|VITE_DISCORD_URL\|VITE_DONATE_URL" Dockerfile
@@ -312,6 +312,8 @@ variables replace the placeholders in the built output:
 | `VITE_SITE_URL` | GitHub Actions repo variable | Full https:// origin, no trailing slash |
 | `VITE_DISCORD_URL` | GitHub Actions repo variable | Discord invite URL |
 | `VITE_DONATE_URL` | GitHub Actions repo variable | Donate/sponsor URL |
+| `VITE_GA_ID` | GitHub Actions repo variable | Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX). Leave unset to strip GA entirely. |
+| `VITE_META_PIXEL_ID` | GitHub Actions repo variable | Meta (Facebook) Pixel numeric ID. Leave unset to strip Meta Pixel entirely. |
 
 These are passed as Docker `--build-arg` values in `.github/workflows/deploy.yml`. The build
 pipeline substitutes them in three places:
@@ -324,3 +326,15 @@ If upstream updates these files and changes a TODO placeholder URL to something 
 1. Update the TODO placeholder in `brand_inject.mjs` / `vite.config.ts` to match the new token.
 2. Run `npm run build && npm run brand:inject` to verify the replacement works.
 3. Document the updated token in `docs/MAINTAINING-FORK.md`.
+
+**Analytics ID injection (third-party tracking control):**
+The upstream HTML files contain Google Analytics and Meta Pixel script blocks with upstream
+tracking IDs. This fork replaces those IDs with `TODO-` placeholder tokens and wraps each
+block in `<!-- WOC:GA:START/END -->` / `<!-- WOC:META:START/END -->` marker comments.
+At build time, `brandTokenPlugin` in `vite.config.ts` either:
+- Strips the entire block when the env var is not set (default -- no tracking ships).
+- Removes the markers and injects your real ID when the env var is set.
+
+This means a fork build with no `VITE_GA_ID` / `VITE_META_PIXEL_ID` set ships zero
+third-party analytics. Set your own IDs as GitHub Actions repo variables to re-enable
+tracking under your own accounts.

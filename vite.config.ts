@@ -60,22 +60,59 @@ const siteUrl = (env(['VITE_SITE_URL']) ?? 'https://TODO-your-domain.com').repla
 const discordUrl = env(['VITE_DISCORD_URL']) ?? 'https://discord.gg/TODO';
 const donateUrl = env(['VITE_DONATE_URL']) ?? 'https://github.com/sponsors/TODO';
 
+// Analytics IDs: injected from build environment variables. When unset, the
+// entire script block is stripped from the HTML output so no tracking fires and
+// no upstream IDs are included. Set these as Docker build args or GitHub Actions
+// repository variables. Leave unset to ship with no third-party analytics.
+// VITE_GA_ID:          Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)
+// VITE_META_PIXEL_ID:  Meta (Facebook) Pixel numeric ID
+const gaId = env(['VITE_GA_ID']) ?? '';
+const metaPixelId = env(['VITE_META_PIXEL_ID']) ?? '';
+
 // Build-time brand token replacement for HTML entry files (index.html, play.html,
 // guide.html, admin.html). Replaces TODO placeholder URLs with the values resolved
 // above so the deployed bundle is clean without touching the source files.
 // Public/ static files (robots.txt, sitemap.xml, legal pages) are handled by the
 // post-build scripts/brand_inject.mjs step instead.
+//
+// Analytics blocks (WOC:GA, WOC:META) are stripped when the corresponding env var
+// is not set, or the TODO placeholder ID is replaced with the real ID when it is.
+// This means no upstream analytics IDs ever ship in a deployed fork build.
 function brandTokenPlugin() {
   const siteDomain = siteUrl.replace(/^https?:\/\//, '');
   return {
     name: 'woc-brand-token',
     apply: 'build' as const,
     transformIndexHtml(html: string): string {
-      return html
+      let result = html
         .replaceAll('https://TODO-your-domain.com', siteUrl)
         .replaceAll('TODO-your-domain.com', siteDomain)
         .replaceAll('https://discord.gg/TODO', discordUrl)
         .replaceAll('https://github.com/sponsors/TODO', donateUrl);
+
+      // Google Analytics: strip the block entirely when VITE_GA_ID is not set;
+      // otherwise remove just the marker comments and inject the real ID.
+      if (gaId) {
+        result = result
+          .replace(/<!-- WOC:GA:START -->\n?/g, '')
+          .replace(/<!-- WOC:GA:END -->\n?/g, '')
+          .replaceAll('TODO-ga-measurement-id', gaId);
+      } else {
+        result = result.replace(/<!-- WOC:GA:START -->[\s\S]*?<!-- WOC:GA:END -->\n?/g, '');
+      }
+
+      // Meta Pixel: same pattern. Each occurrence of the WOC:META marker pair is
+      // stripped or kept independently (head script block + body noscript pixel).
+      if (metaPixelId) {
+        result = result
+          .replace(/<!-- WOC:META:START -->/g, '')
+          .replace(/<!-- WOC:META:END -->/g, '')
+          .replaceAll('TODO-meta-pixel-id', metaPixelId);
+      } else {
+        result = result.replace(/<!-- WOC:META:START -->[\s\S]*?<!-- WOC:META:END -->/g, '');
+      }
+
+      return result;
     },
   };
 }

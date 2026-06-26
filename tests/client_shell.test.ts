@@ -188,11 +188,13 @@ describe('client HTML shell', () => {
   });
 
   it('loads Meta Pixel outside local development and tracks level 5', () => {
+    // Source HTML uses a TODO- placeholder ID; the real ID is injected at build
+    // time from VITE_META_PIXEL_ID. When unset, brandTokenPlugin strips the block.
     expect(html).toContain('https://connect.facebook.net/en_US/fbevents.js');
-    expect(html).toContain("fbq('init', '1692101265042180');");
+    expect(html).toContain("fbq('init', 'TODO-meta-pixel-id');");
     expect(html).toContain("fbq('track', 'PageView');");
     expect(html).toContain(
-      'https://www.facebook.com/tr?id=1692101265042180&ev=PageView&noscript=1',
+      'https://www.facebook.com/tr?id=TODO-meta-pixel-id&ev=PageView&noscript=1',
     );
     expect(html).toContain(
       "if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {",

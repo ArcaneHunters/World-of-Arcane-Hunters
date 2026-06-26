@@ -26,10 +26,18 @@ ARG VITE_TURNSTILE_SITEKEY=""
 ARG VITE_SITE_URL="https://TODO-your-domain.com"
 ARG VITE_DISCORD_URL="https://discord.gg/TODO"
 ARG VITE_DONATE_URL="https://github.com/sponsors/TODO"
+# Analytics IDs: leave empty to strip all analytics from the build output.
+# Set as --build-arg via GitHub Actions repo variables to enable your own tracking.
+# VITE_GA_ID:         Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)
+# VITE_META_PIXEL_ID: Meta (Facebook) Pixel numeric ID
+ARG VITE_GA_ID=""
+ARG VITE_META_PIXEL_ID=""
 RUN VITE_TURNSTILE_SITEKEY="$VITE_TURNSTILE_SITEKEY" \
     VITE_SITE_URL="$VITE_SITE_URL" \
     VITE_DISCORD_URL="$VITE_DISCORD_URL" \
     VITE_DONATE_URL="$VITE_DONATE_URL" \
+    VITE_GA_ID="$VITE_GA_ID" \
+    VITE_META_PIXEL_ID="$VITE_META_PIXEL_ID" \
     npm run build && \
     VITE_SITE_URL="$VITE_SITE_URL" \
     VITE_DISCORD_URL="$VITE_DISCORD_URL" \
