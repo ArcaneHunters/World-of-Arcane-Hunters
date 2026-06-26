@@ -14,6 +14,7 @@ scripts/*
 !scripts/migrate_old_cragmaw_pelt.ts
 !scripts/old_cragmaw_pelt_migration.ts
 !scripts/build_sitemap.mjs
+!scripts/brand_inject.mjs
 !scripts/i18n_*.mjs
 !scripts/wiki/
 !scripts/wiki/*.mjs

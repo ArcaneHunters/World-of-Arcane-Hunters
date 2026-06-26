@@ -114,8 +114,7 @@ export const REALM_PUBLIC_ORIGIN =
 // src/ui/i18n.catalog/fork_brand.ts. Set PUBLIC_ORIGIN env var in .env to avoid this fallback.
 const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://TODO-your-domain.com';
 const TRUSTED_PUBLIC_HOST_ORIGINS = new Map([
-  ['TODO-your-domain.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
-  ['www.TODO-your-domain.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['world.arcanehunters.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN]
 ]);
 
 function firstHeaderValue(value: string | string[] | undefined): string {
