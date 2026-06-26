@@ -306,6 +306,67 @@ Other pending items:
 
 ---
 
+#### Analytics ID injection (2026-06) -- third-party tracking control
+
+Replaces hard-coded upstream analytics IDs with `TODO-` placeholder tokens and adds
+`<!-- WOC:GA:START/END -->` / `<!-- WOC:META:START/END -->` marker comments around
+each block. `brandTokenPlugin` in `vite.config.ts` strips the block when the
+corresponding env var is unset, or injects the real ID when it is set.
+
+**Upstream files modified:**
+
+`index.html` -- GA script block (lines 149-161) wrapped in `<!-- WOC:GA:START/END -->`
+markers; `G-BR5Z7GT7C2` replaced with `TODO-ga-measurement-id`. Meta Pixel block
+(lines 162-170) wrapped in `<!-- WOC:META:START/END -->` markers; `1692101265042180`
+replaced with `TODO-meta-pixel-id`. Noscript pixel in `<body>` also wrapped in
+`<!-- WOC:META:START/END -->` markers with the same placeholder.
+
+`play.html` -- GA script block wrapped in `<!-- WOC:GA:START/END -->` markers;
+`G-BR5Z7GT7C2` replaced with `TODO-ga-measurement-id`.
+
+`vite.config.ts` -- added `gaId`/`metaPixelId` env reads and extended
+`brandTokenPlugin.transformIndexHtml` with block-strip/inject logic for both markers.
+Re-apply snippet for the env reads (after the `donateUrl` line):
+```typescript
+const gaId = env(['VITE_GA_ID']) ?? '';
+const metaPixelId = env(['VITE_META_PIXEL_ID']) ?? '';
+```
+Re-apply snippet for the plugin logic (inside `transformIndexHtml`, after brand URL replacements):
+```typescript
+if (gaId) {
+  result = result
+    .replace(/<!-- WOC:GA:START -->\n?/g, '')
+    .replace(/<!-- WOC:GA:END -->\n?/g, '')
+    .replaceAll('TODO-ga-measurement-id', gaId);
+} else {
+  result = result.replace(/<!-- WOC:GA:START -->[\s\S]*?<!-- WOC:GA:END -->\n?/g, '');
+}
+if (metaPixelId) {
+  result = result
+    .replace(/<!-- WOC:META:START -->/g, '')
+    .replace(/<!-- WOC:META:END -->/g, '')
+    .replaceAll('TODO-meta-pixel-id', metaPixelId);
+} else {
+  result = result.replace(/<!-- WOC:META:START -->[\s\S]*?<!-- WOC:META:END -->/g, '');
+}
+```
+
+`Dockerfile` -- added `ARG VITE_GA_ID=""` and `ARG VITE_META_PIXEL_ID=""` and passes
+them to the `npm run build` env block.
+
+`.github/workflows/deploy.yml` -- added `--build-arg VITE_GA_ID` and
+`--build-arg VITE_META_PIXEL_ID` to the docker build step. Documents them as optional
+repo variables in the header comment.
+
+`.env.example` -- added documentation block for `VITE_GA_ID` and `VITE_META_PIXEL_ID`.
+
+**If upstream changes the GA or Meta Pixel block structure:** Re-apply the placeholder
+tokens and marker comments to the new block shape, then verify `brandTokenPlugin` still
+strips/injects correctly by running `npm run build` without the env vars set and checking
+that `dist/index.html` contains no `googletagmanager` or `facebook.net` references.
+
+---
+
 #### Build-time brand URL injection (2026-06) -- variable substitution system
 
 Added to prevent upstream file changes from breaking the domain/Discord/donate

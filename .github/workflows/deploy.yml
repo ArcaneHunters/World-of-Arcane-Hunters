@@ -20,6 +20,12 @@ name: Deploy
 #                      Omit or leave empty if you have no Discord server.
 #   VITE_DONATE_URL  — Donate/sponsor URL (e.g. https://github.com/sponsors/me)
 #                      Omit or leave empty if you have no donation link.
+#
+# Optional analytics variables (leave unset to ship with NO third-party tracking):
+#   VITE_GA_ID         — Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)
+#                        Omit to strip the GA script block from the build output.
+#   VITE_META_PIXEL_ID — Meta (Facebook) Pixel numeric ID
+#                        Omit to strip the Meta Pixel block from the build output.
 
 on:
   push:
@@ -81,6 +87,8 @@ jobs:
             --build-arg VITE_SITE_URL="${{ vars.VITE_SITE_URL }}" \
             --build-arg VITE_DISCORD_URL="${{ vars.VITE_DISCORD_URL }}" \
             --build-arg VITE_DONATE_URL="${{ vars.VITE_DONATE_URL }}" \
+            --build-arg VITE_GA_ID="${{ vars.VITE_GA_ID }}" \
+            --build-arg VITE_META_PIXEL_ID="${{ vars.VITE_META_PIXEL_ID }}" \
             -t "$IMAGE:${{ github.sha }}" \
             -t "$IMAGE:latest" \
             .
