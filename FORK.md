@@ -120,9 +120,16 @@ grep -n "CUSTOM_CAMPS\|CUSTOM_MOBS\|CUSTOM_ITEMS\|CUSTOM_NPCS\|CUSTOM_QUESTS\|CU
 # Verify fork-owned files still exist
 ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
    docs/SETUP-LOCAL-SUPABASE.md docs/MAINTAINING-FORK.md docs/CUSTOM-CONTENT.md \
-   docs/custom-content/ADDING-CUSTOM-CONTENT.md FORK.md \
+   docs/custom-content/ADDING-CUSTOM-CONTENT.md docs/custom-content/CREATURE-MODELS.md \
+   FORK.md \
    src/sim/content/custom/index.ts src/sim/content/custom/CLAUDE.md \
+   src/render/characters/custom/index.ts src/render/characters/custom/CLAUDE.md \
+   public/models/creatures/custom/.gitkeep \
    scripts/brand_inject.mjs src/ui/i18n.catalog/fork_brand.ts
+
+# Verify custom visual hook survived in manifest.ts
+grep -n "CUSTOM_MOB_KEYS\|CUSTOM_VISUALS" src/render/characters/manifest.ts
+# Expect: 3 hits -- import line + ...CUSTOM_VISUALS spread + ...CUSTOM_MOB_KEYS spread
 
 # Verify brand injection survived in vite.config.ts
 grep -n "brandTokenPlugin\|__SITE_URL__\|VITE_SITE_URL\|VITE_GA_ID\|WOC:GA" vite.config.ts
@@ -294,6 +301,7 @@ A full list of all upstream file modifications with exact code snippets is in
 - `DEPLOY.md` -- added Cloudflare guide link and rate-limiting note
 - `README.md` -- replaced DigitalOcean deployment section with pointer to `docs/SETUP-DIGITALOCEAN.md`
 - `src/sim/data.ts` -- added import + merges for `src/sim/content/custom/`
+- `src/render/characters/manifest.ts` -- added import + spreads for `src/render/characters/custom/`
 - **Brand rename (2026-06):** ~30 upstream files updated -- game name, realm name, domain, GitHub URL.
   See the "Brand rename" section in `docs/MAINTAINING-FORK.md` for the full replacement map.
 
@@ -301,6 +309,10 @@ A full list of all upstream file modifications with exact code snippets is in
 - `src/ui/i18n.catalog/fork_brand.ts` -- central brand constants (`FORK_BRAND`); imported by `index.ts`
 - `scripts/brand_inject.mjs` -- post-build token replacement: patches dist/ static files with real brand URLs
 - `docs/custom-content/ADDING-CUSTOM-CONTENT.md` -- step-by-step authoring guide for all custom content types
+- `src/render/characters/custom/index.ts` -- custom creature visual overrides (CUSTOM_VISUALS + CUSTOM_MOB_KEYS)
+- `src/render/characters/custom/CLAUDE.md` -- authoring guide for the custom visual directory
+- `public/models/creatures/custom/` -- fork-owned directory for custom GLB model files
+- `docs/custom-content/CREATURE-MODELS.md` -- step-by-step guide for overriding and adding creature models
 
 **Build-time brand URL injection (variable substitution system):**
 Source files keep `TODO-your-domain.com` / `https://discord.gg/TODO` / `https://github.com/sponsors/TODO`
