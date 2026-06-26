@@ -383,6 +383,22 @@ upstream adds NEW files containing `worldofclaudecraft.com`, those will NOT be p
 
 ---
 
+## Post-merge failure recovery
+
+If the build or server fails after a merge, follow the full protocol in
+`FORK.md` Rule 5. That rule covers:
+- Step-by-step health checks (grep commands for every fork-specific addition)
+- Systematic review of every entry in this document to confirm it survived
+- How to adapt the custom content hook when upstream refactors `data.ts`
+- What to do when upstream changes a shared type interface that custom content uses
+- TypeScript error triage, test-suite checks, and build pipeline verification
+- Documentation update requirements after every fix
+
+The short version of the health checks is also in `FORK.md` Rule 4.
+Full code snippets to re-apply any lost change are in the sections above.
+
+---
+
 ## How to safely pull upstream updates
 
 ### The safe workflow
@@ -418,6 +434,7 @@ grep -n "CUSTOM_CAMPS" src/sim/data.ts
 # 3. Verify fork-owned files still exist
 ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md \
    docs/SETUP-CLOUDFLARE.md docs/MAINTAINING-FORK.md \
+   docs/custom-content/ADDING-CUSTOM-CONTENT.md \
    src/sim/content/custom/index.ts FORK.md
 ```
 
