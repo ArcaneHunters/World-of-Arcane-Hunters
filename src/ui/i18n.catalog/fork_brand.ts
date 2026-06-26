@@ -8,7 +8,7 @@ export const FORK_BRAND = {
   realmName: 'Eastbrook',
   githubUrl: 'https://github.com/giondesign/world-of-arcane-hunters',
   // TODO: Set your custom domain once deployed (also update play.html, guide.html, public/sitemap.xml, server/realm.ts TRUSTED_PUBLIC_HOST_ORIGINS)
-  siteUrl: 'https://TODO-your-domain.com',
+  siteUrl: 'https://world.arcanehunters.com',
   // TODO: Set your Discord invite URL, or remove Discord footer links in play.html
   discordUrl: 'https://discord.gg/TODO',
   // TODO: Set your donation/sponsor URL, or remove donate footer link in play.html
