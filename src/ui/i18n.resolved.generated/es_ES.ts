@@ -5097,19 +5097,19 @@ export const es_ES: EnTranslations = {
         "name": "Acólita Tessa"
       },
       "custom_ashwalker_drake": {
-        "name": "Ashwalker Drake"
+        "name": "Drake Caminante de Cenizas"
       },
       "custom_scorchwing_wyvern": {
-        "name": "Scorchwing Wyvern"
+        "name": "Vivora Ala Chamuscada"
       },
       "custom_blighted_sentinel": {
-        "name": "Blighted Sentinel"
+        "name": "Centinela Maligno"
       },
       "custom_dragonclaw_warden": {
-        "name": "Dragonclaw Warden"
+        "name": "Guardian Garra de Dragon"
       },
       "custom_ignaraxis": {
-        "name": "Ignaraxis the Eternal"
+        "name": "Ignaraxis el Eterno"
       },
       "ironvein_foreman": {
         "name": "Capataz Vena de Hierro"
@@ -5327,19 +5327,19 @@ export const es_ES: EnTranslations = {
         "greeting": "El relicario de abajo ha vuelto a moverse."
       },
       "custom_commander_vael": {
-        "name": "Commander Vael",
-        "title": "Blightwatch Officer",
-        "greeting": "Stand ready, {playerName}. This blight does not sleep, and neither do we."
+        "name": "Comandante Vael",
+        "title": "Oficial de la Guardia de la Blight",
+        "greeting": "Preparaos, {playerName}. Esta Blight no duerme, y nosotros tampoco."
       },
       "custom_scout_fenris": {
-        "name": "Scout Fenris",
-        "title": "Blightwatch Scout",
-        "greeting": "You made it through the wyvern grounds? Good. I could use someone capable out here."
+        "name": "Exploradora Fenris",
+        "title": "Exploradora de la Guardia de la Blight",
+        "greeting": "Habéis cruzado los terrenos del vivora? Bien. Necesitaba alguien capaz aqui."
       },
       "custom_elder_draxis": {
-        "name": "Elder Draxis",
-        "title": "Dragonslayer",
-        "greeting": "I have hunted dragons for thirty years, {playerName}. Ignaraxis is not like the others."
+        "name": "Anciano Draxis",
+        "title": "Matadragones",
+        "greeting": "He cazado dragones durante treinta anos, {playerName}. Ignaraxis no es como los demas."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6101,71 +6101,71 @@ export const es_ES: EnTranslations = {
         }
       },
       "custom_proving_ground": {
-        "title": "Proving Ground",
-        "text": "The ashwalker drakes have pushed to the edges of our camp, {playerName}. Thin their numbers -- ten of them -- and prove you belong in the Blight.",
-        "completion": "Ten drakes down. Not bad. You might just survive out here, {playerName}.",
+        "title": "Tierra de Prueba",
+        "text": "Los drakes caminantes de cenizas han avanzado hasta los bordes de nuestro campamento, {playerName}. Reduce su numero -- diez de ellos -- y demuestra que perteneces a la Blight.",
+        "completion": "Diez drakes caidos. Nada mal. Quiza sobrevivas aqui, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Caminantes de Cenizas matados"
           }
         }
       },
       "custom_marks_of_the_drake": {
-        "title": "Marks of the Drake",
-        "text": "Drake scales are tough as plate, {playerName}. I need eight of them to outfit the next patrol. The drakes do not give them up easily -- take what you can.",
-        "completion": "Eight scales. These will hold up against fire better than anything we can forge. Well done.",
+        "title": "Marcas del Drake",
+        "text": "Las escamas de drake son tan duras como la armadura de placa, {playerName}. Necesito ocho para equipar al proximo patron de patrulla. Los drakes no las entregaran facilmente -- coged lo que podais.",
+        "completion": "Ocho escamas. Resistiran el fuego mejor que cualquier cosa que podamos forjar. Bien hecho.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drake Scales"
+            "label": "Escamas de Drake Caminante de Cenizas"
           }
         }
       },
       "custom_into_the_blight": {
-        "title": "Into the Blight",
-        "text": "Those scorchwing wyverns are nesting between us and the dungeon, {playerName}. Eight of them need to go, and I need five of their heartstones for the commander's alchemist. They're deep, but I know you can reach them.",
-        "completion": "The nesting ground is clear. Those heartstones will be worth more to us than you know.",
+        "title": "Adentrandose en la Blight",
+        "text": "Esas vivoras ala chamuscada estan anidando entre nosotros y la mazmorra, {playerName}. Ocho de ellas tienen que irse, y necesito cinco de sus piedras del corazon para el alquimista del comandante. Estan en lo profundo, pero se que podeis alcanzarlas.",
+        "completion": "El nido ha sido despejado. Esas piedras del corazon valdran mas de lo que creeis.",
         "objectives": {
           "0": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Vivoras Ala Chamuscada matadas"
           },
           "1": {
-            "label": "Scorchwing Heartstones"
+            "label": "Piedras del Corazon de Vivora"
           }
         }
       },
       "custom_eye_of_the_storm": {
-        "title": "Eye of the Storm",
-        "text": "The blighted sentinels are Ignaraxis's outer guard, {playerName}. Ancient dragonkin warped by centuries near that creature. Take down three of them and bring me the blight embers from their cores. If you can manage them, you're ready for the maw.",
-        "completion": "Three sentinels down and embers in hand. You're ready, {playerName}. Go speak with Elder Draxis back at the post. He has been waiting a long time for this.",
+        "title": "Ojo de la Tormenta",
+        "text": "Los centinelas malignos son la guardia exterior de Ignaraxis, {playerName}. Antiguas criaturas draconicas retorcidas por siglos cerca de esa criatura. Derribad tres de ellos y traedme las brasas malignas de sus nucleos. Si podeis manejarlos, estais listos para las Fauces.",
+        "completion": "Tres centinelas caidos y brasas en mano. Estais listos, {playerName}. Id a hablar con el Anciano Draxis en el puesto. Ha esperado mucho tiempo para esto.",
         "objectives": {
           "0": {
-            "label": "Blighted Sentinels slain"
+            "label": "Centinelas Malignos matados"
           },
           "1": {
-            "label": "Blight Embers"
+            "label": "Brasas Malignas"
           }
         }
       },
       "custom_eternal_flame": {
-        "title": "The Eternal Flame",
-        "text": "Ignaraxis the Eternal has slumbered in the Dragon's Maw for an age, {playerName}. The Blight above us is his breath given form. Enter the maw, face him in his lair, and end it. Your companions will be necessary -- this is not a hunt for one alone.",
-        "completion": "The Eternal Flame is extinguished, {playerName}. I have waited thirty years to say those words. The Blight will fade now. Take this -- you've more than earned it.",
+        "title": "La Llama Eterna",
+        "text": "Ignaraxis el Eterno ha dormido en las Fauces del Dragon durante una era, {playerName}. La Blight sobre nosotros es su aliento dado forma. Entrad en las Fauces, enfrentadle en su guarida y acabad con ello. Vuestros companeros seran necesarios -- esta no es una caceria para uno solo.",
+        "completion": "La Llama Eterna se ha extinguido, {playerName}. He esperado treinta anos para decir esas palabras. La Blight se desvanecera ahora. Tomad esto -- os lo habeis ganado sobradamente.",
         "objectives": {
           "0": {
-            "label": "Ignaraxis the Eternal slain"
+            "label": "Ignaraxis el Eterno matado"
           }
         }
       },
       "custom_blight_patrol": {
-        "title": "Blight Patrol",
-        "text": "We cannot let the drakes and wyverns overrun the approaches, {playerName}. Patrol the Blight, cut down fifteen drakes and eight wyverns, and report back. Keeps our flanks clear while the chain of command handles the bigger picture.",
-        "completion": "Flanks are clear. The men breathe easier when someone is out there making a difference. Good work, {playerName}.",
+        "title": "Patrulla de la Blight",
+        "text": "No podemos dejar que los drakes y las vivoras invadan los accesos, {playerName}. Patrullad la Blight, matad quince drakes y ocho vivoras, y regresad. Mantiene nuestros flancos despejados mientras la cadena de mando gestiona el panorama general.",
+        "completion": "Los flancos estan despejados. Los hombres respiran con mas facilidad cuando alguien esta ahi afuera marcando la diferencia. Buen trabajo, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Caminantes de Cenizas matados"
           },
           "1": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Vivoras Ala Chamuscada matadas"
           }
         }
       },
@@ -6337,17 +6337,17 @@ export const es_ES: EnTranslations = {
         }
       },
       "custom_dragons_blight": {
-        "name": "Dragon's Blight",
-        "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire.",
+        "name": "La Blight del Dragon",
+        "welcome": "La Blight del Dragon se extiende ante vosotros, ahogada en cenizas y el lejano eco del fuego ancestral.",
         "pois": {
           "0": {
-            "label": "Blightwatch Post"
+            "label": "Puesto de la Guardia de la Blight"
           },
           "1": {
-            "label": "Fenris's Outpost"
+            "label": "Puesto Avanzado de Fenris"
           },
           "2": {
-            "label": "Dragon's Maw"
+            "label": "Las Fauces del Dragon"
           }
         }
       }
@@ -6379,9 +6379,9 @@ export const es_ES: EnTranslations = {
         "leaveText": "Regresas al aire frío de Thornpeak."
       },
       "custom_dragons_maw": {
-        "name": "Dragon's Maw",
-        "enterText": "The heat is suffocating. Something vast stirs in the darkness ahead.",
-        "leaveText": "You emerge from the Dragon's Maw, the air outside cold against your skin."
+        "name": "Las Fauces del Dragon",
+        "enterText": "El calor es sofocante. Algo inmenso se agita en la oscuridad del frente.",
+        "leaveText": "Emergeís de las Fauces del Dragon, el aire exterior frio contra vuestra piel."
       },
       "drowned_temple": {
         "name": "El Templo Ahogado",

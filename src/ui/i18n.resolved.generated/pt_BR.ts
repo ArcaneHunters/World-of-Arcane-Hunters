@@ -5097,19 +5097,19 @@ export const pt_BR: EnTranslations = {
         "name": "Acólita Tessa"
       },
       "custom_ashwalker_drake": {
-        "name": "Ashwalker Drake"
+        "name": "Drake Andador de Cinzas"
       },
       "custom_scorchwing_wyvern": {
-        "name": "Scorchwing Wyvern"
+        "name": "Vibora Asa Chamuscada"
       },
       "custom_blighted_sentinel": {
-        "name": "Blighted Sentinel"
+        "name": "Sentinela Maligna"
       },
       "custom_dragonclaw_warden": {
-        "name": "Dragonclaw Warden"
+        "name": "Guardiao Garra de Dragao"
       },
       "custom_ignaraxis": {
-        "name": "Ignaraxis the Eternal"
+        "name": "Ignaraxis o Eterno"
       },
       "ironvein_foreman": {
         "name": "Capataz Veio de Ferro"
@@ -5327,19 +5327,19 @@ export const pt_BR: EnTranslations = {
         "greeting": "O relicário lá embaixo se moveu de novo."
       },
       "custom_commander_vael": {
-        "name": "Commander Vael",
-        "title": "Blightwatch Officer",
-        "greeting": "Stand ready, {playerName}. This blight does not sleep, and neither do we."
+        "name": "Comandante Vael",
+        "title": "Oficial da Guarda da Praga",
+        "greeting": "Fiquem prontos, {playerName}. Esta praga nao dorme, e nos tambem nao."
       },
       "custom_scout_fenris": {
-        "name": "Scout Fenris",
-        "title": "Blightwatch Scout",
-        "greeting": "You made it through the wyvern grounds? Good. I could use someone capable out here."
+        "name": "Batedora Fenris",
+        "title": "Batedora da Guarda da Praga",
+        "greeting": "Voces cruzaram o territorio das viboras? Bom. Eu precisava de alguem capaz aqui."
       },
       "custom_elder_draxis": {
-        "name": "Elder Draxis",
-        "title": "Dragonslayer",
-        "greeting": "I have hunted dragons for thirty years, {playerName}. Ignaraxis is not like the others."
+        "name": "Anciao Draxis",
+        "title": "Matadragoes",
+        "greeting": "Eu cacei dragoes por trinta anos, {playerName}. Ignaraxis nao e como os outros."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6101,71 +6101,71 @@ export const pt_BR: EnTranslations = {
         }
       },
       "custom_proving_ground": {
-        "title": "Proving Ground",
-        "text": "The ashwalker drakes have pushed to the edges of our camp, {playerName}. Thin their numbers -- ten of them -- and prove you belong in the Blight.",
-        "completion": "Ten drakes down. Not bad. You might just survive out here, {playerName}.",
+        "title": "Campo de Provas",
+        "text": "Os drakes andadores de cinzas avancaram ate as margens do nosso acampamento, {playerName}. Reduza os seus numeros -- dez deles -- e prove que voce pertence a Praga.",
+        "completion": "Dez drakes abatidos. Nao e ruim. Talvez voce sobreviva aqui, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Andadores de Cinzas mortos"
           }
         }
       },
       "custom_marks_of_the_drake": {
-        "title": "Marks of the Drake",
-        "text": "Drake scales are tough as plate, {playerName}. I need eight of them to outfit the next patrol. The drakes do not give them up easily -- take what you can.",
-        "completion": "Eight scales. These will hold up against fire better than anything we can forge. Well done.",
+        "title": "Marcas do Drake",
+        "text": "As escamas de drake sao duras como armadura de placas, {playerName}. Preciso de oito delas para equipar a proxima patrulha. Os drakes nao as entregam facilmente -- pegue o que puder.",
+        "completion": "Oito escamas. Estas resistirao ao fogo melhor do que qualquer coisa que possamos forjar. Bom trabalho.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drake Scales"
+            "label": "Escamas de Drake Andador de Cinzas"
           }
         }
       },
       "custom_into_the_blight": {
-        "title": "Into the Blight",
-        "text": "Those scorchwing wyverns are nesting between us and the dungeon, {playerName}. Eight of them need to go, and I need five of their heartstones for the commander's alchemist. They're deep, but I know you can reach them.",
-        "completion": "The nesting ground is clear. Those heartstones will be worth more to us than you know.",
+        "title": "Adentrando a Praga",
+        "text": "Essas viboras asa chamuscada estao aninhando entre nos e a masmorra, {playerName}. Oito delas precisam ir, e preciso de cinco das suas pedras do coracao para o alquimista do comandante. Elas estao fundo, mas sei que voce pode alcanca-las.",
+        "completion": "O ninho foi eliminado. Essas pedras do coracao valerao mais para nos do que voce imagina.",
         "objectives": {
           "0": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Viboras Asa Chamuscada mortas"
           },
           "1": {
-            "label": "Scorchwing Heartstones"
+            "label": "Pedras do Coracao de Vibora"
           }
         }
       },
       "custom_eye_of_the_storm": {
-        "title": "Eye of the Storm",
-        "text": "The blighted sentinels are Ignaraxis's outer guard, {playerName}. Ancient dragonkin warped by centuries near that creature. Take down three of them and bring me the blight embers from their cores. If you can manage them, you're ready for the maw.",
-        "completion": "Three sentinels down and embers in hand. You're ready, {playerName}. Go speak with Elder Draxis back at the post. He has been waiting a long time for this.",
+        "title": "Olho da Tempestade",
+        "text": "As sentinelas malignas sao a guarda externa de Ignaraxis, {playerName}. Draconidos antigos deformados por seculos perto dessa criatura. Derrube tres deles e traga-me as brasas malignas de seus nucleos. Se voce conseguir lidar com eles, esta pronto para as Fauces.",
+        "completion": "Tres sentinelas derrubadas e brasas em maos. Voce esta pronto, {playerName}. Volte ao posto e fale com o Anciao Draxis. Ele esperou muito tempo por isso.",
         "objectives": {
           "0": {
-            "label": "Blighted Sentinels slain"
+            "label": "Sentinelas Malignas mortas"
           },
           "1": {
-            "label": "Blight Embers"
+            "label": "Brasas Malignas"
           }
         }
       },
       "custom_eternal_flame": {
-        "title": "The Eternal Flame",
-        "text": "Ignaraxis the Eternal has slumbered in the Dragon's Maw for an age, {playerName}. The Blight above us is his breath given form. Enter the maw, face him in his lair, and end it. Your companions will be necessary -- this is not a hunt for one alone.",
-        "completion": "The Eternal Flame is extinguished, {playerName}. I have waited thirty years to say those words. The Blight will fade now. Take this -- you've more than earned it.",
+        "title": "A Chama Eterna",
+        "text": "Ignaraxis o Eterno tem dormido nas Fauces do Dragao por uma era, {playerName}. A Praga acima de nos e seu halito dado forma. Entre nas Fauces, enfrente-o em seu covil e encerre tudo. Seus companeiros serao necessarios -- esta nao e uma cacada para um sozinho.",
+        "completion": "A Chama Eterna foi extinta, {playerName}. Esperei trinta anos para dizer essas palavras. A Praga vai se dissipar agora. Pegue isto -- voce ganhou de sobra.",
         "objectives": {
           "0": {
-            "label": "Ignaraxis the Eternal slain"
+            "label": "Ignaraxis o Eterno morto"
           }
         }
       },
       "custom_blight_patrol": {
-        "title": "Blight Patrol",
-        "text": "We cannot let the drakes and wyverns overrun the approaches, {playerName}. Patrol the Blight, cut down fifteen drakes and eight wyverns, and report back. Keeps our flanks clear while the chain of command handles the bigger picture.",
-        "completion": "Flanks are clear. The men breathe easier when someone is out there making a difference. Good work, {playerName}.",
+        "title": "Patrulha da Praga",
+        "text": "Nao podemos deixar os drakes e as viboras tomar os acessos, {playerName}. Patrulhe a Praga, abata quinze drakes e oito viboras e volte para relatar. Mante nossos flancos limpos enquanto a cadeia de comando cuida do quadro geral.",
+        "completion": "Flancos estao limpos. Os homens respiram mais facilmente quando alguem esta la fora fazendo a diferenca. Bom trabalho, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Andadores de Cinzas mortos"
           },
           "1": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Viboras Asa Chamuscada mortas"
           }
         }
       },
@@ -6337,17 +6337,17 @@ export const pt_BR: EnTranslations = {
         }
       },
       "custom_dragons_blight": {
-        "name": "Dragon's Blight",
-        "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire.",
+        "name": "Praga do Dragao",
+        "welcome": "A Praga do Dragao se estende diante de voce, sufocada em cinzas e o distante eco do fogo ancestral.",
         "pois": {
           "0": {
-            "label": "Blightwatch Post"
+            "label": "Posto da Guarda da Praga"
           },
           "1": {
-            "label": "Fenris's Outpost"
+            "label": "Posto Avancado de Fenris"
           },
           "2": {
-            "label": "Dragon's Maw"
+            "label": "Fauces do Dragao"
           }
         }
       }
@@ -6379,9 +6379,9 @@ export const pt_BR: EnTranslations = {
         "leaveText": "Você retorna ao ar frio de Thornpeak."
       },
       "custom_dragons_maw": {
-        "name": "Dragon's Maw",
-        "enterText": "The heat is suffocating. Something vast stirs in the darkness ahead.",
-        "leaveText": "You emerge from the Dragon's Maw, the air outside cold against your skin."
+        "name": "Fauces do Dragao",
+        "enterText": "O calor e sufocante. Algo imenso se agita na escuridao a frente.",
+        "leaveText": "Voce emerge das Fauces do Dragao, o ar externo frio contra sua pele."
       },
       "drowned_temple": {
         "name": "O Templo Afogado",

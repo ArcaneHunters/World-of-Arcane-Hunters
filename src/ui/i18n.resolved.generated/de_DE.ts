@@ -5097,19 +5097,19 @@ export const de_DE: EnTranslations = {
         "name": "Akolythin Tessa"
       },
       "custom_ashwalker_drake": {
-        "name": "Ashwalker Drake"
+        "name": "Aschlaufer-Drache"
       },
       "custom_scorchwing_wyvern": {
-        "name": "Scorchwing Wyvern"
+        "name": "Sengflugel-Wyvern"
       },
       "custom_blighted_sentinel": {
-        "name": "Blighted Sentinel"
+        "name": "Verseucher Wachter"
       },
       "custom_dragonclaw_warden": {
-        "name": "Dragonclaw Warden"
+        "name": "Drachenklauen-Huter"
       },
       "custom_ignaraxis": {
-        "name": "Ignaraxis the Eternal"
+        "name": "Ignaraxis der Ewige"
       },
       "ironvein_foreman": {
         "name": "Eisenader-Vorarbeiter"
@@ -5327,19 +5327,19 @@ export const de_DE: EnTranslations = {
         "greeting": "Das Reliquiar unten hat sich erneut verschoben."
       },
       "custom_commander_vael": {
-        "name": "Commander Vael",
-        "title": "Blightwatch Officer",
-        "greeting": "Stand ready, {playerName}. This blight does not sleep, and neither do we."
+        "name": "Befehlshaber Vael",
+        "title": "Seuchenwacht-Offizier",
+        "greeting": "Seid bereit, {playerName}. Diese Seuche schlaft nicht, und wir auch nicht."
       },
       "custom_scout_fenris": {
-        "name": "Scout Fenris",
-        "title": "Blightwatch Scout",
-        "greeting": "You made it through the wyvern grounds? Good. I could use someone capable out here."
+        "name": "Spaher Fenris",
+        "title": "Seuchenwacht-Spaher",
+        "greeting": "Ihr habt euch durch das Wyvern-Gebiet geschlagen? Gut. Ich konnte hier jemand Fahiges gebrauchen."
       },
       "custom_elder_draxis": {
-        "name": "Elder Draxis",
-        "title": "Dragonslayer",
-        "greeting": "I have hunted dragons for thirty years, {playerName}. Ignaraxis is not like the others."
+        "name": "Altester Draxis",
+        "title": "Drachentöter",
+        "greeting": "Ich habe dreißig Jahre lang Drachen gejagt, {playerName}. Ignaraxis ist anders als die anderen."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6101,71 +6101,71 @@ export const de_DE: EnTranslations = {
         }
       },
       "custom_proving_ground": {
-        "title": "Proving Ground",
-        "text": "The ashwalker drakes have pushed to the edges of our camp, {playerName}. Thin their numbers -- ten of them -- and prove you belong in the Blight.",
-        "completion": "Ten drakes down. Not bad. You might just survive out here, {playerName}.",
+        "title": "Bewahrungsprufung",
+        "text": "Die Aschlaufer-Drachen haben sich bis an den Rand unseres Lagers vorgearbeitet, {playerName}. Lichtet ihre Reihen -- zehn von ihnen -- und beweist, dass ihr in der Seuche bestehen konnt.",
+        "completion": "Zehn Drachen gefallen. Nicht schlecht. Ihr werdet hier vielleicht uberleben, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Aschlaufer-Drachen getotet"
           }
         }
       },
       "custom_marks_of_the_drake": {
-        "title": "Marks of the Drake",
-        "text": "Drake scales are tough as plate, {playerName}. I need eight of them to outfit the next patrol. The drakes do not give them up easily -- take what you can.",
-        "completion": "Eight scales. These will hold up against fire better than anything we can forge. Well done.",
+        "title": "Zeichen des Drachen",
+        "text": "Drachenschuppen sind so hart wie Plattenrustung, {playerName}. Ich brauche acht davon, um den nachsten Patrol auszurusten. Die Drachen geben sie nicht leicht her -- nehmt, was ihr konnt.",
+        "completion": "Acht Schuppen. Diese halten Feuer besser stand als alles, was wir schmieden konnen. Gute Arbeit.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drake Scales"
+            "label": "Aschlaufer-Drachenschuppen"
           }
         }
       },
       "custom_into_the_blight": {
-        "title": "Into the Blight",
-        "text": "Those scorchwing wyverns are nesting between us and the dungeon, {playerName}. Eight of them need to go, and I need five of their heartstones for the commander's alchemist. They're deep, but I know you can reach them.",
-        "completion": "The nesting ground is clear. Those heartstones will be worth more to us than you know.",
+        "title": "In die Seuche",
+        "text": "Diese Sengflugel-Wyvern nisten zwischen uns und dem Dungeon, {playerName}. Acht von ihnen mussen weg, und ich brauche funf ihrer Herzsteine fur den Alchemisten des Befehlshabers. Sie sind tief, aber ich weiß, dass ihr sie erreichen konnt.",
+        "completion": "Das Nestgebiet ist frei. Diese Herzsteine werden uns mehr wert sein, als ihr denkt.",
         "objectives": {
           "0": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Sengflugel-Wyvern getotet"
           },
           "1": {
-            "label": "Scorchwing Heartstones"
+            "label": "Sengflugel-Herzsteine"
           }
         }
       },
       "custom_eye_of_the_storm": {
-        "title": "Eye of the Storm",
-        "text": "The blighted sentinels are Ignaraxis's outer guard, {playerName}. Ancient dragonkin warped by centuries near that creature. Take down three of them and bring me the blight embers from their cores. If you can manage them, you're ready for the maw.",
-        "completion": "Three sentinels down and embers in hand. You're ready, {playerName}. Go speak with Elder Draxis back at the post. He has been waiting a long time for this.",
+        "title": "Auge des Sturms",
+        "text": "Die Verseuchten Wachter sind Ignaraxis außere Garde, {playerName}. Uralte Drachenkin, entstellt durch Jahrhunderte in der Nahe dieses Wesens. Schlagt drei von ihnen nieder und bringt mir die Seuchenkohlen aus ihren Kernen. Wenn ihr sie bealtigen konnt, seid ihr bereit fur den Schlund.",
+        "completion": "Drei Wachter fallen, Kohlen in der Hand. Ihr seid bereit, {playerName}. Geht zuruck zum Posten und sprecht mit Altesten Draxis. Er hat lange auf diesen Moment gewartet.",
         "objectives": {
           "0": {
-            "label": "Blighted Sentinels slain"
+            "label": "Verseuchte Wachter getotet"
           },
           "1": {
-            "label": "Blight Embers"
+            "label": "Seuchenkohlen"
           }
         }
       },
       "custom_eternal_flame": {
-        "title": "The Eternal Flame",
-        "text": "Ignaraxis the Eternal has slumbered in the Dragon's Maw for an age, {playerName}. The Blight above us is his breath given form. Enter the maw, face him in his lair, and end it. Your companions will be necessary -- this is not a hunt for one alone.",
-        "completion": "The Eternal Flame is extinguished, {playerName}. I have waited thirty years to say those words. The Blight will fade now. Take this -- you've more than earned it.",
+        "title": "Die Ewige Flamme",
+        "text": "Ignaraxis der Ewige hat ein Zeitalter lang im Drachenschlund geschlummert, {playerName}. Die Seuche uber uns ist sein Atem, der Form angenommen hat. Betritt den Schlund, stellt euch ihm in seiner Hohle und macht dem ein Ende. Eure Gefahrten werden notwendig sein -- das ist keine Jagd fur einen allein.",
+        "completion": "Die Ewige Flamme ist erloschen, {playerName}. Dreißig Jahre habe ich gewartet, um diese Worte zu sagen. Die Seuche wird sich nun legen. Nehmt dies -- ihr habt es mehr als verdient.",
         "objectives": {
           "0": {
-            "label": "Ignaraxis the Eternal slain"
+            "label": "Ignaraxis der Ewige getotet"
           }
         }
       },
       "custom_blight_patrol": {
-        "title": "Blight Patrol",
-        "text": "We cannot let the drakes and wyverns overrun the approaches, {playerName}. Patrol the Blight, cut down fifteen drakes and eight wyverns, and report back. Keeps our flanks clear while the chain of command handles the bigger picture.",
-        "completion": "Flanks are clear. The men breathe easier when someone is out there making a difference. Good work, {playerName}.",
+        "title": "Seuchenpatrouille",
+        "text": "Wir konnen nicht zulassen, dass die Drachen und Wyvern die Zugange uberrennen, {playerName}. Patrouilliert die Seuche, schlagt funfzehn Drachen und acht Wyvern nieder und meldet euch zuruck. Halt unsere Flanken frei, wahrend die Befehlskette das großere Bild handhabt.",
+        "completion": "Flanken sind frei. Die Manner atmen leichter, wenn jemand da draußen den Unterschied macht. Gute Arbeit, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Aschlaufer-Drachen getotet"
           },
           "1": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Sengflugel-Wyvern getotet"
           }
         }
       },
@@ -6337,17 +6337,17 @@ export const de_DE: EnTranslations = {
         }
       },
       "custom_dragons_blight": {
-        "name": "Dragon's Blight",
-        "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire.",
+        "name": "Drachenseuche",
+        "welcome": "Die Drachenseuche erstreckt sich vor euch, erstickt von Asche und dem fernen Echo uralten Feuers.",
         "pois": {
           "0": {
-            "label": "Blightwatch Post"
+            "label": "Seuchenwacht-Posten"
           },
           "1": {
-            "label": "Fenris's Outpost"
+            "label": "Fenris Außenposten"
           },
           "2": {
-            "label": "Dragon's Maw"
+            "label": "Drachenschlund"
           }
         }
       }
@@ -6379,9 +6379,9 @@ export const de_DE: EnTranslations = {
         "leaveText": "Ihr kehrt in die kalte Luft von Thornpeak zurück."
       },
       "custom_dragons_maw": {
-        "name": "Dragon's Maw",
-        "enterText": "The heat is suffocating. Something vast stirs in the darkness ahead.",
-        "leaveText": "You emerge from the Dragon's Maw, the air outside cold against your skin."
+        "name": "Drachenschlund",
+        "enterText": "Die Hitze ist erstickend. Etwas Riesiges regt sich in der Dunkelheit vor euch.",
+        "leaveText": "Ihr taucht aus dem Drachenschlund auf, die Außenluft kalt gegen eure Haut."
       },
       "drowned_temple": {
         "name": "Der Ertränkte Tempel",

@@ -5097,19 +5097,19 @@ export const fr_CA: EnTranslations = {
         "name": "Acolyte Tessa"
       },
       "custom_ashwalker_drake": {
-        "name": "Ashwalker Drake"
+        "name": "Drake Marcheur de Cendres"
       },
       "custom_scorchwing_wyvern": {
-        "name": "Scorchwing Wyvern"
+        "name": "Wyverne Aile Roussie"
       },
       "custom_blighted_sentinel": {
-        "name": "Blighted Sentinel"
+        "name": "Sentinelle Maudite"
       },
       "custom_dragonclaw_warden": {
-        "name": "Dragonclaw Warden"
+        "name": "Gardien Griffe de Dragon"
       },
       "custom_ignaraxis": {
-        "name": "Ignaraxis the Eternal"
+        "name": "Ignaraxis l'Eternel"
       },
       "ironvein_foreman": {
         "name": "Contremaître Veinefer"
@@ -5327,19 +5327,19 @@ export const fr_CA: EnTranslations = {
         "greeting": "Le reliquaire en bas s'est encore déplacé."
       },
       "custom_commander_vael": {
-        "name": "Commander Vael",
-        "title": "Blightwatch Officer",
-        "greeting": "Stand ready, {playerName}. This blight does not sleep, and neither do we."
+        "name": "Commandant Vael",
+        "title": "Officier de la Garde du Fleau",
+        "greeting": "Tenez-vous pret, {playerName}. Ce fleau ne dort pas, et nous non plus."
       },
       "custom_scout_fenris": {
-        "name": "Scout Fenris",
-        "title": "Blightwatch Scout",
-        "greeting": "You made it through the wyvern grounds? Good. I could use someone capable out here."
+        "name": "Eclaireur Fenris",
+        "title": "Eclaireur de la Garde du Fleau",
+        "greeting": "Vous avez traverse le territoire des wyvernes ? Bien. J'avais besoin de quelqu'un de capable ici."
       },
       "custom_elder_draxis": {
-        "name": "Elder Draxis",
-        "title": "Dragonslayer",
-        "greeting": "I have hunted dragons for thirty years, {playerName}. Ignaraxis is not like the others."
+        "name": "Aine Draxis",
+        "title": "Tueur de dragons",
+        "greeting": "J'ai chasse les dragons pendant trente ans, {playerName}. Ignaraxis n'est pas comme les autres."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6101,71 +6101,71 @@ export const fr_CA: EnTranslations = {
         }
       },
       "custom_proving_ground": {
-        "title": "Proving Ground",
-        "text": "The ashwalker drakes have pushed to the edges of our camp, {playerName}. Thin their numbers -- ten of them -- and prove you belong in the Blight.",
-        "completion": "Ten drakes down. Not bad. You might just survive out here, {playerName}.",
+        "title": "Terrain d'epreuve",
+        "text": "Les drakes marcheurs de cendres ont avance jusqu'aux abords de notre camp, {playerName}. Reduisez leur nombre -- dix d'entre eux -- et prouvez que vous avez votre place dans le Fleau.",
+        "completion": "Dix drakes abattus. Pas mal. Vous survivrez peut-etre ici, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Marcheurs de Cendres tues"
           }
         }
       },
       "custom_marks_of_the_drake": {
-        "title": "Marks of the Drake",
-        "text": "Drake scales are tough as plate, {playerName}. I need eight of them to outfit the next patrol. The drakes do not give them up easily -- take what you can.",
-        "completion": "Eight scales. These will hold up against fire better than anything we can forge. Well done.",
+        "title": "Marques du Drake",
+        "text": "Les ecailles de drake sont aussi dures que de l'armure en plaques, {playerName}. J'en ai besoin de huit pour equiper la prochaine patrouille. Les drakes ne les cedent pas facilement -- prenez ce que vous pouvez.",
+        "completion": "Huit ecailles. Elles resisteront au feu mieux que tout ce que nous pouvons forger. Bien joue.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drake Scales"
+            "label": "Ecailles de Drake Marcheur de Cendres"
           }
         }
       },
       "custom_into_the_blight": {
-        "title": "Into the Blight",
-        "text": "Those scorchwing wyverns are nesting between us and the dungeon, {playerName}. Eight of them need to go, and I need five of their heartstones for the commander's alchemist. They're deep, but I know you can reach them.",
-        "completion": "The nesting ground is clear. Those heartstones will be worth more to us than you know.",
+        "title": "Au Coeur du Fleau",
+        "text": "Ces wyvernes ailes roussies nichent entre nous et le donjon, {playerName}. Il faut en eliminer huit, et j'ai besoin de cinq de leurs pierres du coeur pour l'alchimiste du commandant. Elles sont en profondeur, mais je sais que vous pouvez les atteindre.",
+        "completion": "Le nid est neutralise. Ces pierres du coeur nous seront plus precieuses que vous ne le pensez.",
         "objectives": {
           "0": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Wyvernes Ailes Roussies tuees"
           },
           "1": {
-            "label": "Scorchwing Heartstones"
+            "label": "Pierres du Coeur de Wyverne"
           }
         }
       },
       "custom_eye_of_the_storm": {
-        "title": "Eye of the Storm",
-        "text": "The blighted sentinels are Ignaraxis's outer guard, {playerName}. Ancient dragonkin warped by centuries near that creature. Take down three of them and bring me the blight embers from their cores. If you can manage them, you're ready for the maw.",
-        "completion": "Three sentinels down and embers in hand. You're ready, {playerName}. Go speak with Elder Draxis back at the post. He has been waiting a long time for this.",
+        "title": "Oeil de la tempete",
+        "text": "Les sentinelles maudites sont la garde exterieure d'Ignaraxis, {playerName}. D'anciens drakonoides deformes par des siecles aupres de cette creature. Terrassez-en trois et rapportez-moi les braises maudites de leurs noyaux. Si vous pouvez en venir a bout, vous etes prets pour la Gueule.",
+        "completion": "Trois sentinelles a terre, braises en main. Vous etes prets, {playerName}. Retournez au poste parler a l'Aine Draxis. Il attend ce moment depuis longtemps.",
         "objectives": {
           "0": {
-            "label": "Blighted Sentinels slain"
+            "label": "Sentinelles Maudites tuees"
           },
           "1": {
-            "label": "Blight Embers"
+            "label": "Braises Maudites"
           }
         }
       },
       "custom_eternal_flame": {
-        "title": "The Eternal Flame",
-        "text": "Ignaraxis the Eternal has slumbered in the Dragon's Maw for an age, {playerName}. The Blight above us is his breath given form. Enter the maw, face him in his lair, and end it. Your companions will be necessary -- this is not a hunt for one alone.",
-        "completion": "The Eternal Flame is extinguished, {playerName}. I have waited thirty years to say those words. The Blight will fade now. Take this -- you've more than earned it.",
+        "title": "La Flamme Eternelle",
+        "text": "Ignaraxis l'Eternel dort dans la Gueule du Dragon depuis une eternite, {playerName}. Le Fleau au-dessus de nous est son souffle materialise. Entrez dans la Gueule, affrontez-le dans son repaire et mettez-y fin. Vos compagnons seront necessaires -- ce n'est pas une chasse pour un seul.",
+        "completion": "La Flamme Eternelle est eteinte, {playerName}. J'ai attendu trente ans pour prononcer ces mots. Le Fleau s'estompera maintenant. Prenez ceci -- vous l'avez amplement merite.",
         "objectives": {
           "0": {
-            "label": "Ignaraxis the Eternal slain"
+            "label": "Ignaraxis l'Eternel tue"
           }
         }
       },
       "custom_blight_patrol": {
-        "title": "Blight Patrol",
-        "text": "We cannot let the drakes and wyverns overrun the approaches, {playerName}. Patrol the Blight, cut down fifteen drakes and eight wyverns, and report back. Keeps our flanks clear while the chain of command handles the bigger picture.",
-        "completion": "Flanks are clear. The men breathe easier when someone is out there making a difference. Good work, {playerName}.",
+        "title": "Patrouille du Fleau",
+        "text": "Nous ne pouvons pas laisser les drakes et les wyvernes envahir les approches, {playerName}. Patrouillier le Fleau, abattez quinze drakes et huit wyvernes, puis faites votre rapport. Nos flancs sont ainsi degages pendant que la chaine de commandement gere le tableau d'ensemble.",
+        "completion": "Les flancs sont degages. Les hommes respirent plus facilement quand quelqu'un est la a faire la difference. Bon travail, {playerName}.",
         "objectives": {
           "0": {
-            "label": "Ashwalker Drakes slain"
+            "label": "Drakes Marcheurs de Cendres tues"
           },
           "1": {
-            "label": "Scorchwing Wyverns slain"
+            "label": "Wyvernes Ailes Roussies tuees"
           }
         }
       },
@@ -6337,17 +6337,17 @@ export const fr_CA: EnTranslations = {
         }
       },
       "custom_dragons_blight": {
-        "name": "Dragon's Blight",
-        "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire.",
+        "name": "Fleau du Dragon",
+        "welcome": "Le Fleau du Dragon s'etend devant vous, etouffe par la cendre et l'echo lointain d'un feu ancestral.",
         "pois": {
           "0": {
-            "label": "Blightwatch Post"
+            "label": "Poste de la Garde du Fleau"
           },
           "1": {
-            "label": "Fenris's Outpost"
+            "label": "Avant-poste de Fenris"
           },
           "2": {
-            "label": "Dragon's Maw"
+            "label": "Gueule du Dragon"
           }
         }
       }
@@ -6379,9 +6379,9 @@ export const fr_CA: EnTranslations = {
         "leaveText": "Vous retrouvez l'air froid de Thornpeak."
       },
       "custom_dragons_maw": {
-        "name": "Dragon's Maw",
-        "enterText": "The heat is suffocating. Something vast stirs in the darkness ahead.",
-        "leaveText": "You emerge from the Dragon's Maw, the air outside cold against your skin."
+        "name": "Gueule du Dragon",
+        "enterText": "La chaleur est suffocante. Quelque chose d'immense remue dans les tenebres devant vous.",
+        "leaveText": "Vous emergez de la Gueule du Dragon, l'air exterieur frais contre votre peau."
       },
       "drowned_temple": {
         "name": "Le Temple noyé",
