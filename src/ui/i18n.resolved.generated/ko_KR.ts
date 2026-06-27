@@ -5112,13 +5112,13 @@ export const ko_KR: EnTranslations = {
         "name": "영원한 이그나락시스"
       },
       "custom_skullfire_brute": {
-        "name": "Skullfire Brute"
+        "name": "해골화염 야만인"
       },
       "custom_blightshroud_stalker": {
-        "name": "Blightshroud Stalker"
+        "name": "역병장막 잠복자"
       },
       "custom_ironpelt_monkroose": {
-        "name": "Ironpelt Monkroose"
+        "name": "철가죽 몽크루즈"
       },
       "ironvein_foreman": {
         "name": "철맥 감독관"

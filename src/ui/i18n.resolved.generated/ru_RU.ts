@@ -5112,13 +5112,13 @@ export const ru_RU: EnTranslations = {
         "name": "Игнараксис Вечный"
       },
       "custom_skullfire_brute": {
-        "name": "Skullfire Brute"
+        "name": "Черепопламенный Громила"
       },
       "custom_blightshroud_stalker": {
-        "name": "Blightshroud Stalker"
+        "name": "Чумной Преследователь"
       },
       "custom_ironpelt_monkroose": {
-        "name": "Ironpelt Monkroose"
+        "name": "Железнокожий Мункруз"
       },
       "ironvein_foreman": {
         "name": "Прораб Железной жилы"

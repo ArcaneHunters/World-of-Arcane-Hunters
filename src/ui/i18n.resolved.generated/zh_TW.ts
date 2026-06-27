@@ -5112,13 +5112,13 @@ export const zh_TW: EnTranslations = {
         "name": "永恆的伊格納拉克斯"
       },
       "custom_skullfire_brute": {
-        "name": "Skullfire Brute"
+        "name": "顱焰蠻兵"
       },
       "custom_blightshroud_stalker": {
-        "name": "Blightshroud Stalker"
+        "name": "瘟霧潛襲者"
       },
       "custom_ironpelt_monkroose": {
-        "name": "Ironpelt Monkroose"
+        "name": "鐵皮僧鼬"
       },
       "ironvein_foreman": {
         "name": "鐵脈工頭"

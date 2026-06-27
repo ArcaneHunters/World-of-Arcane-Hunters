@@ -40,34 +40,14 @@ export const pending: Record<string, readonly string[]> = {
     "entities.mobs.custom_ironpelt_monkroose.name",
     "entities.mobs.custom_skullfire_brute.name"
   ],
-  "zh_CN": [
-    "entities.mobs.custom_blightshroud_stalker.name",
-    "entities.mobs.custom_ironpelt_monkroose.name",
-    "entities.mobs.custom_skullfire_brute.name"
-  ],
-  "zh_TW": [
-    "entities.mobs.custom_blightshroud_stalker.name",
-    "entities.mobs.custom_ironpelt_monkroose.name",
-    "entities.mobs.custom_skullfire_brute.name"
-  ],
-  "ko_KR": [
-    "entities.mobs.custom_blightshroud_stalker.name",
-    "entities.mobs.custom_ironpelt_monkroose.name",
-    "entities.mobs.custom_skullfire_brute.name"
-  ],
-  "ja_JP": [
-    "entities.mobs.custom_blightshroud_stalker.name",
-    "entities.mobs.custom_ironpelt_monkroose.name",
-    "entities.mobs.custom_skullfire_brute.name"
-  ],
+  "zh_CN": [],
+  "zh_TW": [],
+  "ko_KR": [],
+  "ja_JP": [],
   "pt_BR": [
     "entities.mobs.custom_blightshroud_stalker.name",
     "entities.mobs.custom_ironpelt_monkroose.name",
     "entities.mobs.custom_skullfire_brute.name"
   ],
-  "ru_RU": [
-    "entities.mobs.custom_blightshroud_stalker.name",
-    "entities.mobs.custom_ironpelt_monkroose.name",
-    "entities.mobs.custom_skullfire_brute.name"
-  ]
+  "ru_RU": []
 };
