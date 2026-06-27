@@ -144,6 +144,18 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
 grep -n "CUSTOM_MOB_KEYS\|CUSTOM_VISUALS" src/render/characters/manifest.ts
 # Expect: 3 hits -- import line + ...CUSTOM_VISUALS spread + ...CUSTOM_MOB_KEYS spread
 
+# Verify Dragon's Maw layout survived in dungeon_layout.ts
+grep -c "DRAGONS_MAW_LAYOUT" src/sim/dungeon_layout.ts
+# Expect: 1
+
+# Verify Dragon's Maw renderer wiring survived in dungeon.ts
+grep -c "dragons_maw" src/render/dungeon.ts
+# Expect: 2 (buildInterior case + variantFor case)
+
+# Verify Dragon's Maw colliders survived in colliders.ts
+grep -c "DRAGONS_MAW" src/sim/colliders.ts
+# Expect: 3 (import + const + INTERIOR_COLLIDERS entry)
+
 # Verify brand injection survived in vite.config.ts
 grep -n "brandTokenPlugin\|__SITE_URL__\|VITE_SITE_URL\|VITE_GA_ID\|WOC:GA" vite.config.ts
 # Expect: env reads for gaId/metaPixelId, define block entries, brandTokenPlugin in plugins
@@ -336,6 +348,9 @@ A full list of all upstream file modifications with exact code snippets is in
 - `README.md` -- replaced DigitalOcean deployment section with pointer to `docs/SETUP-DIGITALOCEAN.md`
 - `src/sim/data.ts` -- added import + merges for `src/sim/content/custom/`
 - `src/render/characters/manifest.ts` -- added import + spreads for `src/render/characters/custom/`
+- `src/sim/dungeon_layout.ts` -- added `DRAGONS_MAW_LAYOUT` for the Dragon's Maw custom dungeon interior
+- `src/render/dungeon.ts` -- added `'dragons_maw'` case to `buildInterior` (layout chain) and `variantFor`
+- `src/sim/colliders.ts` -- added `DRAGONS_MAW_COLLIDERS` and `dragons_maw` entry in `INTERIOR_COLLIDERS`
 - `src/sim/sim.ts` -- secondary RNG (`customRng = new Rng(seed ^ 0x464f524b)`) for CUSTOM_CAMPS mob init to prevent main RNG stream shift
 - `src/ui/world_entity_i18n.ts` -- imports Dragon's Blight entity IDs from `src/sim/content/custom/i18n_ids.ts` via spread
 - `src/ui/i18n.catalog/items.ts` -- imports Dragon's Blight item IDs + English names from `src/sim/content/custom/i18n_ids.ts` via spread

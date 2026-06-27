@@ -547,7 +547,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
     doorPos: { x: -48, z: 1190 },      // overworld entrance portal
     entry: { x: 0, z: 20 },
     exitOffset: { x: 0, z: 5 },
-    interior: 'sanctum',
+    interior: 'dragons_maw',
     suggestedPlayers: 3,
     enterText: "The heat is suffocating. Something vast stirs in the darkness ahead.",
     leaveText: "You emerge from the Dragon's Maw, the air outside cold against your skin.",

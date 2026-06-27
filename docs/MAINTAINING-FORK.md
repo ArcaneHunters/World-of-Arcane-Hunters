@@ -688,6 +688,104 @@ RNG state where flame_shock misses. Re-apply the GCD check to make it robust.
 
 ---
 
+#### `src/sim/dungeon_layout.ts` -- Dragon's Maw interior layout
+
+Added `DRAGONS_MAW_LAYOUT: DungeonLayout` (exported) for the Dragon's Maw dungeon.
+This is a single open chamber (no waist stubs) sized to fit the Dragon's Maw spawn
+positions (z 35, 65, 95, 130).
+
+**Why:** Every `DungeonDef.interior` string must map to a `DungeonLayout` in this
+file, a renderer case in `src/render/dungeon.ts`, and a collider set in
+`src/sim/colliders.ts`. Without a dedicated layout, the dungeon falls back to the
+crypt or sanctum geometry, which places waist-wall colliders that embed mob spawns
+inside solid geometry (causing them to float and blocking navigation).
+
+**Code added** (insert before the `ARENA_SPAWN_A` line):
+```typescript
+// Dragon's Maw (interior 'dragons_maw'): a single vast dragon's lair chamber,
+// z -19..150. No waist stubs so players move freely between the three mob groups.
+// Boss dais at z 130 for Ignaraxis. Side walls span the full length.
+export const DRAGONS_MAW_LAYOUT: DungeonLayout = {
+  zMin: -19,
+  zMax: 150,
+  sideWallZ: 65.5,  // centre: (150 + (-19)) / 2
+  sideWallHd: 84.5, // half-depth: (150 - (-19)) / 2
+  pillars: grid(10, 120, 25, [-14, 14]),
+  tombs: [],
+  stubs: [],
+  dais: { x: 0, z: 130, r: 13 },
+};
+```
+
+**Verification:** `grep -c "DRAGONS_MAW_LAYOUT" src/sim/dungeon_layout.ts` should return 1.
+
+---
+
+#### `src/render/dungeon.ts` -- Dragon's Maw renderer wiring
+
+Two changes to register `'dragons_maw'` in the renderer.
+
+**Import change:** Add `DRAGONS_MAW_LAYOUT` to the import from `'../sim/dungeon_layout'`.
+
+**`buildInterior` layout chain:** Add case before the `'sanctum'` branch:
+```typescript
+const layout =
+  opts?.layout ??
+  (interior === 'dragons_maw'
+    ? DRAGONS_MAW_LAYOUT
+    : interior === 'sanctum'
+      ? SANCTUM_LAYOUT
+      // ... rest unchanged
+```
+
+**`variantFor` method:** Add before the `'sanctum'` line:
+```typescript
+if (interior === 'dragons_maw') return 'sanctum';
+```
+
+This reuses the Gravewyrm Sanctum's dark-stone visual palette (the closest available
+theme for a dragon lair). A future custom visual variant could use different torch
+colors, but that would require new shader/material work.
+
+**Verification:**
+```bash
+grep -c "dragons_maw" src/render/dungeon.ts
+# Expect: 2 (buildInterior case + variantFor case)
+```
+
+---
+
+#### `src/sim/colliders.ts` -- Dragon's Maw collision set
+
+Two changes to register `'dragons_maw'` colliders.
+
+**Import change:** Add `DRAGONS_MAW_LAYOUT` to the import from `'./dungeon_layout'`.
+
+**Collider constant + INTERIOR_COLLIDERS entry** (add after the existing layout constants):
+```typescript
+const DRAGONS_MAW_COLLIDERS: Collider[] = layoutColliders(DRAGONS_MAW_LAYOUT);
+
+// Interior collider sets keyed by DungeonDef.interior.
+const INTERIOR_COLLIDERS: Record<string, Collider[]> = {
+  crypt: CRYPT_COLLIDERS,
+  sanctum: SANCTUM_COLLIDERS,
+  temple: TEMPLE_COLLIDERS,
+  nythraxis: NYTHRAXIS_COLLIDERS,
+  dragons_maw: DRAGONS_MAW_COLLIDERS,   // <- added
+};
+```
+
+Without this, the `'dragons_maw'` interior string has NO collision -- players and
+mobs would walk through the walls.
+
+**Verification:**
+```bash
+grep -c "DRAGONS_MAW" src/sim/colliders.ts
+# Expect: 3 (import + const + INTERIOR_COLLIDERS entry)
+```
+
+---
+
 ### Post-merge i18n and parity regeneration (custom content)
 
 Whenever a merge changes upstream content (new zones, mobs, camps, quests) or

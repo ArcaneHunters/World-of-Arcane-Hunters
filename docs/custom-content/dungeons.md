@@ -39,7 +39,7 @@ coordinates and should be placed inside your custom zone's z band.
 | `entry` | `{x, z}` | yes | Player arrival point inside the dungeon (instance-local) |
 | `exitOffset` | `{x, z}` | yes | Exit portal position inside the dungeon (instance-local) |
 | `spawns` | DungeonSpawn[] | yes | Mob spawn list (instance-local coordinates) |
-| `interior` | string | yes | `'crypt'`, `'sanctum'`, `'temple'`, or `'nythraxis'` |
+| `interior` | string | yes | Interior type -- see Interior types below |
 | `suggestedPlayers` | number | yes | Recommended group size |
 | `enterText` | string | yes | Chat message when player enters (English) |
 | `leaveText` | string | yes | Chat message when player leaves (English) |
@@ -51,11 +51,48 @@ coordinates and should be placed inside your custom zone's z band.
 // Coordinates are relative to the instance x-origin (instance-local)
 ```
 
-**Interior reference:**
-- `'crypt'` - stone crypt with columns (classic undead dungeon look)
-- `'sanctum'` - ornate hall (humanoid/cult aesthetic)
-- `'temple'` - open-air temple ruins
-- `'nythraxis'` - the raid boss's unique void-portal chamber
+---
+
+## Interior types
+
+The `interior` field controls both the 3D geometry (floor, walls, ceiling, obstacles) and
+the visual theme (torch color, dressing). **Every interior string must be registered in
+three places** -- the layout in `src/sim/dungeon_layout.ts`, the renderer case in
+`src/render/dungeon.ts`, and the collider set in `src/sim/colliders.ts`. Using an
+unregistered string silently falls back to the crypt layout (wrong geometry, wrong colliders).
+
+**Available interior types:**
+
+| String | Layout file constant | Visual theme | Geometry |
+|---|---|---|---|
+| `'crypt'` | `CRYPT_LAYOUT` | Blue torch flame, stone coffins | Single nave, z -19..112 |
+| `'sanctum'` | `SANCTUM_LAYOUT` | Green ritual fire, necromantic | Three chambers with narrow waists at z 67/115 |
+| `'temple'` | `TEMPLE_LAYOUT` | Moon-violet, flooded reliquaries | Two chambers, waist at z 66 |
+| `'nythraxis'` | `NYTHRAXIS_LAYOUT` | Dark soul-ward violet | Wide raid room (230u), z -19..126 |
+| `'dragons_maw'` | `DRAGONS_MAW_LAYOUT` | Dark stone (sanctum palette) | Single open lair, z -19..150, no waists |
+
+**CRITICAL: spawn positions must fit inside the layout.**
+Each layout defines walls and chamber waists that create impassable OBB colliders.
+Spawning a mob inside a collider makes it appear to float and blocks navigation.
+Check your spawn coordinates against the layout geometry before using it:
+
+```
+'crypt':    single nave, side walls at |x|=23, single boss room, no waists
+'sanctum':  waists at z=67 and z=115 narrow the passage to |x|<5 (8-unit corridor)
+            - spawns at |x|>5 within z 62-72 or z 112-118 will clip into the walls
+'temple':   waist at z=66 narrows to |x|<5 (same as sanctum)
+'dragons_maw': no waists, fully open single chamber -- safe for any x offset
+```
+
+**Adding a new interior type for a future custom dungeon:**
+If none of the existing types fit, you can add a new one -- but it requires editing
+three upstream files and must be documented in `docs/MAINTAINING-FORK.md`:
+1. Define a `YOUR_LAYOUT: DungeonLayout` in `src/sim/dungeon_layout.ts` and export it
+2. Import it in `src/render/dungeon.ts` and add a case in `buildInterior` (layout chain)
+   and `variantFor` (choose the closest existing visual variant)
+3. Import it in `src/sim/colliders.ts`, call `layoutColliders(YOUR_LAYOUT)`, and add
+   the result to `INTERIOR_COLLIDERS` under your string key
+4. Document all three upstream file changes in `docs/MAINTAINING-FORK.md`
 
 ---
 
@@ -100,7 +137,10 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
 ## Tips
 
 - Instance-local z increases as players move deeper into the dungeon. Place early
-  trash mobs at low z (20-40) and the final boss at higher z (60-100).
+  trash mobs at low z (20-50) and the final boss near the layout's `dais.z` (the
+  raised boss platform). Check the layout table above for each interior's z range.
+- Use `x` offsets to spread mobs across the aisle -- but verify the offsets do not
+  overlap any waist colliders (see Interior types above).
 - Use `x` offsets to create side rooms and branching corridors.
 - `elite: true` on dungeon mobs doubles their effective HP and damage relative to
   their base stats -- standard for non-boss dungeon encounters.

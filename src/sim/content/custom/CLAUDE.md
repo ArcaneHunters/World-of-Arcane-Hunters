@@ -100,6 +100,28 @@ Dungeon index rules:
 - Custom dungeons: **use index 10+ to be safe** (e.g. `index: 10`, `index: 11`, ...)
 - The x-origin of each dungeon is `900 + index * 600` -- so index 10 = x: 6900
 
+**The `interior` field is critical.** It must be one of the registered interior
+types -- each one maps to a specific room geometry AND collision set. Using a
+wrong or unregistered string silently falls back to the crypt geometry with crypt
+colliders, which won't match your spawn positions and can make mobs clip into walls
+or appear to float. Available types:
+
+| `interior` | Geometry | Use for |
+|---|---|---|
+| `'crypt'` | Single nave, z -19..112 | Classic undead dungeon |
+| `'sanctum'` | Three chambers, waists at z 67/115 | Humanoid cult stronghold |
+| `'temple'` | Two chambers, waist at z 66 | Flooded or ruin temple |
+| `'nythraxis'` | Wide raid room (230u), z -19..126 | Raid boss encounters |
+| `'dragons_maw'` | Single open lair, z -19..150, no waists | Dragon or cave lair |
+
+**Verify spawn x offsets don't overlap waist colliders.** The `'sanctum'` and
+`'temple'` interiors have narrow waist walls (OBBs) that block most of the x axis
+at specific z values. See `docs/custom-content/dungeons.md` for the exact ranges.
+
+If you need a new interior type, you must register it in three upstream files
+(dungeon_layout.ts, dungeon.ts, colliders.ts) and document it in
+`docs/MAINTAINING-FORK.md`. See `docs/custom-content/dungeons.md` for the procedure.
+
 Full guide: `docs/custom-content/dungeons.md`
 
 ### Props and static world objects
