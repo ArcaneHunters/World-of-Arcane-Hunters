@@ -133,6 +133,26 @@ so insertion before an existing camp shifts all later camps' spawn positions.
 All mob IDs, item IDs, quest IDs referenced in your content must exist in the tables
 before the sim starts -- cross-reference within the same `index.ts` is fine.
 
+## i18n wiring for new content
+
+Custom content requires changes to two upstream files so the UI can resolve
+names and text through `tEntity()`. Do this in the same commit as the content:
+
+1. **Mobs, NPCs, quests, zones, dungeons:** add their IDs to the matching arrays
+   in `src/ui/world_entity_i18n.ts` (`MOB_IDS`, `NPC_IDS`, `QUEST_IDS`,
+   `ZONE_IDS`, `DUNGEON_IDS`). The build auto-generates English from the sim data;
+   you do not need to touch locale files (they are English-filled at PR tier and
+   translated by the maintainer at release tier).
+
+2. **Items in `CUSTOM_ITEMS`:** add each item ID to `ITEM_ENTITY_IDS` and its
+   English name to the `en` block in `src/ui/i18n.catalog/items.ts`.
+
+After both edits, regenerate and verify:
+```bash
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
+npx vitest run tests/i18n_status_registry.test.ts tests/i18n_resolved_equivalence.test.ts
+```
+
 ## Testing
 
 After adding content:
@@ -140,6 +160,22 @@ After adding content:
 npm test                                 # run the full test suite
 npx vitest run tests/sim.test.ts         # focused sim test
 ```
+
+**Adding camps to `CUSTOM_CAMPS`** shifts the world-gen RNG draw order (camps are
+appended last and each draws RNG in array order). Two test artifacts must be
+updated when the camp count changes:
+
+1. **Parity golden traces** -- always regenerate after any content change:
+   ```bash
+   UPDATE_PARITY=1 npx vitest run tests/parity
+   ```
+
+2. **Delves test seed** -- `tests/delves.test.ts` has a seed-indexed roll
+   (`rollFor(48)`) that was updated from the upstream value of `42` because the 9
+   Dragon's Blight camps shifted the RNG draw order. If you add more camps and
+   `tests/delves.test.ts` fails, update the index to match the value reported in
+   the failure message. See `docs/MAINTAINING-FORK.md` for the full re-derivation
+   procedure.
 
 Content that references non-existent IDs (a mob's `loot` itemId, a quest's
 `targetMobId`) will cause runtime errors when the sim tries to resolve them.

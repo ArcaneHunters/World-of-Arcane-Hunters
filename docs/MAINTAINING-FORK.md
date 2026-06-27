@@ -481,6 +481,172 @@ upstream adds NEW files containing `worldofclaudecraft.com`, those will NOT be p
 
 ---
 
+#### `src/ui/world_entity_i18n.ts` -- Dragon's Blight entity IDs
+
+Custom Dragon's Blight entity IDs were appended to the registration arrays so the
+i18n system resolves their names, tooltips, and narrative text through `tEntity()`.
+
+**Additions to `MOB_IDS`** (at end of array):
+```typescript
+'custom_ashwalker_drake',
+'custom_scorchwing_wyvern',
+'custom_blighted_sentinel',
+'custom_dragonclaw_warden',
+'custom_ignaraxis',
+```
+
+**Additions to `NPC_IDS`** (at end of array):
+```typescript
+'custom_commander_vael',
+'custom_scout_fenris',
+'custom_elder_draxis',
+```
+
+**Additions to `QUEST_IDS`** (at end of array):
+```typescript
+'custom_proving_ground',
+'custom_marks_of_the_drake',
+'custom_into_the_blight',
+'custom_eye_of_the_storm',
+'custom_eternal_flame',
+'custom_blight_patrol',
+```
+
+**Additions to `ZONE_IDS`**: append `'custom_dragons_blight'`.
+
+**Additions to `DUNGEON_IDS`**: append `'custom_dragons_maw'`.
+
+To verify all IDs are present after a merge:
+```bash
+grep -c "custom_" src/ui/world_entity_i18n.ts
+# Expect: 16 (5 mob + 3 NPC + 6 quest + 1 zone + 1 dungeon)
+```
+
+Each of the 13 non-English `src/ui/i18n.locales/<lang>.ts` overlay files also has
+the matching 49 translation keys (`entities.mobs.custom_*.name`,
+`entities.npcs.custom_*.*`, `entities.quests.custom_*.*`,
+`entities.zones.custom_*.name`, `entities.dungeons.custom_*.name`). These overlay
+files are fork-owned (no upstream equivalent), so they can never conflict -- but
+they DO need to be re-populated if they are accidentally deleted or if upstream
+renames the overlay file format. After any mass deletion or format change, re-add
+the keys from `src/ui/world_entity_i18n.ts` IDs and regenerate:
+```bash
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
+I18N_RELEASE_TIER=1 npm test
+```
+
+---
+
+#### `src/ui/i18n.catalog/items.ts` -- Dragon's Blight item catalog entries
+
+Nine custom item IDs were added to `ITEM_ENTITY_IDS` and their English names added
+to the `en` block so the item tooltip system can resolve them.
+
+**Additions to `ITEM_ENTITY_IDS`** (at end of array):
+```typescript
+'custom_drake_scale',
+'custom_wyvern_heartstone',
+'custom_blight_ember',
+'custom_blightforged_chestplate',
+'custom_scorchwing_mantle',
+'custom_blighted_boots',
+'custom_ignaraxis_greataxe',
+'custom_heartfire_staff',
+'custom_shadow_fang_dagger',
+```
+
+**English name additions to `en` block** (one entry per item):
+```typescript
+'custom_drake_scale': { name: 'Drake Scale' },
+'custom_wyvern_heartstone': { name: 'Wyvern Heartstone' },
+'custom_blight_ember': { name: 'Blight Ember' },
+'custom_blightforged_chestplate': { name: 'Blightforged Chestplate' },
+'custom_scorchwing_mantle': { name: 'Scorchwing Mantle' },
+'custom_blighted_boots': { name: 'Blighted Boots' },
+'custom_ignaraxis_greataxe': { name: "Ignaraxis's Greataxe" },
+'custom_heartfire_staff': { name: 'Heartfire Staff' },
+'custom_shadow_fang_dagger': { name: 'Shadow Fang Dagger' },
+```
+
+The per-locale blocks inside `items.ts` and the 13 `src/ui/i18n.locales/<lang>.ts`
+flat overlays also carry translations for all 9 items. These are fork-specific
+additions that an upstream merge cannot overwrite (the overlays are fork-owned; the
+additions inside `items.ts` are appended at the end of the per-locale blocks).
+
+To verify the entries survived a merge:
+```bash
+grep -c "custom_" src/ui/i18n.catalog/items.ts
+# Expect: 18+ (9 in ITEM_ENTITY_IDS + 9 in en block; per-locale entries add more)
+```
+
+After re-applying, regenerate artifacts:
+```bash
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
+```
+
+---
+
+#### `tests/delves.test.ts` -- RNG seed index update for Dragon's Blight camps
+
+The 9 CUSTOM_CAMPS added by Dragon's Blight are appended to the global `CAMPS`
+array. Because `CAMPS` is built last-spreads-win in `data.ts`, these new entries
+draw from the world-gen RNG stream and shift the draw order for everything after
+them, including the delves test fixture. One assertion in `tests/delves.test.ts`
+tests a seed-indexed roll and must be updated when the camp count changes:
+
+**Original** (upstream, before custom camps):
+```typescript
+expect(rollFor(42)).toBe(true)
+```
+
+**Fork change** (after adding 9 CUSTOM_CAMPS from Dragon's Blight):
+```typescript
+expect(rollFor(48)).toBe(true)
+```
+
+The index `48` is the new seed that produces the same `true` outcome after the
+shift. If upstream adds or removes camps in a future pull, this index will drift
+again. The re-derivation procedure:
+```bash
+# 1. Regenerate parity golden traces (always do this first after any content change):
+UPDATE_PARITY=1 npx vitest run tests/parity
+
+# 2. Run delves in isolation to see the failure message:
+npx vitest run tests/delves.test.ts
+
+# 3. The failure message shows the actual seed index that returned true.
+#    Update the test assertion to that new index.
+```
+
+To verify the fork value is present after a merge:
+```bash
+grep -n "rollFor" tests/delves.test.ts
+# Expect: rollFor(48) -- if it shows rollFor(42) the fork change was lost
+```
+
+---
+
+### Post-merge i18n and parity regeneration (custom content)
+
+Whenever a merge changes upstream content (new zones, mobs, camps, quests) or
+upstream locale files, run these regeneration commands before running the test suite:
+
+```bash
+# Regenerate parity golden traces (required after ANY upstream content that changes
+# camp count, mob IDs, or tick-phase order -- a wrong golden fails tests/parity):
+UPDATE_PARITY=1 npx vitest run tests/parity
+
+# Regenerate i18n resolved files and hash baseline (required after ANY change to
+# src/ui/i18n.locales/*.ts or src/ui/i18n.catalog/**/*.ts):
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
+
+# Verify at release tier (I18N_RELEASE_TIER=1 means pending=0 is required):
+I18N_RELEASE_TIER=1 npx vitest run tests/i18n_completeness.test.ts \
+  tests/i18n_status_registry.test.ts tests/i18n_resolved_equivalence.test.ts
+```
+
+---
+
 ## Post-merge failure recovery
 
 If the build or server fails after a merge, follow the full protocol in
@@ -536,6 +702,22 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md \
    docs/custom-content/items.md docs/custom-content/mobs.md \
    docs/custom-content/zones.md docs/custom-content/dungeons.md \
    src/sim/content/custom/index.ts FORK.md
+
+# 4. Verify Dragon's Blight entity IDs survived in world_entity_i18n.ts
+grep -c "custom_" src/ui/world_entity_i18n.ts
+# Expect: 16 (5 mob + 3 NPC + 6 quest + 1 zone + 1 dungeon)
+
+# 5. Verify Dragon's Blight item entries survived in items catalog
+grep -c "custom_" src/ui/i18n.catalog/items.ts
+# Expect: 18 or more (9 in ITEM_ENTITY_IDS + 9 in en block)
+
+# 6. Verify the delves test uses the fork seed index (not the upstream value of 42)
+grep -n "rollFor" tests/delves.test.ts
+# Expect: rollFor(48) -- if it shows rollFor(42) the fork change was lost
+
+# 7. After any upstream content or locale change, regenerate i18n artifacts and parity:
+UPDATE_PARITY=1 npx vitest run tests/parity
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
 ```
 
 If any check fails, re-apply from the code blocks documented in this file.

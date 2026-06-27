@@ -95,11 +95,13 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
 # Verify README pointer survived (not the full upstream section)
 grep -c "docs/SETUP-DIGITALOCEAN.md" README.md
 
-# Check for zone overlap (upstream ends at z=900; custom zones must start at z=2000+)
-grep -n "zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
-grep -n "zMin" src/sim/content/custom/index.ts
-# If any upstream zMax reaches or exceeds your custom zMin, see
-# docs/custom-content/zones.md for the fix procedure.
+# Check for zone contiguity: upstream Zone 3 ends at z=900; Dragon's Blight starts at z=900.
+# If upstream adds a new Zone 4 that also starts at z=900 (or extends to z>900), there
+# will be a gap or overlap. The progression test requires ZONES[i].zMax === ZONES[i+1].zMin.
+grep -n "zMin\|zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
+grep -n "zMin\|zMax" src/sim/content/custom/index.ts
+# Custom Dragon's Blight: zMin:900, zMax:1260. If any upstream zone's zMax > 900,
+# shift custom zone northward -- see docs/custom-content/zones.md for the fix procedure.
 ```
 
 If `grep` returns nothing, re-apply the code from `docs/MAINTAINING-FORK.md`.
@@ -156,9 +158,11 @@ grep -n "VITE_SITE_URL\|VITE_DISCORD_URL\|VITE_DONATE_URL" .github/workflows/dep
 grep -n "zMin\|zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
 # Then check your custom zones:
 grep -n "zMin\|zMax" src/sim/content/custom/index.ts
-# Confirm no upstream zMax is >= your lowest custom zMin (custom zones should start at 2000+)
-# If any upstream zone's zMax reaches or exceeds a custom zone's zMin, shift the
-# custom zone northward -- see docs/custom-content/zones.md for the fix procedure.
+# Dragon's Blight custom zone: zMin:900, zMax:1260.
+# The zone contiguity invariant (ZONES[i].zMax === ZONES[i+1].zMin) means custom zones
+# must start exactly where the last upstream zone ends. Currently that is z=900.
+# If upstream adds a new upstream zone 4 (zMin:900), the custom zone must shift north.
+# See docs/custom-content/zones.md and docs/MAINTAINING-FORK.md for the fix procedure.
 ```
 
 If any check returns nothing or is missing, re-apply from `docs/MAINTAINING-FORK.md`
@@ -240,11 +244,21 @@ Tests to pay attention to for fork-specific regressions:
 - `tests/sim.test.ts` -- custom content IDs and basic sim health
 - `tests/localization_fixes.test.ts` -- S3 i18n guard; fails if a new sim string has no matcher
 - `tests/localization_fixes.test.ts` -- also catches brand URL drift if upstream changed placeholder values
+- `tests/parity/` -- RNG draw-order golden traces; fails if upstream content shifts camp/entity order
+- `tests/delves.test.ts` -- contains a fork-modified RNG seed index (48 instead of upstream 42)
 
 If i18n tests fail after a merge that touched locale files:
 ```bash
-npm run i18n:gen && npm run i18n:hash -- --write
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
 npm test
+```
+
+If parity tests fail after a merge that changed upstream content (new camps/mobs/zones):
+```bash
+UPDATE_PARITY=1 npx vitest run tests/parity
+# This regenerates the golden traces. Then re-run npm test to confirm all pass.
+# Also check tests/delves.test.ts: if rollFor(48) fails, the camp count shifted again.
+# See docs/MAINTAINING-FORK.md "tests/delves.test.ts" for re-derivation procedure.
 ```
 
 ### Step 6 -- verify the build pipeline
@@ -325,6 +339,9 @@ A full list of all upstream file modifications with exact code snippets is in
 - `README.md` -- replaced DigitalOcean deployment section with pointer to `docs/SETUP-DIGITALOCEAN.md`
 - `src/sim/data.ts` -- added import + merges for `src/sim/content/custom/`
 - `src/render/characters/manifest.ts` -- added import + spreads for `src/render/characters/custom/`
+- `src/ui/world_entity_i18n.ts` -- appended Dragon's Blight entity IDs (5 mobs, 3 NPCs, 6 quests, 1 zone, 1 dungeon)
+- `src/ui/i18n.catalog/items.ts` -- appended 9 Dragon's Blight item IDs + English names
+- `tests/delves.test.ts` -- updated RNG seed index from 42 to 48 (9 CUSTOM_CAMPS shift draw order)
 - **Brand rename (2026-06):** ~30 upstream files updated -- game name, realm name, domain, GitHub URL.
   See the "Brand rename" section in `docs/MAINTAINING-FORK.md` for the full replacement map.
 
