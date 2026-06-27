@@ -98,7 +98,7 @@
       "tick": 5,
       "time": 0.25,
       "nextId": 451,
-      "state": "e4fc7d85",
+      "state": "b7efb86d",
       "events": "95ffedd0",
       "rng": {
         "draws": 1,
@@ -109,7 +109,7 @@
       "tick": 7,
       "time": 0.35,
       "nextId": 451,
-      "state": "fa70843f",
+      "state": "93473ea3",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -159,7 +159,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1127
           },
           "potionCooldownUntil": -1,
@@ -190,7 +190,7 @@
       "tick": 7,
       "time": 0.35,
       "nextId": 451,
-      "state": "2d167877",
+      "state": "5b5c3f2f",
       "events": "ed8c3689",
       "rng": {
         "draws": 3,
@@ -247,7 +247,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1127
           },
           "potionCooldownUntil": -1,
@@ -278,7 +278,7 @@
       "tick": 9,
       "time": 0.45,
       "nextId": 451,
-      "state": "dfec8b55",
+      "state": "d56e2a19",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -335,7 +335,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1127
           },
           "potionCooldownUntil": -1,

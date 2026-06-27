@@ -13,17 +13,18 @@ Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
 ## Index and coordinate rules
 
-**Index rule:** Upstream dungeons use indices 0-2 (Hollow Crypt, Sunken Bastion,
-Gravewyrm). The Temple dungeon uses index 3. **Custom dungeons must use index 4 or 5.**
+**Index rule:** Upstream dungeons use indices 0-5:
+- 0: Hollow Crypt, 1: Sunken Bastion, 2: Gravewyrm, 3: Drowned Temple
+- 4: Nythraxis Crypt, 5: Nythraxis Raid Arena
 
-**Critical constraint: `900 + index * 600` must be less than `ARENA_X_MIN` (4200).**
-`dungeonAt()` in `data.ts` returns null for any x >= 4200, and the renderer treats
-those positions as arena/delve space -- the dungeon will appear as a black void.
-This limits custom dungeon indices to 4 (x=3300) and 5 (x=3900).
+**Custom dungeons must use index 6.**
+
+**Critical constraint: `900 + index * 600` must be less than `ARENA_X_MIN` (4700 in
+this fork -- shifted from upstream's 4200 to open this slot; see `docs/MAINTAINING-FORK.md`).**
+`dungeonAt()` returns null for x >= ARENA_X_MIN and the dungeon renders as a black void.
 
 **x-origin formula:** `900 + index * 600`
-- index 4 = x origin at 3300
-- index 5 = x origin at 3900
+- index 6 = x origin at 4500 (the only valid custom slot)
 
 Spawn coordinates inside the dungeon are **relative to the instance origin** (offset
 from that x value, with z near 0). The overworld `doorPos` uses regular world
@@ -37,7 +38,7 @@ coordinates and should be placed inside your custom zone's z band.
 |---|---|---|---|
 | `id` | string | yes | Unique ID with `custom_` prefix |
 | `name` | string | yes | Dungeon name (English) |
-| `index` | number | yes | Unique integer, 4 or 5 for custom (determines x-band; must keep x < 4200) |
+| `index` | number | yes | Use 6 for custom (only valid slot; x=4500 < ARENA_X_MIN 4700) |
 | `doorPos` | `{x, z}` | yes | Overworld entrance portal position |
 | `entry` | `{x, z}` | yes | Player arrival point inside the dungeon (instance-local) |
 | `exitOffset` | `{x, z}` | yes | Exit portal position inside the dungeon (instance-local) |
@@ -115,7 +116,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_ashenmoor_crypt: {
     id: 'custom_ashenmoor_crypt',
     name: 'Ashenmoor Crypt',
-    index: 4,                               // x-origin = 900 + 4*600 = 3300 (must be < 4200)
+    index: 6,                               // x-origin = 900 + 6*600 = 4500 (must be < ARENA_X_MIN 4700)
     doorPos: { x: -50, z: 2020 },          // overworld entrance (inside custom zone)
     entry: { x: 0, z: 20 },               // player appears here inside
     exitOffset: { x: 0, z: 5 },           // exit portal, instance-local

@@ -434,10 +434,10 @@ through a portal in the overworld and fight through a structured layout.
 (These control the renderer geometry and collision. You cannot add new interior types
 without touching the upstream renderer, which is an upstream file change.)
 
-**Dungeon index:** must be unique. Upstream uses 0-2; temple uses 3. Use **4 or 5** for custom dungeons.
-The x-origin of each dungeon instance is `900 + index * 600`. The x-origin MUST be below 4200
-(`ARENA_X_MIN`): `dungeonAt()` returns null for x >= 4200 and the renderer shows a black void.
-Index 4 = x: 3300, index 5 = x: 3900.
+**Dungeon index:** must be unique. Upstream uses indices 0-5 (Hollow Crypt=0, Sunken Bastion=1,
+Gravewyrm=2, Drowned Temple=3, Nythraxis Crypt=4, Nythraxis Arena=5). Use **index 6** for custom.
+The x-origin is `900 + index * 600` = 4500. The x-origin MUST be below ARENA_X_MIN (4700 in this
+fork -- shifted from upstream's 4200; see docs/MAINTAINING-FORK.md). Index 6 is the only valid slot.
 
 ```typescript
 // Mobs that ONLY appear inside this dungeon (not in the overworld):
@@ -485,7 +485,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_bone_crypt: {
     id: 'custom_bone_crypt',
     name: 'The Bone Crypt',
-    index: 4,                               // unique, use 4 or 5 (x must be < ARENA_X_MIN 4200)
+    index: 6,                               // the only valid custom slot (x=4500 < ARENA_X_MIN 4700)
     doorPos: { x: -30, z: 380 },           // overworld entrance portal position
     entry: { x: 0, z: 4 },                 // player arrives here (instance-local)
     exitOffset: { x: 0, z: -6 },           // exit portal (instance-local)

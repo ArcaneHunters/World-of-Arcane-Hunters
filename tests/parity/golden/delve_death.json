@@ -99,7 +99,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 439,
-      "state": "a6903e0a",
+      "state": "25a6d012",
       "events": "35de01d6",
       "rng": {
         "draws": 1,
@@ -150,7 +150,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1253
           },
           "potionCooldownUntil": -1,

@@ -806,6 +806,85 @@ grep -c "DRAGONS_MAW" src/sim/colliders.ts
 
 ---
 
+#### `src/sim/data.ts` -- ARENA_X and DELVE_X_MIN shifted to open custom dungeon slot
+
+**Why:** All upstream dungeon indices 0-5 are occupied (Hollow Crypt=0, Sunken Bastion=1,
+Gravewyrm=2, Drowned Temple=3, Nythraxis Crypt=4, Nythraxis Arena=5). Index 6 would place a
+dungeon at x=4500, but `dungeonAt()` returns null for x >= ARENA_X_MIN. Shifting ARENA_X from
+4200 to 4700 opens index 6. DELVE_X_MIN is shifted from 4800 to 5300 (+500) to maintain the
+>=500u gap that `tests/delves.test.ts` guards.
+
+**Original (upstream):**
+```typescript
+export const ARENA_X = 4200; // arena instances share this x; slots stack along z
+export const ARENA_X_MIN = ARENA_X; // x at/after this = an arena instance, not a dungeon
+```
+```typescript
+// DELVE_X_MIN must stay above ARENA_X_MIN (4000) and ARENA_X (4200).
+// 4800 sits clear of the v0.10.0 layout: dungeons end at ARENA_X_MIN (4000) and
+// the arena pit is centred at ARENA_X (4200, ~±22u footprint). The delve band's
+// west edge (DELVE_BAND_X_MIN = 4773) leaves a comfortable margin past the arena.
+export const DELVE_X_MIN = 4800;
+```
+
+**Fork version (re-apply after any upstream overwrite):**
+```typescript
+export const ARENA_X = 4700; // arena instances share this x; slots stack along z
+export const ARENA_X_MIN = ARENA_X; // x at/after this = an arena instance, not a dungeon
+```
+```typescript
+// ARENA_X shifted from 4200 to 4700 (fork change, see docs/MAINTAINING-FORK.md)
+// to open index 6 (x=4500) for the custom Dragon's Maw dungeon. DELVE_X_MIN
+// was moved from 4800 to 5300 (+500) to maintain the >=500u gap that the
+// delves test guards (DELVE_BAND_X_MIN - ARENA_X = 5273 - 4700 = 573).
+// The arena pit footprint (~22u) still clears the delve band by >550u.
+export const DELVE_X_MIN = 5300;
+```
+
+**Verification:**
+```bash
+grep "ARENA_X = " src/sim/data.ts   # should show 4700
+grep "DELVE_X_MIN = " src/sim/data.ts  # should show 5300
+```
+
+After re-applying, regenerate parity traces:
+```bash
+UPDATE_PARITY=1 npx vitest run tests/parity
+```
+
+---
+
+#### `tests/delves.test.ts` -- DELVE_X_MIN pin test updated to 5300
+
+**Why:** The pin test hardcodes the expected `DELVE_X_MIN` value. It must be updated when
+the constant changes.
+
+**Original (upstream):**
+```typescript
+it('pins the absolute 4800 boundary against the arena seam (relocation regression)', () => {
+    // DELVE_X_MIN moved 3600 -> 4800 when v0.10.0 pushed the arena to x=4200.
+    // ...
+    expect(DELVE_X_MIN).toBe(4800);
+```
+
+**Fork version:**
+```typescript
+it('pins the absolute boundary against the arena seam (relocation regression)', () => {
+    // DELVE_X_MIN moved 3600 -> 4800 (v0.10.0, arena to x=4200) -> 5300 (fork,
+    // arena to x=4700 to open custom dungeon index 6 at x=4500).
+    // ...
+    expect(DELVE_X_MIN).toBe(5300);
+```
+
+Also update the nearby arena comment from `ARENA_X = 4200` to `ARENA_X = 4700`.
+
+**Verification:**
+```bash
+grep "DELVE_X_MIN\).toBe" tests/delves.test.ts   # should show 5300
+```
+
+---
+
 ### Post-merge i18n and parity regeneration (custom content)
 
 Whenever a merge changes upstream content (new zones, mobs, camps, quests) or

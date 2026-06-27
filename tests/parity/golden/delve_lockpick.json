@@ -100,7 +100,7 @@
       "tick": 10,
       "time": 0.5,
       "nextId": 443,
-      "state": "0a711244",
+      "state": "c83be5ec",
       "events": "cd957b78",
       "rng": {
         "draws": 4,
@@ -111,7 +111,7 @@
       "tick": 20,
       "time": 1,
       "nextId": 443,
-      "state": "6c777769",
+      "state": "6cac058d",
       "events": "741638a5",
       "rng": {
         "draws": 4,
@@ -122,7 +122,7 @@
       "tick": 30,
       "time": 1.5,
       "nextId": 443,
-      "state": "5c87242a",
+      "state": "a3a65172",
       "events": "3703feae",
       "rng": {
         "draws": 5,
@@ -133,7 +133,7 @@
       "tick": 38,
       "time": 1.9,
       "nextId": 445,
-      "state": "d52531f1",
+      "state": "f457816f",
       "events": "227cb0b5",
       "rng": {
         "draws": 8,
@@ -201,7 +201,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
@@ -248,12 +248,12 @@
           "ownerId": 429,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": 4801.5,
+            "x": 5301.5,
             "z": -1253
           },
           "stats": {
@@ -282,7 +282,7 @@
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": 4798.053255,
+            "x": 5298.053255,
             "z": -1173.117019
           },
           "level": 9,
@@ -299,13 +299,13 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4798.053255,
+            "x": 5298.053255,
             "z": -1173.117019
           },
           "potionCooldownUntil": -1,
           "respawnTimer": 24.6,
           "spawnPos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1170
           },
           "stats": {
@@ -315,7 +315,7 @@
           "tappedById": 429,
           "templateId": "deacon_varric",
           "wanderTarget": {
-            "x": 4795.28058,
+            "x": 5295.28058,
             "z": -1177.556469
           },
           "wanderTimer": 28.55,
@@ -344,13 +344,13 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
           "respawnTimer": -0.05,
           "spawnPos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "stats": {},
@@ -367,7 +367,7 @@
       "tick": 40,
       "time": 2,
       "nextId": 445,
-      "state": "88d024e1",
+      "state": "ef7bbbef",
       "events": "741638a5",
       "rng": {
         "draws": 8,
@@ -378,7 +378,7 @@
       "tick": 40,
       "time": 2,
       "nextId": 445,
-      "state": "88d024e1",
+      "state": "ef7bbbef",
       "events": "741638a5",
       "rng": {
         "draws": 8,
@@ -446,7 +446,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
@@ -493,12 +493,12 @@
           "ownerId": 429,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": 4801.5,
+            "x": 5301.5,
             "z": -1253
           },
           "stats": {
@@ -527,7 +527,7 @@
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": 4798.053255,
+            "x": 5298.053255,
             "z": -1173.117019
           },
           "level": 9,
@@ -544,13 +544,13 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4798.053255,
+            "x": 5298.053255,
             "z": -1173.117019
           },
           "potionCooldownUntil": -1,
           "respawnTimer": 24.5,
           "spawnPos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1170
           },
           "stats": {
@@ -560,7 +560,7 @@
           "tappedById": 429,
           "templateId": "deacon_varric",
           "wanderTarget": {
-            "x": 4795.28058,
+            "x": 5295.28058,
             "z": -1177.556469
           },
           "wanderTimer": 28.55,
@@ -589,13 +589,13 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "potionCooldownUntil": -1,
           "respawnTimer": -0.05,
           "spawnPos": {
-            "x": 4800,
+            "x": 5300,
             "z": -1176
           },
           "stats": {},

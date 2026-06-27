@@ -95,12 +95,13 @@ Add a `DungeonDef` to `CUSTOM_DUNGEON_DEFS` and any dungeon-only mobs to
 `CUSTOM_DUNGEON_MOBS`.
 
 Dungeon index rules:
-- Upstream uses indices 0-2 (Hollow Crypt, Sunken Bastion, Gravewyrm)
-- Temple dungeon uses index 3 (defined in `temple.ts`)
-- Custom dungeons: **use index 4 or 5 only** (e.g. `index: 4`, `index: 5`)
-- The x-origin is `900 + index * 600` -- index 4 = x: 3300, index 5 = x: 3900
-- **Critical:** x-origin MUST be below `ARENA_X_MIN` (4200). `dungeonAt()` returns null
-  for x >= 4200, causing a black void with no geometry. Indices 6+ would be above 4200.
+- Upstream uses indices 0-5: Hollow Crypt=0, Sunken Bastion=1, Gravewyrm=2,
+  Drowned Temple=3, Nythraxis Crypt=4, Nythraxis Raid Arena=5
+- **Custom dungeons: use index 6 only** (the single remaining valid slot)
+- The x-origin is `900 + index * 600` -- index 6 = x: 4500
+- **Critical:** x-origin MUST be below `ARENA_X_MIN`. This fork shifts ARENA_X from
+  upstream's 4200 to 4700 (see `docs/MAINTAINING-FORK.md`) specifically to open index 6.
+  Without that change, `dungeonAt()` returns null for x >= 4200, causing a black void.
 
 **The `interior` field is critical.** It must be one of the registered interior
 types -- each one maps to a specific room geometry AND collision set. Using a

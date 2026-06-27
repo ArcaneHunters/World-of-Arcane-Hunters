@@ -543,7 +543,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_dragons_maw: {
     id: 'custom_dragons_maw',
     name: "Dragon's Maw",
-    index: 4,                           // x-origin = 900 + 4*600 = 3300 (must be < ARENA_X_MIN 4200)
+    index: 6,                           // x-origin = 900 + 6*600 = 4500 (must be < ARENA_X_MIN 4700)
     doorPos: { x: -48, z: 1190 },      // overworld entrance portal
     entry: { x: 0, z: 20 },
     exitOffset: { x: 0, z: 5 },
