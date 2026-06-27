@@ -10,7 +10,7 @@
     "jammed chest (attemptAvailable=false) + surface exit opens"
   ],
   "draws": 3,
-  "drawDigest": "0c9c471a",
+  "drawDigest": "ad960248",
   "frames": [
     {
       "tick": 0,
@@ -99,78 +99,78 @@
     {
       "tick": 10,
       "time": 0.5,
-      "nextId": 444,
-      "state": "d7e91fdd",
-      "events": "606716ec",
+      "nextId": 441,
+      "state": "68f75526",
+      "events": "3638ac2c",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 20,
       "time": 1,
-      "nextId": 444,
-      "state": "cd8db18d",
+      "nextId": 441,
+      "state": "d32880d6",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 30,
       "time": 1.5,
-      "nextId": 444,
-      "state": "c8a8c05b",
+      "nextId": 441,
+      "state": "4f2aa7d0",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 40,
       "time": 2,
-      "nextId": 444,
-      "state": "c48483d1",
+      "nextId": 441,
+      "state": "4566823a",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 444,
-      "state": "3f3aeba3",
+      "nextId": 441,
+      "state": "1f2b6938",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 60,
       "time": 3,
-      "nextId": 444,
-      "state": "6b6edddd",
+      "nextId": 441,
+      "state": "fc7d1326",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 69,
       "time": 3.45,
-      "nextId": 445,
-      "state": "b03a60db",
-      "events": "ee620906",
+      "nextId": 442,
+      "state": "36bc4850",
+      "events": "ee23c3ec",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       },
       "label": "lockpick-jammed",
       "players": [
@@ -258,7 +258,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 443,
+          "id": 440,
           "kind": "object",
           "level": 1,
           "lootable": true,
@@ -290,23 +290,23 @@
     {
       "tick": 70,
       "time": 3.5,
-      "nextId": 445,
-      "state": "ffac7427",
+      "nextId": 442,
+      "state": "e69b893c",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       }
     },
     {
       "tick": 71,
       "time": 3.55,
-      "nextId": 445,
-      "state": "04c6a5eb",
+      "nextId": 442,
+      "state": "169abca0",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "0c9c471a"
+        "digest": "ad960248"
       },
       "label": "final",
       "players": [
@@ -394,7 +394,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 443,
+          "id": 440,
           "kind": "object",
           "level": 1,
           "lootable": true,

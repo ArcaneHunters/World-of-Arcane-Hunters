@@ -3,6 +3,10 @@
 // Translations live in src/ui/i18n.locales/<lang>.ts, never here.
 
 import { classAbilityNames, classAbilityNamesEn } from './abilities';
+import {
+  CUSTOM_ITEM_ENTITY_IDS,
+  CUSTOM_ITEM_EN_NAMES,
+} from '../../sim/content/custom/i18n_ids';
 
 const itemStringsEn = {
   itemUi: {
@@ -1924,16 +1928,8 @@ const ITEM_ENTITY_IDS = [
   'brightwood_venison',
   'bramblehide_jerkin',
   'monarch_crown_helm',
-  // Dragon's Blight custom items
-  'custom_drake_scale',
-  'custom_wyvern_heartstone',
-  'custom_blight_ember',
-  'custom_drakebone_shoulders',
-  'custom_scorchwing_cowl',
-  'custom_blight_stalkers_hood',
-  'custom_ignaraxis_greatblade',
-  'custom_cinderstave_eternal',
-  'custom_fang_of_ignaraxis',
+  // Dragon's Blight custom items (imported from src/sim/content/custom/i18n_ids.ts)
+  ...CUSTOM_ITEM_ENTITY_IDS,
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -2152,15 +2148,8 @@ const itemNamesEn = {
       'Brightwood Venison',
       'Bramblehide Jerkin',
       "Monarch's Crown",
-      'Ashwalker Drake Scale',
-      'Scorchwing Heartstone',
-      'Blight Ember',
-      'Drakebone Shoulderguards',
-      'Scorchwing Cowl',
-      "Blightstalker's Hood",
-      'Ignaraxis Greatblade',
-      'Cinderstave of the Eternal',
-      'Fang of Ignaraxis',
+      // Dragon's Blight custom item names (imported from src/sim/content/custom/i18n_ids.ts)
+      ...CUSTOM_ITEM_EN_NAMES,
     ]),
   },
 };

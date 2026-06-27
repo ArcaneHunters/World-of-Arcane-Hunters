@@ -10,8 +10,8 @@
     "updatePet melee arm: close + auto-taunt + mobSwing (PET_COMBAT_LINGER owner inCombat)",
     "petFollow heel transition (pets return to a moved owner)"
   ],
-  "draws": 865,
-  "drawDigest": "9a7a4623",
+  "draws": 849,
+  "drawDigest": "45c9bd55",
   "frames": [
     {
       "tick": 0,
@@ -101,77 +101,77 @@
       "tick": 20,
       "time": 1,
       "nextId": 434,
-      "state": "153dd323",
-      "events": "742a627c",
+      "state": "a66c8e66",
+      "events": "83c9ede3",
       "rng": {
         "draws": 10,
-        "digest": "ffcda803"
+        "digest": "fce7a45d"
       }
     },
     {
       "tick": 40,
       "time": 2,
       "nextId": 434,
-      "state": "6b629862",
+      "state": "1b488693",
       "events": "741638a5",
       "rng": {
         "draws": 10,
-        "digest": "ffcda803"
+        "digest": "fce7a45d"
       }
     },
     {
       "tick": 60,
       "time": 3,
       "nextId": 434,
-      "state": "dc26a273",
-      "events": "463f1703",
+      "state": "e55247b8",
+      "events": "dfb625f8",
       "rng": {
-        "draws": 114,
-        "digest": "c014e74e"
+        "draws": 102,
+        "digest": "06f8137f"
       }
     },
     {
       "tick": 80,
       "time": 4,
       "nextId": 434,
-      "state": "5a7144fe",
+      "state": "bf4d2475",
       "events": "741638a5",
       "rng": {
-        "draws": 206,
-        "digest": "da4dd862"
+        "draws": 185,
+        "digest": "399dac7c"
       }
     },
     {
       "tick": 100,
       "time": 5,
       "nextId": 434,
-      "state": "14b015c0",
-      "events": "5d8f3cff",
+      "state": "df983af0",
+      "events": "e7e63b46",
       "rng": {
-        "draws": 339,
-        "digest": "ab9b31ae"
+        "draws": 312,
+        "digest": "5662d96b"
       }
     },
     {
       "tick": 120,
       "time": 6,
       "nextId": 434,
-      "state": "6858bfdb",
+      "state": "bc68009f",
       "events": "741638a5",
       "rng": {
-        "draws": 460,
-        "digest": "e66a1b35"
+        "draws": 447,
+        "digest": "0ec64a09"
       }
     },
     {
       "tick": 120,
       "time": 6,
       "nextId": 434,
-      "state": "0a169ab7",
+      "state": "363e3d31",
       "events": "741638a5",
       "rng": {
-        "draws": 460,
-        "digest": "e66a1b35"
+        "draws": 447,
+        "digest": "0ec64a09"
       },
       "label": "heel",
       "players": [
@@ -304,7 +304,7 @@
           "fallStartY": 37.026485,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 49929,
+          "hp": 49934,
           "id": 431,
           "inCombat": true,
           "kind": "mob",
@@ -339,7 +339,7 @@
           "threat": [
             [
               430,
-              72
+              67
             ]
           ],
           "weapon": {
@@ -403,7 +403,7 @@
           "fiveSecondRule": 99,
           "forcedTargetTimer": -0.05,
           "hostile": true,
-          "hp": 49929,
+          "hp": 49926,
           "id": 433,
           "inCombat": true,
           "kind": "mob",
@@ -443,7 +443,7 @@
             ],
             [
               432,
-              72
+              75
             ]
           ],
           "weapon": {
@@ -458,44 +458,44 @@
       "tick": 140,
       "time": 7,
       "nextId": 434,
-      "state": "27e2d02b",
+      "state": "0c3c8b50",
       "events": "741638a5",
       "rng": {
-        "draws": 572,
-        "digest": "ca350d42"
+        "draws": 547,
+        "digest": "520ae301"
       }
     },
     {
       "tick": 160,
       "time": 8,
       "nextId": 434,
-      "state": "b61b0559",
+      "state": "daf47e8c",
       "events": "741638a5",
       "rng": {
-        "draws": 707,
-        "digest": "4df7f6b2"
+        "draws": 697,
+        "digest": "690ec5c1"
       }
     },
     {
       "tick": 180,
       "time": 9,
       "nextId": 434,
-      "state": "4497a115",
+      "state": "f5fe8212",
       "events": "741638a5",
       "rng": {
-        "draws": 865,
-        "digest": "9a7a4623"
+        "draws": 849,
+        "digest": "45c9bd55"
       }
     },
     {
       "tick": 180,
       "time": 9,
       "nextId": 434,
-      "state": "4497a115",
+      "state": "f5fe8212",
       "events": "741638a5",
       "rng": {
-        "draws": 865,
-        "digest": "9a7a4623"
+        "draws": 849,
+        "digest": "45c9bd55"
       },
       "label": "final",
       "players": [
@@ -624,7 +624,7 @@
           "fallStartY": 37.026485,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 49929,
+          "hp": 49934,
           "id": 431,
           "inCombat": true,
           "kind": "mob",
@@ -714,7 +714,7 @@
           "fallStartY": 39.397438,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 49929,
+          "hp": 49926,
           "id": 433,
           "inCombat": true,
           "kind": "mob",

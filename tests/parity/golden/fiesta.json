@@ -9,8 +9,8 @@
     "augment wave: fiestaPickOffers + arenaAugmentPick (fiestaAugments on meta + augmentOffer/Chosen events)",
     "multi-player meta"
   ],
-  "draws": 679,
-  "drawDigest": "f9f2e167",
+  "draws": 683,
+  "drawDigest": "a788a630",
   "frames": [
     {
       "tick": 0,
@@ -44,8 +44,8 @@
       "state": "ec487380",
       "events": "565656be",
       "rng": {
-        "draws": 36,
-        "digest": "9b8f0f11"
+        "draws": 40,
+        "digest": "f6c8e43d"
       }
     },
     {
@@ -55,8 +55,8 @@
       "state": "478fa6ee",
       "events": "82fb2ca6",
       "rng": {
-        "draws": 129,
-        "digest": "657edbce"
+        "draws": 140,
+        "digest": "aff71e64"
       }
     },
     {
@@ -66,8 +66,8 @@
       "state": "2c18c6c8",
       "events": "30b47afe",
       "rng": {
-        "draws": 264,
-        "digest": "58b67189"
+        "draws": 272,
+        "digest": "e847436e"
       }
     },
     {
@@ -77,8 +77,8 @@
       "state": "cd945ad4",
       "events": "22fbdea5",
       "rng": {
-        "draws": 428,
-        "digest": "e374834f"
+        "draws": 437,
+        "digest": "f6c36c86"
       }
     },
     {
@@ -88,8 +88,8 @@
       "state": "7b0dd230",
       "events": "741638a5",
       "rng": {
-        "draws": 595,
-        "digest": "d622e252"
+        "draws": 617,
+        "digest": "0cc1750f"
       }
     },
     {
@@ -99,8 +99,8 @@
       "state": "6c687a83",
       "events": "5bd7e8fc",
       "rng": {
-        "draws": 679,
-        "digest": "f9f2e167"
+        "draws": 683,
+        "digest": "a788a630"
       },
       "label": "final",
       "players": [

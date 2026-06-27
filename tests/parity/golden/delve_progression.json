@@ -10,7 +10,7 @@
     "companionUpgrade rank bump + refreshDelveDaily day rollover"
   ],
   "draws": 3,
-  "drawDigest": "957c7bae",
+  "drawDigest": "e3485a8b",
   "frames": [
     {
       "tick": 0,
@@ -97,23 +97,23 @@
     {
       "tick": 5,
       "time": 0.25,
-      "nextId": 448,
+      "nextId": 451,
       "state": "e4fc7d85",
-      "events": "ef51bacc",
+      "events": "95ffedd0",
       "rng": {
         "draws": 1,
-        "digest": "17af3450"
+        "digest": "5eb1ea5d"
       }
     },
     {
       "tick": 7,
       "time": 0.35,
-      "nextId": 448,
+      "nextId": 451,
       "state": "fa70843f",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "957c7bae"
+        "digest": "e3485a8b"
       },
       "label": "advanced-to-finale",
       "players": [
@@ -189,12 +189,12 @@
     {
       "tick": 7,
       "time": 0.35,
-      "nextId": 448,
+      "nextId": 451,
       "state": "2d167877",
       "events": "ed8c3689",
       "rng": {
         "draws": 3,
-        "digest": "957c7bae"
+        "digest": "e3485a8b"
       },
       "label": "shop-daily",
       "players": [
@@ -277,12 +277,12 @@
     {
       "tick": 9,
       "time": 0.45,
-      "nextId": 448,
+      "nextId": 451,
       "state": "dfec8b55",
       "events": "741638a5",
       "rng": {
         "draws": 3,
-        "digest": "957c7bae"
+        "digest": "e3485a8b"
       },
       "label": "final",
       "players": [

@@ -10,7 +10,7 @@
     "looter-takes-all common item + personal-loot visibility"
   ],
   "draws": 4,
-  "drawDigest": "38142480",
+  "drawDigest": "270cc372",
   "frames": [
     {
       "tick": 0,
@@ -34,7 +34,7 @@
       "events": "9f84ddb8",
       "rng": {
         "draws": 1,
-        "digest": "7fc88f69"
+        "digest": "b4f92bc7"
       },
       "label": "after-loot-a",
       "players": [
@@ -319,10 +319,10 @@
       "time": 0.05,
       "nextId": 433,
       "state": "ac28d2e5",
-      "events": "44c3643b",
+      "events": "6d055ace",
       "rng": {
         "draws": 3,
-        "digest": "10a96c2a"
+        "digest": "0f82d0c2"
       },
       "label": "after-rolls",
       "players": [
@@ -620,7 +620,7 @@
       "events": "287ceaac",
       "rng": {
         "draws": 3,
-        "digest": "10a96c2a"
+        "digest": "0f82d0c2"
       },
       "label": "after-loot-b",
       "players": [
@@ -907,11 +907,11 @@
       "tick": 3,
       "time": 0.15,
       "nextId": 433,
-      "state": "72e95567",
+      "state": "939f7f60",
       "events": "741638a5",
       "rng": {
         "draws": 4,
-        "digest": "38142480"
+        "digest": "270cc372"
       },
       "label": "final",
       "players": [
@@ -1193,7 +1193,7 @@
               1
             ]
           ],
-          "wanderTimer": 5.132227,
+          "wanderTimer": 7.207434,
           "weapon": {
             "max": 6,
             "min": 4,

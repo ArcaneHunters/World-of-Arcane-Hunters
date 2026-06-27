@@ -1,4 +1,11 @@
 import { DELVES, DUNGEONS, MOBS, NPCS, QUESTS, ZONES } from '../sim/data';
+import {
+  CUSTOM_DUNGEON_IDS,
+  CUSTOM_MOB_IDS,
+  CUSTOM_NPC_IDS,
+  CUSTOM_QUEST_IDS,
+  CUSTOM_ZONE_IDS,
+} from '../sim/content/custom/i18n_ids';
 
 // English world-entity names + narratives (mobs, NPCs, quests, zones, dungeons).
 //
@@ -81,12 +88,8 @@ const MOB_IDS = [
   'reliquary_saintless_effigy',
   'deacon_varric',
   'acolyte_tessa',
-  // Dragon's Blight custom zone mobs
-  'custom_ashwalker_drake',
-  'custom_scorchwing_wyvern',
-  'custom_blighted_sentinel',
-  'custom_dragonclaw_warden',
-  'custom_ignaraxis',
+  // Dragon's Blight custom zone mobs (imported from src/sim/content/custom/i18n_ids.ts)
+  ...CUSTOM_MOB_IDS,
 ] as const;
 
 const NPC_IDS = [
@@ -111,10 +114,8 @@ const NPC_IDS = [
   'loremaster_caddis',
   'brother_aldric_raid', // dynamically-spawned raid turn-in NPC (Crypt of Nythraxis)
   'brother_halven', // Collapsed Reliquary delve board NPC
-  // Dragon's Blight custom zone NPCs
-  'custom_commander_vael',
-  'custom_scout_fenris',
-  'custom_elder_draxis',
+  // Dragon's Blight custom zone NPCs (imported from src/sim/content/custom/i18n_ids.ts)
+  ...CUSTOM_NPC_IDS,
 ] as const;
 
 const QUEST_IDS = [
@@ -189,23 +190,19 @@ const QUEST_IDS = [
   'q_nythraxis_bound_guardian',
   'q_nythraxis_scourges_end',
   'q_mogger',
-  // Dragon's Blight custom zone quests
-  'custom_proving_ground',
-  'custom_marks_of_the_drake',
-  'custom_into_the_blight',
-  'custom_eye_of_the_storm',
-  'custom_eternal_flame',
-  'custom_blight_patrol',
+  // Dragon's Blight custom zone quests (imported from src/sim/content/custom/i18n_ids.ts)
+  ...CUSTOM_QUEST_IDS,
 ] as const;
 
-const ZONE_IDS = ['eastbrook_vale', 'mirefen_marsh', 'thornpeak_heights', 'custom_dragons_blight'] as const;
+const ZONE_IDS = ['eastbrook_vale', 'mirefen_marsh', 'thornpeak_heights', ...CUSTOM_ZONE_IDS] as const;
 const DUNGEON_IDS = [
   'hollow_crypt',
   'sunken_bastion',
   'gravewyrm_sanctum',
   'nythraxis_crypt',
   'nythraxis_boss_arena',
-  'custom_dragons_maw',
+  // Dragon's Blight custom dungeons (imported from src/sim/content/custom/i18n_ids.ts)
+  ...CUSTOM_DUNGEON_IDS,
 ] as const;
 const DELVE_IDS = ['collapsed_reliquary'] as const;
 

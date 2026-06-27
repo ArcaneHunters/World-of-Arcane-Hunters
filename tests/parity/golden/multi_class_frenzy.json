@@ -9,8 +9,8 @@
     "amp stack + threat handoff + tap rights across multiple attackers",
     "multi-class sources: warrior/mage/rogue"
   ],
-  "draws": 13,
-  "drawDigest": "d55e8619",
+  "draws": 15,
+  "drawDigest": "ca70052b",
   "frames": [
     {
       "tick": 0,
@@ -34,7 +34,7 @@
       "events": "8ef5ff78",
       "rng": {
         "draws": 3,
-        "digest": "2b266eb8"
+        "digest": "44b810ef"
       },
       "label": "frenzy-round-0",
       "players": [
@@ -326,7 +326,7 @@
       "events": "2ede172a",
       "rng": {
         "draws": 6,
-        "digest": "9012edbc"
+        "digest": "c15af9da"
       },
       "label": "frenzy-round-1",
       "players": [
@@ -618,7 +618,7 @@
       "events": "2ede172a",
       "rng": {
         "draws": 9,
-        "digest": "af9bc70f"
+        "digest": "88aac2f9"
       },
       "label": "frenzy-round-2",
       "players": [
@@ -910,7 +910,7 @@
       "events": "2ede172a",
       "rng": {
         "draws": 12,
-        "digest": "7f28ca64"
+        "digest": "1a1053bd"
       },
       "label": "frenzy-round-3",
       "players": [
@@ -1198,33 +1198,33 @@
       "tick": 5,
       "time": 0.25,
       "nextId": 433,
-      "state": "0d4b5ffb",
-      "events": "7e576ed5",
+      "state": "e9a61d6d",
+      "events": "bd58bea4",
       "rng": {
-        "draws": 13,
-        "digest": "d55e8619"
+        "draws": 15,
+        "digest": "ca70052b"
       }
     },
     {
       "tick": 10,
       "time": 0.5,
       "nextId": 433,
-      "state": "049d23b8",
+      "state": "a86ff718",
       "events": "741638a5",
       "rng": {
-        "draws": 13,
-        "digest": "d55e8619"
+        "draws": 15,
+        "digest": "ca70052b"
       }
     },
     {
       "tick": 10,
       "time": 0.5,
       "nextId": 433,
-      "state": "049d23b8",
+      "state": "a86ff718",
       "events": "741638a5",
       "rng": {
-        "draws": 13,
-        "digest": "d55e8619"
+        "draws": 15,
+        "digest": "ca70052b"
       },
       "label": "final",
       "players": [
@@ -1235,7 +1235,8 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "damageDealt": 120
+            "damageDealt": 120,
+            "damageTaken": 13
           },
           "delveClears": {},
           "delveDaily": {},
@@ -1296,13 +1297,13 @@
         {
           "aiState": "idle",
           "attackPower": 46,
-          "combatTimer": 0.5,
+          "combatTimer": 0.45,
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
           "fallStartY": 2.312838,
           "fiveSecondRule": 99.5,
-          "hp": 50000,
+          "hp": 49987,
           "id": 429,
           "inCombat": true,
           "kind": "player",
@@ -1452,7 +1453,7 @@
               "value": 1.3
             }
           ],
-          "combatTimer": 0.5,
+          "combatTimer": 0.45,
           "critChance": 0.05,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,

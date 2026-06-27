@@ -11,7 +11,7 @@
     "corpse-tick gate: a dungeon mob (spawnPos.x > DUNGEON_X_THRESHOLD) stays dead, no respawn"
   ],
   "draws": 17,
-  "drawDigest": "9ac3135d",
+  "drawDigest": "3cecae28",
   "frames": [
     {
       "tick": 0,
@@ -31,11 +31,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 434,
-      "state": "3900a6d2",
+      "state": "8b641dc8",
       "events": "a7317941",
       "rng": {
         "draws": 4,
-        "digest": "a2263b54"
+        "digest": "907f1cab"
       },
       "label": "pack-frenzy",
       "players": [
@@ -132,13 +132,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -345,11 +339,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 435,
-      "state": "b1dbdc20",
+      "state": "ea0df088",
       "events": "2d1042b9",
       "rng": {
         "draws": 7,
-        "digest": "fb934a29"
+        "digest": "537ecccb"
       },
       "label": "throes-arm",
       "players": [
@@ -446,13 +440,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -672,7 +660,13 @@
           },
           "level": 10,
           "loot": {
-            "copper": 28
+            "copper": 56,
+            "items": [
+              {
+                "count": 1,
+                "itemId": "tangled_weed"
+              }
+            ]
           },
           "lootRecipientIds": [
             429
@@ -710,11 +704,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 435,
-      "state": "02d00ec9",
-      "events": "ad2eda3e",
+      "state": "e39c1f2b",
+      "events": "de96b39a",
       "rng": {
         "draws": 8,
-        "digest": "e302afea"
+        "digest": "cac7cfb2"
       },
       "label": "throes-detonate",
       "players": [
@@ -726,7 +720,7 @@
           "companionUpgrades": {},
           "counters": {
             "damageDealt": 2281,
-            "damageTaken": 20,
+            "damageTaken": 19,
             "kills": 2,
             "xpGained": 198
           },
@@ -754,7 +748,7 @@
           "dodgeChance": 0.06,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
-          "hp": 999980,
+          "hp": 999981,
           "id": 429,
           "inCombat": true,
           "kind": "player",
@@ -771,7 +765,7 @@
             "z": -2
           },
           "potionCooldownUntil": -1,
-          "resource": 1.333333,
+          "resource": 1.266667,
           "resourceType": "rage",
           "spawnPos": {
             "x": 2,
@@ -813,13 +807,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -1039,7 +1027,13 @@
           },
           "level": 10,
           "loot": {
-            "copper": 28
+            "copper": 56,
+            "items": [
+              {
+                "count": 1,
+                "itemId": "tangled_weed"
+              }
+            ]
           },
           "lootRecipientIds": [
             429
@@ -1077,11 +1071,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 437,
-      "state": "16f19278",
+      "state": "be14bcbd",
       "events": "4d3a281f",
       "rng": {
         "draws": 13,
-        "digest": "d55e8619"
+        "digest": "00413b0e"
       },
       "label": "respawn",
       "players": [
@@ -1093,7 +1087,7 @@
           "companionUpgrades": {},
           "counters": {
             "damageDealt": 3365,
-            "damageTaken": 20,
+            "damageTaken": 19,
             "kills": 3,
             "xpGained": 282
           },
@@ -1121,7 +1115,7 @@
           "dodgeChance": 0.06,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
-          "hp": 999980,
+          "hp": 999981,
           "id": 429,
           "inCombat": true,
           "kind": "player",
@@ -1138,7 +1132,7 @@
             "z": -2
           },
           "potionCooldownUntil": -1,
-          "resource": 1.333333,
+          "resource": 1.266667,
           "resourceType": "rage",
           "spawnPos": {
             "x": 2,
@@ -1180,13 +1174,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -1406,7 +1394,13 @@
           },
           "level": 10,
           "loot": {
-            "copper": 28
+            "copper": 56,
+            "items": [
+              {
+                "count": 1,
+                "itemId": "tangled_weed"
+              }
+            ]
           },
           "lootRecipientIds": [
             429
@@ -1472,7 +1466,7 @@
             "armor": 40
           },
           "templateId": "forest_wolf",
-          "wanderTimer": 2.214157,
+          "wanderTimer": 5.661193,
           "weapon": {
             "max": 12,
             "min": 8,
@@ -1485,11 +1479,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 438,
-      "state": "fefaa653",
+      "state": "33506b0b",
       "events": "3a6137eb",
       "rng": {
         "draws": 17,
-        "digest": "9ac3135d"
+        "digest": "3cecae28"
       },
       "label": "dungeon-stays-dead",
       "players": [
@@ -1501,7 +1495,7 @@
           "companionUpgrades": {},
           "counters": {
             "damageDealt": 4449,
-            "damageTaken": 20,
+            "damageTaken": 19,
             "kills": 4,
             "xpGained": 366
           },
@@ -1529,7 +1523,7 @@
           "dodgeChance": 0.06,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
-          "hp": 999980,
+          "hp": 999981,
           "id": 429,
           "inCombat": true,
           "kind": "player",
@@ -1546,7 +1540,7 @@
             "z": -2
           },
           "potionCooldownUntil": -1,
-          "resource": 1.333333,
+          "resource": 1.266667,
           "resourceType": "rage",
           "spawnPos": {
             "x": 2,
@@ -1588,13 +1582,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -1814,7 +1802,13 @@
           },
           "level": 10,
           "loot": {
-            "copper": 28
+            "copper": 56,
+            "items": [
+              {
+                "count": 1,
+                "itemId": "tangled_weed"
+              }
+            ]
           },
           "lootRecipientIds": [
             429
@@ -1880,7 +1874,7 @@
             "armor": 40
           },
           "templateId": "forest_wolf",
-          "wanderTimer": 2.214157,
+          "wanderTimer": 5.661193,
           "weapon": {
             "max": 12,
             "min": 8,
@@ -1907,7 +1901,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 11
+            "copper": 7
           },
           "lootRecipientIds": [
             429
@@ -1946,11 +1940,11 @@
       "tick": 0,
       "time": 0,
       "nextId": 438,
-      "state": "fefaa653",
+      "state": "33506b0b",
       "events": "741638a5",
       "rng": {
         "draws": 17,
-        "digest": "9ac3135d"
+        "digest": "3cecae28"
       },
       "label": "final",
       "players": [
@@ -1962,7 +1956,7 @@
           "companionUpgrades": {},
           "counters": {
             "damageDealt": 4449,
-            "damageTaken": 20,
+            "damageTaken": 19,
             "kills": 4,
             "xpGained": 366
           },
@@ -1990,7 +1984,7 @@
           "dodgeChance": 0.06,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
-          "hp": 999980,
+          "hp": 999981,
           "id": 429,
           "inCombat": true,
           "kind": "player",
@@ -2007,7 +2001,7 @@
             "z": -2
           },
           "potionCooldownUntil": -1,
-          "resource": 1.333333,
+          "resource": 1.266667,
           "resourceType": "rage",
           "spawnPos": {
             "x": 2,
@@ -2049,13 +2043,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 8,
-            "items": [
-              {
-                "count": 1,
-                "itemId": "wolf_fang"
-              }
-            ]
+            "copper": 5
           },
           "lootRecipientIds": [
             429
@@ -2275,7 +2263,13 @@
           },
           "level": 10,
           "loot": {
-            "copper": 28
+            "copper": 56,
+            "items": [
+              {
+                "count": 1,
+                "itemId": "tangled_weed"
+              }
+            ]
           },
           "lootRecipientIds": [
             429
@@ -2341,7 +2335,7 @@
             "armor": 40
           },
           "templateId": "forest_wolf",
-          "wanderTimer": 2.214157,
+          "wanderTimer": 5.661193,
           "weapon": {
             "max": 12,
             "min": 8,
@@ -2368,7 +2362,7 @@
           },
           "level": 5,
           "loot": {
-            "copper": 11
+            "copper": 7
           },
           "lootRecipientIds": [
             429

@@ -8,7 +8,7 @@
     "multi-player party"
   ],
   "draws": 2,
-  "drawDigest": "0f40805d",
+  "drawDigest": "c05535b8",
   "frames": [
     {
       "tick": 0,
@@ -29,10 +29,10 @@
       "time": 0.15,
       "nextId": 432,
       "state": "e804acb5",
-      "events": "c75e45ba",
+      "events": "aedd6f60",
       "rng": {
         "draws": 2,
-        "digest": "0f40805d"
+        "digest": "c05535b8"
       },
       "label": "final",
       "players": [

@@ -10,7 +10,7 @@
     "releaseSpirit outdoor graveyard respawn (full hp, ~10966)"
   ],
   "draws": 4,
-  "drawDigest": "b776f159",
+  "drawDigest": "7ba9533d",
   "frames": [
     {
       "tick": 0,
@@ -102,7 +102,7 @@
       "events": "330591cf",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       }
     },
     {
@@ -113,7 +113,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       }
     },
     {
@@ -124,7 +124,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       },
       "label": "post-churn",
       "players": [
@@ -207,7 +207,7 @@
       "events": "330591cf",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       },
       "label": "graveyard-release",
       "players": [
@@ -290,7 +290,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       }
     },
     {
@@ -301,7 +301,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 4,
-        "digest": "b776f159"
+        "digest": "7ba9533d"
       },
       "label": "final",
       "players": [

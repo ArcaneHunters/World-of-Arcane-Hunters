@@ -11,7 +11,7 @@
     "cosmetic prestige accept + below-threshold reject (prestige, G1b)"
   ],
   "draws": 83,
-  "drawDigest": "157f78f5",
+  "drawDigest": "43fbdc2a",
   "frames": [
     {
       "tick": 0,
@@ -125,7 +125,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       }
     },
     {
@@ -136,7 +136,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "rested-accrued",
       "players": [
@@ -219,7 +219,7 @@
       "events": "4d1e7ce1",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "rested-consumed",
       "players": [
@@ -306,7 +306,7 @@
       "events": "be9cdc7f",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "ding",
       "players": [
@@ -394,7 +394,7 @@
       "events": "ed577c81",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "overflow",
       "players": [
@@ -482,7 +482,7 @@
       "events": "90589f28",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "prestige-accept",
       "players": [
@@ -570,7 +570,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "prestige-reject",
       "players": [
@@ -658,7 +658,7 @@
       "events": "741638a5",
       "rng": {
         "draws": 83,
-        "digest": "157f78f5"
+        "digest": "43fbdc2a"
       },
       "label": "final",
       "players": [

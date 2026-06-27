@@ -8,8 +8,8 @@
     "updateRangedPetAttack friendly pet arm (~8093/8217)",
     "updateRangedPetAttack hostile-mob arm (~6776)"
   ],
-  "draws": 442,
-  "drawDigest": "e8cc00ea",
+  "draws": 448,
+  "drawDigest": "19de539e",
   "frames": [
     {
       "tick": 0,
@@ -99,77 +99,77 @@
       "tick": 20,
       "time": 1,
       "nextId": 433,
-      "state": "142b7010",
-      "events": "97e75219",
+      "state": "a9abfd4d",
+      "events": "38825da9",
       "rng": {
         "draws": 6,
-        "digest": "fbb67f98"
+        "digest": "fb26b191"
       }
     },
     {
       "tick": 40,
       "time": 2,
       "nextId": 433,
-      "state": "dacf5bd4",
+      "state": "cb85f865",
       "events": "741638a5",
       "rng": {
         "draws": 6,
-        "digest": "fbb67f98"
+        "digest": "fb26b191"
       }
     },
     {
       "tick": 60,
       "time": 3,
       "nextId": 433,
-      "state": "ed2810ea",
-      "events": "41da00d5",
+      "state": "6f906659",
+      "events": "d91b2c4e",
       "rng": {
-        "draws": 104,
-        "digest": "8999b22e"
+        "draws": 103,
+        "digest": "45584030"
       }
     },
     {
       "tick": 80,
       "time": 4,
       "nextId": 433,
-      "state": "59c8fe92",
+      "state": "e0b0ebb1",
       "events": "741638a5",
       "rng": {
-        "draws": 212,
-        "digest": "76d836f0"
+        "draws": 208,
+        "digest": "2a92a8f8"
       }
     },
     {
       "tick": 100,
       "time": 5,
       "nextId": 433,
-      "state": "5688b478",
-      "events": "127cf066",
+      "state": "b544a949",
+      "events": "41da00d5",
       "rng": {
-        "draws": 316,
-        "digest": "4f2a1374"
+        "draws": 326,
+        "digest": "397f67c6"
       }
     },
     {
       "tick": 120,
       "time": 6,
       "nextId": 433,
-      "state": "94fd92e0",
+      "state": "8ebd0cd5",
       "events": "741638a5",
       "rng": {
-        "draws": 442,
-        "digest": "e8cc00ea"
+        "draws": 448,
+        "digest": "19de539e"
       }
     },
     {
       "tick": 120,
       "time": 6,
       "nextId": 433,
-      "state": "94fd92e0",
+      "state": "8ebd0cd5",
       "events": "741638a5",
       "rng": {
-        "draws": 442,
-        "digest": "e8cc00ea"
+        "draws": 448,
+        "digest": "19de539e"
       },
       "label": "final",
       "players": [
@@ -257,7 +257,7 @@
           "facing": 1.570796,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
-          "hp": 57,
+          "hp": 61,
           "id": 430,
           "inCombat": true,
           "kind": "mob",
@@ -301,7 +301,7 @@
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 49948,
+          "hp": 49946,
           "id": 431,
           "inCombat": true,
           "kind": "mob",
@@ -337,7 +337,7 @@
           "threat": [
             [
               430,
-              52
+              54
             ]
           ],
           "weapon": {

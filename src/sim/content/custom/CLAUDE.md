@@ -135,23 +135,54 @@ before the sim starts -- cross-reference within the same `index.ts` is fine.
 
 ## i18n wiring for new content
 
-Custom content requires changes to two upstream files so the UI can resolve
-names and text through `tEntity()`. Do this in the same commit as the content:
+Custom content requires adding IDs to `src/sim/content/custom/i18n_ids.ts`,
+the fork-owned extension point. The two upstream i18n files (`world_entity_i18n.ts`
+and `items.ts`) import from it via spreads, so upstream merges to those files will
+never wipe your custom entries.
 
-1. **Mobs, NPCs, quests, zones, dungeons:** add their IDs to the matching arrays
-   in `src/ui/world_entity_i18n.ts` (`MOB_IDS`, `NPC_IDS`, `QUEST_IDS`,
-   `ZONE_IDS`, `DUNGEON_IDS`). The build auto-generates English from the sim data;
-   you do not need to touch locale files (they are English-filled at PR tier and
-   translated by the maintainer at release tier).
+1. **Mobs, NPCs, quests, zones, dungeons:** add their IDs to the matching
+   `CUSTOM_MOB_IDS` / `CUSTOM_NPC_IDS` / `CUSTOM_QUEST_IDS` / `CUSTOM_ZONE_IDS` /
+   `CUSTOM_DUNGEON_IDS` arrays in `src/sim/content/custom/i18n_ids.ts`.
+   The build auto-generates English from the sim data; you do not need to touch
+   locale files (they are English-filled at PR tier and translated by the
+   maintainer at release tier).
 
-2. **Items in `CUSTOM_ITEMS`:** add each item ID to `ITEM_ENTITY_IDS` and its
-   English name to the `en` block in `src/ui/i18n.catalog/items.ts`.
+2. **Items in `CUSTOM_ITEMS`:** add each item ID to `CUSTOM_ITEM_ENTITY_IDS` and
+   its English name (in the matching position) to `CUSTOM_ITEM_EN_NAMES` in
+   `src/sim/content/custom/i18n_ids.ts`. The arrays are positional: index N of
+   `CUSTOM_ITEM_EN_NAMES` is the English display name for index N of
+   `CUSTOM_ITEM_ENTITY_IDS`. **Never edit `src/ui/world_entity_i18n.ts` or
+   `src/ui/i18n.catalog/items.ts` directly** -- those upstream files import from
+   `i18n_ids.ts` via spreads and will be overwritten on merge.
 
-After both edits, regenerate and verify:
+After editing `i18n_ids.ts`, regenerate and verify:
 ```bash
 npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
 npx vitest run tests/i18n_status_registry.test.ts tests/i18n_resolved_equivalence.test.ts
 ```
+
+## Determinism and secondary RNG isolation
+
+`src/sim/sim.ts` initializes all mob spawn positions during construction. To avoid
+the custom camps shifting the main RNG stream (which would break parity tests and
+any test that depends on downstream RNG state), custom camp mob initialization uses
+a secondary RNG instance:
+
+```typescript
+const customCampSet = new Set(CUSTOM_CAMPS);
+const customRng = new Rng(this.cfg.seed ^ 0x464f524b);
+for (const camp of CAMPS) {
+  const rng = customCampSet.has(camp) ? customRng : this.rng;
+  // ... draws ang, r, level, facing, wanderTimer from rng
+}
+```
+
+This means:
+- Adding more `CUSTOM_CAMPS` entries does NOT affect `this.rng` (the main stream).
+- The parity golden traces still need regeneration after adding camps (the secondary
+  stream affects entity positions and IDs, which are part of the snapshot).
+- `tests/delves.test.ts` uses the upstream `rollFor(42)` value; adding camps will
+  NOT change this value (the fix is already in place).
 
 ## Testing
 
@@ -161,21 +192,14 @@ npm test                                 # run the full test suite
 npx vitest run tests/sim.test.ts         # focused sim test
 ```
 
-**Adding camps to `CUSTOM_CAMPS`** shifts the world-gen RNG draw order (camps are
-appended last and each draws RNG in array order). Two test artifacts must be
-updated when the camp count changes:
+**Adding camps to `CUSTOM_CAMPS`** draws from the secondary `customRng` stream, so the
+main RNG is NOT affected. However, parity golden traces must still be regenerated because
+new entity IDs and positions appear in the snapshots:
 
-1. **Parity golden traces** -- always regenerate after any content change:
-   ```bash
-   UPDATE_PARITY=1 npx vitest run tests/parity
-   ```
-
-2. **Delves test seed** -- `tests/delves.test.ts` has a seed-indexed roll
-   (`rollFor(48)`) that was updated from the upstream value of `42` because the 9
-   Dragon's Blight camps shifted the RNG draw order. If you add more camps and
-   `tests/delves.test.ts` fails, update the index to match the value reported in
-   the failure message. See `docs/MAINTAINING-FORK.md` for the full re-derivation
-   procedure.
+```bash
+UPDATE_PARITY=1 npx vitest run tests/parity
+# Then re-run npm test to confirm all pass.
+```
 
 Content that references non-existent IDs (a mob's `loot` itemId, a quest's
 `targetMobId`) will cause runtime errors when the sim tries to resolve them.

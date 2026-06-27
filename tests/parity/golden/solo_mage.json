@@ -8,8 +8,8 @@
     "casting lifecycle (C4a)",
     "effect dispatch + spell damage (C4b/C1)"
   ],
-  "draws": 495,
-  "drawDigest": "482308da",
+  "draws": 464,
+  "drawDigest": "58d837cf",
   "frames": [
     {
       "tick": 0,
@@ -98,77 +98,77 @@
       "tick": 20,
       "time": 1,
       "nextId": 431,
-      "state": "b67d73d9",
+      "state": "37d4e7fc",
       "events": "dcdf5f67",
       "rng": {
         "draws": 3,
-        "digest": "36182424"
+        "digest": "73521d70"
       }
     },
     {
       "tick": 40,
       "time": 2,
       "nextId": 431,
-      "state": "352149b5",
-      "events": "35d865fd",
+      "state": "9c0a5957",
+      "events": "51ae447f",
       "rng": {
-        "draws": 6,
-        "digest": "73f7ac74"
+        "draws": 3,
+        "digest": "73521d70"
       }
     },
     {
       "tick": 60,
       "time": 3,
       "nextId": 431,
-      "state": "cea38f3a",
-      "events": "e396e3a9",
+      "state": "074631e3",
+      "events": "5d9dcdd6",
       "rng": {
-        "draws": 87,
-        "digest": "87578915"
+        "draws": 85,
+        "digest": "3b4f035d"
       }
     },
     {
       "tick": 80,
       "time": 4,
       "nextId": 431,
-      "state": "0328dc8e",
-      "events": "300665ff",
+      "state": "d0fb0ebb",
+      "events": "5d9dcdd6",
       "rng": {
-        "draws": 191,
-        "digest": "8aa34c9b"
+        "draws": 180,
+        "digest": "820a8b9b"
       }
     },
     {
       "tick": 100,
       "time": 5,
       "nextId": 431,
-      "state": "3b9608cf",
-      "events": "86e231ed",
+      "state": "cd7fb3ff",
+      "events": "5586a527",
       "rng": {
-        "draws": 312,
-        "digest": "b470344c"
+        "draws": 301,
+        "digest": "f6007d09"
       }
     },
     {
       "tick": 120,
       "time": 6,
       "nextId": 431,
-      "state": "728f3068",
-      "events": "300665ff",
+      "state": "c40f6ce9",
+      "events": "5d9dcdd6",
       "rng": {
-        "draws": 442,
-        "digest": "bb9c1d63"
+        "draws": 415,
+        "digest": "fd501802"
       }
     },
     {
       "tick": 128,
       "time": 6.4,
       "nextId": 431,
-      "state": "bb8b1a21",
+      "state": "2ba9a86c",
       "events": "741638a5",
       "rng": {
-        "draws": 495,
-        "digest": "482308da"
+        "draws": 464,
+        "digest": "58d837cf"
       },
       "label": "final",
       "players": [
@@ -179,9 +179,7 @@
           "autoEquip": true,
           "cls": "mage",
           "companionUpgrades": {},
-          "counters": {
-            "damageDealt": 90
-          },
+          "counters": {},
           "delveClears": {},
           "delveDaily": {},
           "entityId": 429,
@@ -200,19 +198,16 @@
         {
           "aiState": "idle",
           "attackPower": 10,
-          "castRemaining": 0.4,
           "castTotal": 2,
-          "castingAbility": "fireball",
-          "combatTimer": 0.45,
+          "combatTimer": 105.4,
           "critChance": 0.056,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.056,
-          "facing": 0.030683,
+          "facing": -0.001747,
           "fallStartY": 1.5,
-          "fiveSecondRule": 2.05,
+          "fiveSecondRule": 105.4,
           "hp": 50000,
           "id": 429,
-          "inCombat": true,
           "kind": "player",
           "level": 10,
           "maxHp": 50000,
@@ -251,49 +246,18 @@
           }
         },
         {
-          "aggroTargetId": 429,
-          "aiState": "attack",
-          "auras": [
-            {
-              "duration": 6,
-              "id": "fireball",
-              "kind": "dot",
-              "name": "Fireball",
-              "remaining": 1.55,
-              "school": "fire",
-              "sourceId": 429,
-              "tickInterval": 2,
-              "tickTimer": 1.55,
-              "value": 1
-            },
-            {
-              "duration": 6,
-              "id": "frostbolt_slow",
-              "kind": "slow",
-              "name": "Frostbolt",
-              "remaining": 3.95,
-              "school": "frost",
-              "sourceId": 429,
-              "value": 0.6
-            }
-          ],
-          "combatTimer": 0.45,
+          "aiState": "idle",
+          "combatTimer": 105.4,
           "critChance": 0.05,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
-          "facing": -3.11091,
+          "facing": 0.709175,
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 8910,
+          "hp": 9000,
           "id": 430,
-          "inCombat": true,
           "kind": "mob",
-          "leashAnchor": {
-            "x": 2.145308,
-            "y": 1.5,
-            "z": 2.734306
-          },
           "level": 5,
           "maxHp": 9000,
           "moveSpeed": 8,
@@ -301,9 +265,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": 2.145308,
-            "y": 1.5,
-            "z": 2.734306
+            "x": 1.962745,
+            "y": 1.532278,
+            "z": 19.33028
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
@@ -314,16 +278,8 @@
           "stats": {
             "armor": 40
           },
-          "swingTimer": 1.55,
-          "tappedById": 429,
           "templateId": "forest_wolf",
-          "threat": [
-            [
-              429,
-              91
-            ]
-          ],
-          "wanderTimer": 5.567593,
+          "wanderTimer": 3.607922,
           "weapon": {
             "max": 12,
             "min": 8,

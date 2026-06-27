@@ -8,8 +8,8 @@
     "meleeSwing weaponStrike (sinister_strike via castAbility ~3736)",
     "combo points"
   ],
-  "draws": 165,
-  "drawDigest": "2ffee5ce",
+  "draws": 153,
+  "drawDigest": "ded1cbc7",
   "frames": [
     {
       "tick": 0,
@@ -99,44 +99,44 @@
       "tick": 20,
       "time": 1,
       "nextId": 431,
-      "state": "5c6ab9f5",
-      "events": "06f1879e",
+      "state": "348aef9f",
+      "events": "1629097f",
       "rng": {
         "draws": 7,
-        "digest": "0f7c246a"
+        "digest": "14806c1c"
       }
     },
     {
       "tick": 40,
       "time": 2,
       "nextId": 431,
-      "state": "555d15ee",
-      "events": "68ce33a7",
+      "state": "0516750c",
+      "events": "586869e1",
       "rng": {
         "draws": 13,
-        "digest": "2356fd36"
+        "digest": "3fc203d8"
       }
     },
     {
       "tick": 60,
       "time": 3,
       "nextId": 431,
-      "state": "59ec0f81",
-      "events": "a4bb3fe8",
+      "state": "9a5c3e2f",
+      "events": "e7a77ad1",
       "rng": {
-        "draws": 102,
-        "digest": "e8e85abb"
+        "draws": 99,
+        "digest": "09494b93"
       }
     },
     {
       "tick": 72,
       "time": 3.6,
       "nextId": 431,
-      "state": "3efbd07d",
+      "state": "82f34a0f",
       "events": "741638a5",
       "rng": {
-        "draws": 165,
-        "digest": "2ffee5ce"
+        "draws": 153,
+        "digest": "ded1cbc7"
       },
       "label": "final",
       "players": [
@@ -148,7 +148,7 @@
           "cls": "rogue",
           "companionUpgrades": {},
           "counters": {
-            "damageDealt": 100
+            "damageDealt": 79
           },
           "delveClears": {},
           "delveDaily": {},
@@ -231,7 +231,7 @@
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 8900,
+          "hp": 8921,
           "id": 430,
           "inCombat": true,
           "kind": "mob",
@@ -267,7 +267,7 @@
           "threat": [
             [
               429,
-              101
+              80
             ]
           ],
           "weapon": {
