@@ -193,6 +193,20 @@ export const ARENA_LAYOUT: DungeonLayout = {
   dais: { x: 0, z: 2, r: 8 },
 };
 
+// Dragon's Maw (interior 'dragons_maw'): a single vast dragon's lair chamber,
+// z -19..150. No waist stubs so players move freely between the three mob groups.
+// Boss dais at z 130 for Ignaraxis. Side walls span the full length.
+export const DRAGONS_MAW_LAYOUT: DungeonLayout = {
+  zMin: -19,
+  zMax: 150,
+  sideWallZ: 65.5,  // centre: (150 + (-19)) / 2
+  sideWallHd: 84.5, // half-depth: (150 - (-19)) / 2
+  pillars: grid(10, 120, 25, [-14, 14]),
+  tombs: [],
+  stubs: [],
+  dais: { x: 0, z: 130, r: 13 },
+};
+
 // Combatant spawn points (instance-local), at opposite ends facing each other.
 export const ARENA_SPAWN_A = { x: 0, z: -14, facing: 0 }; // faces +z toward B
 export const ARENA_SPAWN_B = { x: 0, z: 18, facing: Math.PI }; // faces -z toward A

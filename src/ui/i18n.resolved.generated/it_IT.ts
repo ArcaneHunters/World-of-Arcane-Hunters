@@ -4395,6 +4395,33 @@ export const it_IT: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Corona del Monarca"
       },
+      "custom_drake_scale": {
+        "name": "Squama di Drake Cinereo"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Pietra del Cuore di Viverna Oscura"
+      },
+      "custom_blight_ember": {
+        "name": "Brace Maligna"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Spalliere d'Osso di Drake"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Cappuccio dell'Ala Bruciata"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Cappuccio dello Stalker Maligno"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Grande Lama di Ignaraxis"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Bastone di Cenere Eterna"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Zanna di Ignaraxis"
+      },
       "bristleback_maul": {
         "name": "Maglio Bristleback"
       },
@@ -5069,6 +5096,21 @@ export const it_IT: EnTranslations = {
       "acolyte_tessa": {
         "name": "Accolita Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Drake Camminacenere"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Viverna Alabruciata"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Sentinella Corrotta"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Guardiano Artiglio di Drago"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis l'Eterno"
+      },
       "ironvein_foreman": {
         "name": "Caposquadra Venaferrata"
       },
@@ -5283,6 +5325,21 @@ export const it_IT: EnTranslations = {
         "name": "Fratello Halven",
         "title": "Custode del Reliquiario",
         "greeting": "Il reliquiario sottostante si è spostato di nuovo."
+      },
+      "custom_commander_vael": {
+        "name": "Comandante Vael",
+        "title": "Ufficiale della Guardia del Flagello",
+        "greeting": "State in guardia, {playerName}. Questo flagello non dorme, e noi nemmeno."
+      },
+      "custom_scout_fenris": {
+        "name": "Esploratore Fenris",
+        "title": "Esploratore della Guardia del Flagello",
+        "greeting": "Avete attraversato i territori delle viverne? Bene. Avevo bisogno di qualcuno capace qui."
+      },
+      "custom_elder_draxis": {
+        "name": "Anziano Draxis",
+        "title": "Ammazzadraghi",
+        "greeting": "Caccio draghi da trent'anni, {playerName}. Ignaraxis non e come gli altri."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const it_IT: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Campo di Prova",
+        "text": "I drake camminacenere hanno avanzato fino ai margini del nostro accampamento, {playerName}. Riduci il loro numero -- dieci di loro -- e dimostra di meritare il Flagello.",
+        "completion": "Dieci drake abbattuti. Niente male. Potreste sopravvivere qui, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drake Camminacenere uccisi"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Marchi del Drake",
+        "text": "Le squame dei drake sono dure come la corazza a piastre, {playerName}. Ne servono otto per equipaggiare la prossima pattuglia. I drake non le cedono facilmente -- prendete quello che potete.",
+        "completion": "Otto squame. Reggeranno al fuoco meglio di qualsiasi cosa possiamo forgiare. Ottimo lavoro.",
+        "objectives": {
+          "0": {
+            "label": "Squame di Drake Camminacenere"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "Nel Flagello",
+        "text": "Quelle viverne aliabruciata stanno nidificando tra noi e il dungeon, {playerName}. Devono essere eliminate in otto, e ho bisogno di cinque delle loro pietre del cuore per l'alchimista del comandante. Sono in profondita, ma so che potete raggiungerle.",
+        "completion": "Il nido e stato ripulito. Quelle pietre del cuore varranno piu di quanto pensiate.",
+        "objectives": {
+          "0": {
+            "label": "Viverne Aliabruciata uccise"
+          },
+          "1": {
+            "label": "Pietre del Cuore di Viverna"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Occhio del Ciclone",
+        "text": "Le sentinelle corrotte sono la guardia esterna di Ignaraxis, {playerName}. Antichi dragonidi deformati da secoli in prossimita di quella creatura. Abbattetene tre e portatemi le braci corrotte dai loro nuclei. Se riuscite a gestirle, siete pronti per le Fauci.",
+        "completion": "Tre sentinelle abbattute e braci in mano. Siete pronti, {playerName}. Tornate al posto e parlate con l'Anziano Draxis. Aspetta questo momento da molto tempo.",
+        "objectives": {
+          "0": {
+            "label": "Sentinelle Corrotte uccise"
+          },
+          "1": {
+            "label": "Braci Corrotte"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "La Fiamma Eterna",
+        "text": "Ignaraxis l'Eterno e rimasto addormentato nelle Fauci del Drago per un'era, {playerName}. Il Flagello sopra di noi e il suo respiro preso forma. Entrate nelle Fauci, affrontatelo nella sua tana e metteteci fine. I vostri compagni saranno necessari -- questa non e una caccia per uno solo.",
+        "completion": "La Fiamma Eterna si e spenta, {playerName}. Ho aspettato trent'anni per dire quelle parole. Il Flagello ora svanira. Prendete questo -- ve lo siete ampiamente guadagnato.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis l'Eterno ucciso"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Pattuglia del Flagello",
+        "text": "Non possiamo lasciare che i drake e le viverne travolgano gli accessi, {playerName}. Pattugliare il Flagello, abbattere quindici drake e otto viverne, poi riportate. Tiene i nostri fianchi liberi mentre la catena di comando gestisce il quadro generale.",
+        "completion": "I fianchi sono liberi. Gli uomini respirano piu facilmente quando qualcuno la fuori fa la differenza. Buon lavoro, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drake Camminacenere uccisi"
+          },
+          "1": {
+            "label": "Viverne Aliabruciata uccise"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "Il Coro Annegato",
         "text": "I guadatori non agiscono da soli. Tra loro camminano i Devoti Annegati — la setta che affondò col tempio, ancora nelle loro vesti marcite, ancora intenti a cantare la preghiera dalle rocce della riva. Riducine otto al silenzio e portami sei delle offerte che recano. Voglio sapere cosa intendono donare alla loro dea.",
@@ -6209,6 +6335,21 @@ export const it_IT: EnTranslations = {
             "label": "Santuario del Gravewyrm"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "Flagello del Drago",
+        "welcome": "Il Flagello del Drago si estende davanti a voi, soffocato dalla cenere e dall'eco lontano dell'antico fuoco.",
+        "pois": {
+          "0": {
+            "label": "Posto di Guardia del Flagello"
+          },
+          "1": {
+            "label": "Avamposto di Fenris"
+          },
+          "2": {
+            "label": "Fauci del Drago"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const it_IT: EnTranslations = {
         "name": "Arena d'incursione di Nythraxis",
         "enterText": "Oltrepassi la porta reale sigillata.",
         "leaveText": "Torni nell'aria fredda di Thornpeak."
+      },
+      "custom_dragons_maw": {
+        "name": "Fauci del Drago",
+        "enterText": "Il calore e soffocante. Qualcosa di enorme si muove nell'oscurita davanti a voi.",
+        "leaveText": "Emergete dalle Fauci del Drago, l'aria esterna fredda contro la vostra pelle."
       },
       "drowned_temple": {
         "name": "Il Tempio Annegato",

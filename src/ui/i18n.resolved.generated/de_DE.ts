@@ -4395,6 +4395,33 @@ export const de_DE: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Krone des Monarchen"
       },
+      "custom_drake_scale": {
+        "name": "Drachenschuppe des Aschlaufers"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Herzstein des Dunkelschwingen-Wyverns"
+      },
+      "custom_blight_ember": {
+        "name": "Seuchenkohle"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Drachenknochen-Schultern"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Sengflugelkapuze"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Kapuze des Seuchenanschleichers"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Ignaraxis Grossschwert"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Ewig-Aschenstab"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Ignaraxis Reisszahn"
+      },
       "bristleback_maul": {
         "name": "Bristleback-Schlägel"
       },
@@ -5069,6 +5096,21 @@ export const de_DE: EnTranslations = {
       "acolyte_tessa": {
         "name": "Akolythin Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Aschlaufer-Drache"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Sengflugel-Wyvern"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Verseucher Wachter"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Drachenklauen-Huter"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis der Ewige"
+      },
       "ironvein_foreman": {
         "name": "Eisenader-Vorarbeiter"
       },
@@ -5283,6 +5325,21 @@ export const de_DE: EnTranslations = {
         "name": "Bruder Halven",
         "title": "Reliquiarhüter",
         "greeting": "Das Reliquiar unten hat sich erneut verschoben."
+      },
+      "custom_commander_vael": {
+        "name": "Befehlshaber Vael",
+        "title": "Seuchenwacht-Offizier",
+        "greeting": "Seid bereit, {playerName}. Diese Seuche schlaft nicht, und wir auch nicht."
+      },
+      "custom_scout_fenris": {
+        "name": "Spaher Fenris",
+        "title": "Seuchenwacht-Spaher",
+        "greeting": "Ihr habt euch durch das Wyvern-Gebiet geschlagen? Gut. Ich konnte hier jemand Fahiges gebrauchen."
+      },
+      "custom_elder_draxis": {
+        "name": "Altester Draxis",
+        "title": "Drachentöter",
+        "greeting": "Ich habe dreißig Jahre lang Drachen gejagt, {playerName}. Ignaraxis ist anders als die anderen."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const de_DE: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Bewahrungsprufung",
+        "text": "Die Aschlaufer-Drachen haben sich bis an den Rand unseres Lagers vorgearbeitet, {playerName}. Lichtet ihre Reihen -- zehn von ihnen -- und beweist, dass ihr in der Seuche bestehen konnt.",
+        "completion": "Zehn Drachen gefallen. Nicht schlecht. Ihr werdet hier vielleicht uberleben, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Aschlaufer-Drachen getotet"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Zeichen des Drachen",
+        "text": "Drachenschuppen sind so hart wie Plattenrustung, {playerName}. Ich brauche acht davon, um den nachsten Patrol auszurusten. Die Drachen geben sie nicht leicht her -- nehmt, was ihr konnt.",
+        "completion": "Acht Schuppen. Diese halten Feuer besser stand als alles, was wir schmieden konnen. Gute Arbeit.",
+        "objectives": {
+          "0": {
+            "label": "Aschlaufer-Drachenschuppen"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "In die Seuche",
+        "text": "Diese Sengflugel-Wyvern nisten zwischen uns und dem Dungeon, {playerName}. Acht von ihnen mussen weg, und ich brauche funf ihrer Herzsteine fur den Alchemisten des Befehlshabers. Sie sind tief, aber ich weiß, dass ihr sie erreichen konnt.",
+        "completion": "Das Nestgebiet ist frei. Diese Herzsteine werden uns mehr wert sein, als ihr denkt.",
+        "objectives": {
+          "0": {
+            "label": "Sengflugel-Wyvern getotet"
+          },
+          "1": {
+            "label": "Sengflugel-Herzsteine"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Auge des Sturms",
+        "text": "Die Verseuchten Wachter sind Ignaraxis außere Garde, {playerName}. Uralte Drachenkin, entstellt durch Jahrhunderte in der Nahe dieses Wesens. Schlagt drei von ihnen nieder und bringt mir die Seuchenkohlen aus ihren Kernen. Wenn ihr sie bealtigen konnt, seid ihr bereit fur den Schlund.",
+        "completion": "Drei Wachter fallen, Kohlen in der Hand. Ihr seid bereit, {playerName}. Geht zuruck zum Posten und sprecht mit Altesten Draxis. Er hat lange auf diesen Moment gewartet.",
+        "objectives": {
+          "0": {
+            "label": "Verseuchte Wachter getotet"
+          },
+          "1": {
+            "label": "Seuchenkohlen"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "Die Ewige Flamme",
+        "text": "Ignaraxis der Ewige hat ein Zeitalter lang im Drachenschlund geschlummert, {playerName}. Die Seuche uber uns ist sein Atem, der Form angenommen hat. Betritt den Schlund, stellt euch ihm in seiner Hohle und macht dem ein Ende. Eure Gefahrten werden notwendig sein -- das ist keine Jagd fur einen allein.",
+        "completion": "Die Ewige Flamme ist erloschen, {playerName}. Dreißig Jahre habe ich gewartet, um diese Worte zu sagen. Die Seuche wird sich nun legen. Nehmt dies -- ihr habt es mehr als verdient.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis der Ewige getotet"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Seuchenpatrouille",
+        "text": "Wir konnen nicht zulassen, dass die Drachen und Wyvern die Zugange uberrennen, {playerName}. Patrouilliert die Seuche, schlagt funfzehn Drachen und acht Wyvern nieder und meldet euch zuruck. Halt unsere Flanken frei, wahrend die Befehlskette das großere Bild handhabt.",
+        "completion": "Flanken sind frei. Die Manner atmen leichter, wenn jemand da draußen den Unterschied macht. Gute Arbeit, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Aschlaufer-Drachen getotet"
+          },
+          "1": {
+            "label": "Sengflugel-Wyvern getotet"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "Der Ertränkte Chor",
         "text": "Die Wäter handeln nicht allein. Unter ihnen wandeln die Ertränkten Andächtigen — der Kult, der mit dem Tempel versank, noch immer in seinen verfaulten Gewändern, noch immer das Gebet von den Uferfelsen singend. Bringe acht von ihnen zum Schweigen und bring mir sechs der Opfergaben, die sie bei sich tragen. Ich will wissen, was sie ihrer Göttin darbringen wollen.",
@@ -6209,6 +6335,21 @@ export const de_DE: EnTranslations = {
             "label": "Gravewyrm-Heiligtum"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "Drachenseuche",
+        "welcome": "Die Drachenseuche erstreckt sich vor euch, erstickt von Asche und dem fernen Echo uralten Feuers.",
+        "pois": {
+          "0": {
+            "label": "Seuchenwacht-Posten"
+          },
+          "1": {
+            "label": "Fenris Außenposten"
+          },
+          "2": {
+            "label": "Drachenschlund"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const de_DE: EnTranslations = {
         "name": "Nythraxis-Schlachtzugsarena",
         "enterText": "Ihr durchschreitet die versiegelte königliche Tür.",
         "leaveText": "Ihr kehrt in die kalte Luft von Thornpeak zurück."
+      },
+      "custom_dragons_maw": {
+        "name": "Drachenschlund",
+        "enterText": "Die Hitze ist erstickend. Etwas Riesiges regt sich in der Dunkelheit vor euch.",
+        "leaveText": "Ihr taucht aus dem Drachenschlund auf, die Außenluft kalt gegen eure Haut."
       },
       "drowned_temple": {
         "name": "Der Ertränkte Tempel",

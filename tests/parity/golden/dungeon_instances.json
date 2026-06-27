@@ -16,7 +16,7 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 388,
+      "nextId": 429,
       "state": "5bc471b0",
       "events": "741638a5",
       "rng": {
@@ -30,9 +30,9 @@
     {
       "tick": 2,
       "time": 0.1,
-      "nextId": 404,
-      "state": "4e10ec7a",
-      "events": "d7e1169d",
+      "nextId": 445,
+      "state": "159d1311",
+      "events": "8b168141",
       "rng": {
         "draws": 35,
         "digest": "f9682ab8"
@@ -48,7 +48,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -67,7 +67,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -88,7 +88,7 @@
           "dodgeChance": 0.06,
           "fiveSecondRule": 99.1,
           "hp": 50000,
-          "id": 388,
+          "id": 429,
           "inCombat": true,
           "kind": "player",
           "level": 1,
@@ -134,7 +134,7 @@
           "fallStartY": -1.613579,
           "fiveSecondRule": 99.1,
           "hp": 50000,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -171,7 +171,7 @@
           }
         },
         {
-          "aggroTargetId": 388,
+          "aggroTargetId": 429,
           "aiState": "chase",
           "combatTimer": 99.1,
           "critChance": 0.05,
@@ -181,7 +181,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 390,
+          "id": 431,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
@@ -209,7 +209,7 @@
           "templateId": "crypt_shambler",
           "threat": [
             [
-              388,
+              429,
               1
             ]
           ],
@@ -220,7 +220,7 @@
           }
         },
         {
-          "aggroTargetId": 388,
+          "aggroTargetId": 429,
           "aiState": "chase",
           "combatTimer": 99.1,
           "critChance": 0.05,
@@ -230,7 +230,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 391,
+          "id": 432,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
@@ -258,7 +258,7 @@
           "templateId": "crypt_shambler",
           "threat": [
             [
-              388,
+              429,
               1
             ]
           ],
@@ -278,7 +278,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 392,
+          "id": 433,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -320,7 +320,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 393,
+          "id": 434,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -362,7 +362,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 394,
+          "id": 435,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -404,7 +404,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 395,
+          "id": 436,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -446,7 +446,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 416,
-          "id": 396,
+          "id": 437,
           "kind": "mob",
           "level": 8,
           "maxHp": 416,
@@ -488,7 +488,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 460,
-          "id": 397,
+          "id": 438,
           "kind": "mob",
           "level": 9,
           "maxHp": 460,
@@ -530,7 +530,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 695,
-          "id": 398,
+          "id": 439,
           "kind": "mob",
           "level": 9,
           "maxHp": 695,
@@ -572,7 +572,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 399,
+          "id": 440,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -614,7 +614,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 1191,
-          "id": 400,
+          "id": 441,
           "kind": "mob",
           "level": 10,
           "maxHp": 1191,
@@ -656,7 +656,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 401,
+          "id": 442,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -698,7 +698,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 402,
+          "id": 443,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -739,7 +739,7 @@
           "dungeonId": "hollow_crypt",
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 403,
+          "id": 444,
           "kind": "object",
           "level": 1,
           "lootable": true,
@@ -770,9 +770,9 @@
     {
       "tick": 4,
       "time": 0.2,
-      "nextId": 404,
-      "state": "507e1c6e",
-      "events": "3d5bfffa",
+      "nextId": 445,
+      "state": "49595473",
+      "events": "15825047",
       "rng": {
         "draws": 49,
         "digest": "1d1c5dad"
@@ -791,7 +791,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -810,7 +810,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -832,7 +832,7 @@
           "dodgeChance": 0.06,
           "fallStartY": -1.484002,
           "fiveSecondRule": 99.2,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -878,7 +878,7 @@
           "fallStartY": 42.122741,
           "fiveSecondRule": 99.2,
           "hp": 50000,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -924,7 +924,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 390,
+          "id": 431,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -962,7 +962,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 391,
+          "id": 432,
           "kind": "mob",
           "level": 7,
           "maxHp": 391,
@@ -1000,7 +1000,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 392,
+          "id": 433,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -1042,7 +1042,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 393,
+          "id": 434,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -1084,7 +1084,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 394,
+          "id": 435,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -1126,7 +1126,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 395,
+          "id": 436,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -1168,7 +1168,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 416,
-          "id": 396,
+          "id": 437,
           "kind": "mob",
           "level": 8,
           "maxHp": 416,
@@ -1210,7 +1210,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 460,
-          "id": 397,
+          "id": 438,
           "kind": "mob",
           "level": 9,
           "maxHp": 460,
@@ -1252,7 +1252,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 695,
-          "id": 398,
+          "id": 439,
           "kind": "mob",
           "level": 9,
           "maxHp": 695,
@@ -1294,7 +1294,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 391,
-          "id": 399,
+          "id": 440,
           "kind": "mob",
           "level": 8,
           "maxHp": 391,
@@ -1336,7 +1336,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 1191,
-          "id": 400,
+          "id": 441,
           "kind": "mob",
           "level": 10,
           "maxHp": 1191,
@@ -1378,7 +1378,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 401,
+          "id": 442,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -1420,7 +1420,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 437,
-          "id": 402,
+          "id": 443,
           "kind": "mob",
           "level": 8,
           "maxHp": 437,
@@ -1461,7 +1461,7 @@
           "dungeonId": "hollow_crypt",
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 403,
+          "id": 444,
           "kind": "object",
           "level": 1,
           "lootable": true,
@@ -1492,9 +1492,9 @@
     {
       "tick": 5,
       "time": 0.25,
-      "nextId": 404,
-      "state": "4c17cb20",
-      "events": "50e64c00",
+      "nextId": 445,
+      "state": "932820e5",
+      "events": "5a0962f1",
       "rng": {
         "draws": 49,
         "digest": "1d1c5dad"
@@ -1503,8 +1503,8 @@
     {
       "tick": 10,
       "time": 0.5,
-      "nextId": 404,
-      "state": "274cb1d4",
+      "nextId": 445,
+      "state": "0d995a3d",
       "events": "741638a5",
       "rng": {
         "draws": 49,
@@ -1514,8 +1514,8 @@
     {
       "tick": 15,
       "time": 0.75,
-      "nextId": 404,
-      "state": "5ba27bee",
+      "nextId": 445,
+      "state": "5fceadf3",
       "events": "741638a5",
       "rng": {
         "draws": 49,
@@ -1525,8 +1525,8 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 404,
-      "state": "e3501c97",
+      "nextId": 445,
+      "state": "8d65166b",
       "events": "741638a5",
       "rng": {
         "draws": 49,
@@ -1536,8 +1536,8 @@
     {
       "tick": 24,
       "time": 1.2,
-      "nextId": 404,
-      "state": "c6f17a4f",
+      "nextId": 445,
+      "state": "bed966fb",
       "events": "741638a5",
       "rng": {
         "draws": 49,
@@ -1557,7 +1557,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -1579,7 +1579,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1601,7 +1601,7 @@
           "dodgeChance": 0.06,
           "fallStartY": -1.484002,
           "fiveSecondRule": 100.2,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -1647,7 +1647,7 @@
           "dodgeChance": 0.056,
           "fallStartY": -1.484002,
           "fiveSecondRule": 100.2,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -1689,8 +1689,8 @@
     {
       "tick": 24,
       "time": 1.2,
-      "nextId": 404,
-      "state": "c6f17a4f",
+      "nextId": 445,
+      "state": "bed966fb",
       "events": "741638a5",
       "rng": {
         "draws": 49,
@@ -1710,7 +1710,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -1732,7 +1732,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1754,7 +1754,7 @@
           "dodgeChance": 0.06,
           "fallStartY": -1.484002,
           "fiveSecondRule": 100.2,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,
@@ -1800,7 +1800,7 @@
           "dodgeChance": 0.056,
           "fallStartY": -1.484002,
           "fiveSecondRule": 100.2,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 50000,

@@ -226,7 +226,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_ashenmoor_crypt: {
     id: 'custom_ashenmoor_crypt',
     name: 'Ashenmoor Crypt',
-    index: 10,                        // x-origin = 900 + 10*600 = 6900
+    index: 6,                         // x-origin = 900 + 6*600 = 4500 (must be < ARENA_X_MIN 4700)
     doorPos: { x: -50, z: 2020 },    // overworld entrance portal
     entry: { x: 0, z: 20 },
     exitOffset: { x: 0, z: 5 },

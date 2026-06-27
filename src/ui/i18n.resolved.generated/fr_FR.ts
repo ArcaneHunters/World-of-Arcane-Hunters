@@ -4395,6 +4395,33 @@ export const fr_FR: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Couronne du Monarque"
       },
+      "custom_drake_scale": {
+        "name": "Ecaille de Drake Cendrier"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Pierre du Coeur de Wyverne Sombre"
+      },
+      "custom_blight_ember": {
+        "name": "Braise Maudite"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Epaulieres d'Os de Drake"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Capuche Aile Roussie"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Capuche du Rodeur Maudit"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Grande Lame d'Ignaraxis"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Baton de Cendres Eternelles"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Croc d'Ignaraxis"
+      },
       "bristleback_maul": {
         "name": "Maillet Bristleback"
       },
@@ -5069,6 +5096,21 @@ export const fr_FR: EnTranslations = {
       "acolyte_tessa": {
         "name": "Acolyte Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Drake Marcheur de Cendres"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Wyverne Aile Roussie"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Sentinelle Maudite"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Gardien Griffe de Dragon"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis l'Eternel"
+      },
       "ironvein_foreman": {
         "name": "Contremaître Veinefer"
       },
@@ -5283,6 +5325,21 @@ export const fr_FR: EnTranslations = {
         "name": "Frère Halven",
         "title": "Gardien du reliquaire",
         "greeting": "Le reliquaire d'en bas a de nouveau bougé."
+      },
+      "custom_commander_vael": {
+        "name": "Commandant Vael",
+        "title": "Officier de la Garde du Fleau",
+        "greeting": "Tenez-vous pret, {playerName}. Ce fleau ne dort pas, et nous non plus."
+      },
+      "custom_scout_fenris": {
+        "name": "Eclaireur Fenris",
+        "title": "Eclaireur de la Garde du Fleau",
+        "greeting": "Vous avez traverse le territoire des wyvernes ? Bien. J'avais besoin de quelqu'un de capable ici."
+      },
+      "custom_elder_draxis": {
+        "name": "Aine Draxis",
+        "title": "Tueur de dragons",
+        "greeting": "J'ai chasse les dragons pendant trente ans, {playerName}. Ignaraxis n'est pas comme les autres."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const fr_FR: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Terrain d'epreuve",
+        "text": "Les drakes marcheurs de cendres ont avance jusqu'aux abords de notre camp, {playerName}. Reduisez leur nombre -- dix d'entre eux -- et prouvez que vous avez votre place dans le Fleau.",
+        "completion": "Dix drakes abattus. Pas mal. Vous survivrez peut-etre ici, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Marcheurs de Cendres tues"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Marques du Drake",
+        "text": "Les ecailles de drake sont aussi dures que de l'armure en plaques, {playerName}. J'en ai besoin de huit pour equiper la prochaine patrouille. Les drakes ne les cedent pas facilement -- prenez ce que vous pouvez.",
+        "completion": "Huit ecailles. Elles resisteront au feu mieux que tout ce que nous pouvons forger. Bien joue.",
+        "objectives": {
+          "0": {
+            "label": "Ecailles de Drake Marcheur de Cendres"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "Au Coeur du Fleau",
+        "text": "Ces wyvernes ailes roussies nichent entre nous et le donjon, {playerName}. Il faut en eliminer huit, et j'ai besoin de cinq de leurs pierres du coeur pour l'alchimiste du commandant. Elles sont en profondeur, mais je sais que vous pouvez les atteindre.",
+        "completion": "Le nid est neutralise. Ces pierres du coeur nous seront plus precieuses que vous ne le pensez.",
+        "objectives": {
+          "0": {
+            "label": "Wyvernes Ailes Roussies tuees"
+          },
+          "1": {
+            "label": "Pierres du Coeur de Wyverne"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Oeil de la tempete",
+        "text": "Les sentinelles maudites sont la garde exterieure d'Ignaraxis, {playerName}. D'anciens drakonoides deformes par des siecles aupres de cette creature. Terrassez-en trois et rapportez-moi les braises maudites de leurs noyaux. Si vous pouvez en venir a bout, vous etes prets pour la Gueule.",
+        "completion": "Trois sentinelles a terre, braises en main. Vous etes prets, {playerName}. Retournez au poste parler a l'Aine Draxis. Il attend ce moment depuis longtemps.",
+        "objectives": {
+          "0": {
+            "label": "Sentinelles Maudites tuees"
+          },
+          "1": {
+            "label": "Braises Maudites"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "La Flamme Eternelle",
+        "text": "Ignaraxis l'Eternel dort dans la Gueule du Dragon depuis une eternite, {playerName}. Le Fleau au-dessus de nous est son souffle materialise. Entrez dans la Gueule, affrontez-le dans son repaire et mettez-y fin. Vos compagnons seront necessaires -- ce n'est pas une chasse pour un seul.",
+        "completion": "La Flamme Eternelle est eteinte, {playerName}. J'ai attendu trente ans pour prononcer ces mots. Le Fleau s'estompera maintenant. Prenez ceci -- vous l'avez amplement merite.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis l'Eternel tue"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Patrouille du Fleau",
+        "text": "Nous ne pouvons pas laisser les drakes et les wyvernes envahir les approches, {playerName}. Patrouillier le Fleau, abattez quinze drakes et huit wyvernes, puis faites votre rapport. Nos flancs sont ainsi degages pendant que la chaine de commandement gere le tableau d'ensemble.",
+        "completion": "Les flancs sont degages. Les hommes respirent plus facilement quand quelqu'un est la a faire la difference. Bon travail, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Marcheurs de Cendres tues"
+          },
+          "1": {
+            "label": "Wyvernes Ailes Roussies tuees"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "Le Chœur noyé",
         "text": "Les pataugeurs n'agissent pas seuls. Parmi eux marchent les Dévots noyés — la secte qui a sombré avec le temple, encore vêtue de ses ornements putréfiés, chantant toujours la prière depuis les rochers du rivage. Réduis-en huit au silence et rapporte-moi six des offrandes qu'ils portent. Je veux savoir ce qu'ils comptent donner à leur déesse.",
@@ -6209,6 +6335,21 @@ export const fr_FR: EnTranslations = {
             "label": "Sanctuaire du Gravewyrm"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "Fleau du Dragon",
+        "welcome": "Le Fleau du Dragon s'etend devant vous, etouffe par la cendre et l'echo lointain d'un feu ancestral.",
+        "pois": {
+          "0": {
+            "label": "Poste de la Garde du Fleau"
+          },
+          "1": {
+            "label": "Avant-poste de Fenris"
+          },
+          "2": {
+            "label": "Gueule du Dragon"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const fr_FR: EnTranslations = {
         "name": "Arène de raid de Nythraxis",
         "enterText": "Vous franchissez la porte royale scellée.",
         "leaveText": "Vous retrouvez l'air froid de Thornpeak."
+      },
+      "custom_dragons_maw": {
+        "name": "Gueule du Dragon",
+        "enterText": "La chaleur est suffocante. Quelque chose d'immense remue dans les tenebres devant vous.",
+        "leaveText": "Vous emergez de la Gueule du Dragon, l'air exterieur frais contre votre peau."
       },
       "drowned_temple": {
         "name": "Le Temple noyé",

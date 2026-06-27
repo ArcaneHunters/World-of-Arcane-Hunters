@@ -23,6 +23,7 @@ import {
   DUNGEON_WALL_HW,
   DUNGEON_WALL_X,
   type DungeonLayout,
+  DRAGONS_MAW_LAYOUT,
   type GridPoint,
   NYTHRAXIS_LAYOUT,
   SANCTUM_LAYOUT,
@@ -554,15 +555,17 @@ export class DungeonInteriors {
     // while collision used the real delve footprint, drifting walls and floor.
     const layout =
       opts?.layout ??
-      (interior === 'sanctum'
-        ? SANCTUM_LAYOUT
-        : interior === 'temple'
-          ? TEMPLE_LAYOUT
-          : interior === 'arena'
-            ? ARENA_LAYOUT
-            : interior === 'nythraxis'
-              ? NYTHRAXIS_LAYOUT
-              : CRYPT_LAYOUT);
+      (interior === 'dragons_maw'
+        ? DRAGONS_MAW_LAYOUT
+        : interior === 'sanctum'
+          ? SANCTUM_LAYOUT
+          : interior === 'temple'
+            ? TEMPLE_LAYOUT
+            : interior === 'arena'
+              ? ARENA_LAYOUT
+              : interior === 'nythraxis'
+                ? NYTHRAXIS_LAYOUT
+                : CRYPT_LAYOUT);
     const variant = opts?.variant ?? this.variantFor(interior, ox);
     const group = new THREE.Group();
     const p = new Placements();
@@ -721,6 +724,7 @@ export class DungeonInteriors {
   private variantFor(interior: string, ox: number): Variant {
     if (interior === 'arena') return 'arena';
     if (interior === 'nythraxis') return 'nythraxis';
+    if (interior === 'dragons_maw') return 'sanctum';
     if (interior === 'sanctum') return 'sanctum';
     if (interior === 'temple') return 'temple';
     const bastionX = instanceOrigin(1, 0).x;

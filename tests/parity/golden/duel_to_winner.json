@@ -8,13 +8,13 @@
     "updateDuels countdown -> active + duelStart",
     "endDuel on a PvP finishing blow (winner/loser + this.duels cleared)"
   ],
-  "draws": 266,
-  "drawDigest": "992fac99",
+  "draws": 311,
+  "drawDigest": "2d71251f",
   "frames": [
     {
       "tick": 0,
       "time": 0,
-      "nextId": 388,
+      "nextId": 429,
       "state": "5bc471b0",
       "events": "741638a5",
       "rng": {
@@ -28,9 +28,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 390,
-      "state": "038d588f",
-      "events": "79b92366",
+      "nextId": 431,
+      "state": "b2eaa593",
+      "events": "1cb9617a",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -39,9 +39,9 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 390,
-      "state": "f71271af",
-      "events": "f3792524",
+      "nextId": 431,
+      "state": "44bd066b",
+      "events": "818f724f",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -50,23 +50,23 @@
     {
       "tick": 60,
       "time": 3,
-      "nextId": 390,
-      "state": "d15eac47",
-      "events": "71179e5e",
+      "nextId": 431,
+      "state": "1271a3f3",
+      "events": "da0df175",
       "rng": {
-        "draws": 71,
-        "digest": "6619b0ad"
+        "draws": 84,
+        "digest": "cb917e31"
       }
     },
     {
       "tick": 61,
       "time": 3.05,
-      "nextId": 390,
-      "state": "8cc8a135",
-      "events": "31c6a959",
+      "nextId": 431,
+      "state": "ccc85dd9",
+      "events": "f6e18d99",
       "rng": {
-        "draws": 78,
-        "digest": "d52f266d"
+        "draws": 90,
+        "digest": "b2dbc135"
       },
       "label": "duel-active",
       "players": [
@@ -80,7 +80,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -100,7 +100,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -122,7 +122,7 @@
           "fallStartY": 2.242568,
           "fiveSecondRule": 102.05,
           "hp": 90,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 90,
@@ -167,7 +167,7 @@
           "fallStartY": 2.139867,
           "fiveSecondRule": 102.05,
           "hp": 54,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 54,
@@ -209,12 +209,12 @@
     {
       "tick": 61,
       "time": 3.05,
-      "nextId": 390,
-      "state": "00afebbb",
-      "events": "a689da22",
+      "nextId": 431,
+      "state": "b188be07",
+      "events": "a46b117f",
       "rng": {
-        "draws": 78,
-        "digest": "d52f266d"
+        "draws": 90,
+        "digest": "b2dbc135"
       },
       "label": "duel-ended",
       "players": [
@@ -228,7 +228,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -248,7 +248,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -270,7 +270,7 @@
           "fallStartY": 2.242568,
           "fiveSecondRule": 102.05,
           "hp": 90,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 90,
@@ -315,7 +315,7 @@
           "fallStartY": 2.139867,
           "fiveSecondRule": 102.05,
           "hp": 1,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 54,
@@ -357,34 +357,34 @@
     {
       "tick": 80,
       "time": 4,
-      "nextId": 390,
-      "state": "de85b653",
+      "nextId": 431,
+      "state": "091bd317",
       "events": "741638a5",
       "rng": {
-        "draws": 150,
-        "digest": "b4023222"
+        "draws": 173,
+        "digest": "cf2daa24"
       }
     },
     {
       "tick": 100,
       "time": 5,
-      "nextId": 390,
-      "state": "16f42c23",
+      "nextId": 431,
+      "state": "aa9a13ef",
       "events": "741638a5",
       "rng": {
-        "draws": 265,
-        "digest": "8293f445"
+        "draws": 308,
+        "digest": "0f503aa8"
       }
     },
     {
       "tick": 101,
       "time": 5.05,
-      "nextId": 390,
-      "state": "dc4678f9",
+      "nextId": 431,
+      "state": "4e180ae5",
       "events": "741638a5",
       "rng": {
-        "draws": 266,
-        "digest": "992fac99"
+        "draws": 311,
+        "digest": "2d71251f"
       },
       "label": "final",
       "players": [
@@ -398,7 +398,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 388,
+          "entityId": 429,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword"
@@ -418,7 +418,7 @@
           "counters": {},
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 389,
+          "entityId": 430,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -440,7 +440,7 @@
           "fallStartY": 2.242568,
           "fiveSecondRule": 104.05,
           "hp": 90,
-          "id": 388,
+          "id": 429,
           "kind": "player",
           "level": 1,
           "maxHp": 90,
@@ -485,7 +485,7 @@
           "fallStartY": 2.139867,
           "fiveSecondRule": 104.05,
           "hp": 7,
-          "id": 389,
+          "id": 430,
           "kind": "player",
           "level": 1,
           "maxHp": 54,

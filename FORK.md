@@ -95,11 +95,13 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
 # Verify README pointer survived (not the full upstream section)
 grep -c "docs/SETUP-DIGITALOCEAN.md" README.md
 
-# Check for zone overlap (upstream ends at z=900; custom zones must start at z=2000+)
-grep -n "zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
-grep -n "zMin" src/sim/content/custom/index.ts
-# If any upstream zMax reaches or exceeds your custom zMin, see
-# docs/custom-content/zones.md for the fix procedure.
+# Check for zone contiguity: upstream Zone 3 ends at z=900; Dragon's Blight starts at z=900.
+# If upstream adds a new Zone 4 that also starts at z=900 (or extends to z>900), there
+# will be a gap or overlap. The progression test requires ZONES[i].zMax === ZONES[i+1].zMin.
+grep -n "zMin\|zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
+grep -n "zMin\|zMax" src/sim/content/custom/index.ts
+# Custom Dragon's Blight: zMin:900, zMax:1260. If any upstream zone's zMax > 900,
+# shift custom zone northward -- see docs/custom-content/zones.md for the fix procedure.
 ```
 
 If `grep` returns nothing, re-apply the code from `docs/MAINTAINING-FORK.md`.
@@ -142,6 +144,22 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
 grep -n "CUSTOM_MOB_KEYS\|CUSTOM_VISUALS" src/render/characters/manifest.ts
 # Expect: 3 hits -- import line + ...CUSTOM_VISUALS spread + ...CUSTOM_MOB_KEYS spread
 
+# Verify Dragon's Maw union member survived in types.ts
+grep -c "dragons_maw" src/sim/types.ts
+# Expect: 1
+
+# Verify Dragon's Maw layout survived in dungeon_layout.ts
+grep -c "DRAGONS_MAW_LAYOUT" src/sim/dungeon_layout.ts
+# Expect: 1
+
+# Verify Dragon's Maw renderer wiring survived in dungeon.ts
+grep -c "dragons_maw" src/render/dungeon.ts
+# Expect: 2 (buildInterior case + variantFor case)
+
+# Verify Dragon's Maw colliders survived in colliders.ts
+grep -c "DRAGONS_MAW" src/sim/colliders.ts
+# Expect: 3 (import + const + INTERIOR_COLLIDERS entry)
+
 # Verify brand injection survived in vite.config.ts
 grep -n "brandTokenPlugin\|__SITE_URL__\|VITE_SITE_URL\|VITE_GA_ID\|WOC:GA" vite.config.ts
 # Expect: env reads for gaId/metaPixelId, define block entries, brandTokenPlugin in plugins
@@ -156,9 +174,11 @@ grep -n "VITE_SITE_URL\|VITE_DISCORD_URL\|VITE_DONATE_URL" .github/workflows/dep
 grep -n "zMin\|zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
 # Then check your custom zones:
 grep -n "zMin\|zMax" src/sim/content/custom/index.ts
-# Confirm no upstream zMax is >= your lowest custom zMin (custom zones should start at 2000+)
-# If any upstream zone's zMax reaches or exceeds a custom zone's zMin, shift the
-# custom zone northward -- see docs/custom-content/zones.md for the fix procedure.
+# Dragon's Blight custom zone: zMin:900, zMax:1260.
+# The zone contiguity invariant (ZONES[i].zMax === ZONES[i+1].zMin) means custom zones
+# must start exactly where the last upstream zone ends. Currently that is z=900.
+# If upstream adds a new upstream zone 4 (zMin:900), the custom zone must shift north.
+# See docs/custom-content/zones.md and docs/MAINTAINING-FORK.md for the fix procedure.
 ```
 
 If any check returns nothing or is missing, re-apply from `docs/MAINTAINING-FORK.md`
@@ -240,11 +260,18 @@ Tests to pay attention to for fork-specific regressions:
 - `tests/sim.test.ts` -- custom content IDs and basic sim health
 - `tests/localization_fixes.test.ts` -- S3 i18n guard; fails if a new sim string has no matcher
 - `tests/localization_fixes.test.ts` -- also catches brand URL drift if upstream changed placeholder values
+- `tests/parity/` -- RNG draw-order golden traces; fails if upstream content shifts camp/entity order
 
 If i18n tests fail after a merge that touched locale files:
 ```bash
-npm run i18n:gen && npm run i18n:hash -- --write
+npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
 npm test
+```
+
+If parity tests fail after a merge that changed upstream content (new camps/mobs/zones):
+```bash
+UPDATE_PARITY=1 npx vitest run tests/parity
+# This regenerates the golden traces. Then re-run npm test to confirm all pass.
 ```
 
 ### Step 6 -- verify the build pipeline
@@ -325,6 +352,16 @@ A full list of all upstream file modifications with exact code snippets is in
 - `README.md` -- replaced DigitalOcean deployment section with pointer to `docs/SETUP-DIGITALOCEAN.md`
 - `src/sim/data.ts` -- added import + merges for `src/sim/content/custom/`
 - `src/render/characters/manifest.ts` -- added import + spreads for `src/render/characters/custom/`
+- `src/sim/types.ts` -- `DungeonDef.interior` union extended with `'dragons_maw'`
+- `src/sim/dungeon_layout.ts` -- added `DRAGONS_MAW_LAYOUT` for the Dragon's Maw custom dungeon interior
+- `src/render/dungeon.ts` -- added `'dragons_maw'` case to `buildInterior` (layout chain) and `variantFor`
+- `src/sim/colliders.ts` -- added `DRAGONS_MAW_COLLIDERS` and `dragons_maw` entry in `INTERIOR_COLLIDERS`
+- `src/sim/sim.ts` -- secondary RNG (`customRng = new Rng(seed ^ 0x464f524b)`) for CUSTOM_CAMPS mob init to prevent main RNG stream shift
+- `src/ui/world_entity_i18n.ts` -- imports Dragon's Blight entity IDs from `src/sim/content/custom/i18n_ids.ts` via spread
+- `src/ui/i18n.catalog/items.ts` -- imports Dragon's Blight item IDs + English names from `src/sim/content/custom/i18n_ids.ts` via spread
+- `tests/threat.test.ts` -- ghost wolf cancellation test: replaced RNG-sensitive `wolf.hp` check with GCD check
+- `src/sim/data.ts` -- `ARENA_X` shifted 4200 -> 4700 and `DELVE_X_MIN` shifted 4800 -> 5300 to open dungeon index 6 (x=4500) for Dragon's Maw; all upstream indices 0-5 were occupied
+- `tests/delves.test.ts` -- pin test updated from `DELVE_X_MIN = 4800` to 5300 and from `ARENA_X = 4200` comment to 4700
 - **Brand rename (2026-06):** ~30 upstream files updated -- game name, realm name, domain, GitHub URL.
   See the "Brand rename" section in `docs/MAINTAINING-FORK.md` for the full replacement map.
 

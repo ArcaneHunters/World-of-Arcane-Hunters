@@ -135,16 +135,17 @@ describe('delve spatial band', () => {
     expect(delveAt(origin.x - 26)?.index).toBe(0); // west wall outer face (4774)
     expect(delveAt(origin.x)?.index).toBe(0); // room centre
 
-    // Arena still classifies correctly (arena instances live at ARENA_X = 4200)
+    // Arena still classifies correctly (arena instances live at ARENA_X = 4700)
     expect(isArenaPos(ARENA_X)).toBe(true);
     expect(isDelvePos(ARENA_X)).toBe(false);
   });
 
-  it('pins the absolute 4800 boundary against the arena seam (relocation regression)', () => {
-    // DELVE_X_MIN moved 3600 -> 4800 when v0.10.0 pushed the arena to x=4200.
+  it('pins the absolute boundary against the arena seam (relocation regression)', () => {
+    // DELVE_X_MIN moved 3600 -> 4800 (v0.10.0, arena to x=4200) -> 5300 (fork,
+    // arena to x=4700 to open custom dungeon index 6 at x=4500).
     // Pin the load-bearing constant and the exact arena/delve seam so a future
     // arena or delve respacing that re-introduces overlap fails here.
-    expect(DELVE_X_MIN).toBe(4800);
+    expect(DELVE_X_MIN).toBe(5300);
     // The seam: DELVE_BAND_X_MIN is the first delve x; the x just below it is arena.
     expect(isArenaPos(DELVE_BAND_X_MIN - 1)).toBe(true);
     expect(isDelvePos(DELVE_BAND_X_MIN - 1)).toBe(false);
@@ -698,7 +699,7 @@ describe('delve reward chest + surface exit flow', () => {
 
   it('the Bountiful roll is deterministic for a given seed', () => {
     // Read the raw roll via enterReliquary (enterFinale pins it false). Same seed
-    // ⇒ same outcome; seed 42 is known to roll Bountiful (drives the fixtures above).
+    // ⇒ same outcome; seed 48 is known to roll Bountiful (drives the fixtures above).
     const rollFor = (seed: number) => {
       const s = makeSim('warrior', seed);
       s.setPlayerLevel(DELVES.collapsed_reliquary.minLevel);

@@ -4395,6 +4395,33 @@ export const es_ES: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Corona del Monarca"
       },
+      "custom_drake_scale": {
+        "name": "Escama de Drake Cendrillero"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Piedra del Corazon Alasoscura"
+      },
+      "custom_blight_ember": {
+        "name": "Brasa Maligna"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Hombreras de Hueso de Drake"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Capucha Alasoscura"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Capucha del Acechador Maligno"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Espadon de Ignaraxis"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Baculo de Cenizas Eternas"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Colmillo de Ignaraxis"
+      },
       "bristleback_maul": {
         "name": "Maza Bristleback"
       },
@@ -5069,6 +5096,21 @@ export const es_ES: EnTranslations = {
       "acolyte_tessa": {
         "name": "Acólita Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Drake Caminante de Cenizas"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Vivora Ala Chamuscada"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Centinela Maligno"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Guardian Garra de Dragon"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis el Eterno"
+      },
       "ironvein_foreman": {
         "name": "Capataz Vena de Hierro"
       },
@@ -5283,6 +5325,21 @@ export const es_ES: EnTranslations = {
         "name": "Hermano Halven",
         "title": "Guardián del Relicario",
         "greeting": "El relicario de abajo ha vuelto a moverse."
+      },
+      "custom_commander_vael": {
+        "name": "Comandante Vael",
+        "title": "Oficial de la Guardia de la Blight",
+        "greeting": "Preparaos, {playerName}. Esta Blight no duerme, y nosotros tampoco."
+      },
+      "custom_scout_fenris": {
+        "name": "Exploradora Fenris",
+        "title": "Exploradora de la Guardia de la Blight",
+        "greeting": "Habéis cruzado los terrenos del vivora? Bien. Necesitaba alguien capaz aqui."
+      },
+      "custom_elder_draxis": {
+        "name": "Anciano Draxis",
+        "title": "Matadragones",
+        "greeting": "He cazado dragones durante treinta anos, {playerName}. Ignaraxis no es como los demas."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const es_ES: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Tierra de Prueba",
+        "text": "Los drakes caminantes de cenizas han avanzado hasta los bordes de nuestro campamento, {playerName}. Reduce su numero -- diez de ellos -- y demuestra que perteneces a la Blight.",
+        "completion": "Diez drakes caidos. Nada mal. Quiza sobrevivas aqui, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Caminantes de Cenizas matados"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Marcas del Drake",
+        "text": "Las escamas de drake son tan duras como la armadura de placa, {playerName}. Necesito ocho para equipar al proximo patron de patrulla. Los drakes no las entregaran facilmente -- coged lo que podais.",
+        "completion": "Ocho escamas. Resistiran el fuego mejor que cualquier cosa que podamos forjar. Bien hecho.",
+        "objectives": {
+          "0": {
+            "label": "Escamas de Drake Caminante de Cenizas"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "Adentrandose en la Blight",
+        "text": "Esas vivoras ala chamuscada estan anidando entre nosotros y la mazmorra, {playerName}. Ocho de ellas tienen que irse, y necesito cinco de sus piedras del corazon para el alquimista del comandante. Estan en lo profundo, pero se que podeis alcanzarlas.",
+        "completion": "El nido ha sido despejado. Esas piedras del corazon valdran mas de lo que creeis.",
+        "objectives": {
+          "0": {
+            "label": "Vivoras Ala Chamuscada matadas"
+          },
+          "1": {
+            "label": "Piedras del Corazon de Vivora"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Ojo de la Tormenta",
+        "text": "Los centinelas malignos son la guardia exterior de Ignaraxis, {playerName}. Antiguas criaturas draconicas retorcidas por siglos cerca de esa criatura. Derribad tres de ellos y traedme las brasas malignas de sus nucleos. Si podeis manejarlos, estais listos para las Fauces.",
+        "completion": "Tres centinelas caidos y brasas en mano. Estais listos, {playerName}. Id a hablar con el Anciano Draxis en el puesto. Ha esperado mucho tiempo para esto.",
+        "objectives": {
+          "0": {
+            "label": "Centinelas Malignos matados"
+          },
+          "1": {
+            "label": "Brasas Malignas"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "La Llama Eterna",
+        "text": "Ignaraxis el Eterno ha dormido en las Fauces del Dragon durante una era, {playerName}. La Blight sobre nosotros es su aliento dado forma. Entrad en las Fauces, enfrentadle en su guarida y acabad con ello. Vuestros companeros seran necesarios -- esta no es una caceria para uno solo.",
+        "completion": "La Llama Eterna se ha extinguido, {playerName}. He esperado treinta anos para decir esas palabras. La Blight se desvanecera ahora. Tomad esto -- os lo habeis ganado sobradamente.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis el Eterno matado"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Patrulla de la Blight",
+        "text": "No podemos dejar que los drakes y las vivoras invadan los accesos, {playerName}. Patrullad la Blight, matad quince drakes y ocho vivoras, y regresad. Mantiene nuestros flancos despejados mientras la cadena de mando gestiona el panorama general.",
+        "completion": "Los flancos estan despejados. Los hombres respiran con mas facilidad cuando alguien esta ahi afuera marcando la diferencia. Buen trabajo, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Caminantes de Cenizas matados"
+          },
+          "1": {
+            "label": "Vivoras Ala Chamuscada matadas"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "El Coro Ahogado",
         "text": "Los vadeadores no actúan solos. Entre ellos caminan los Devotos Ahogados: la secta que se hundió con el templo, aún con sus vestiduras putrefactas, aún entonando la plegaria desde las rocas de la orilla. Silencia a ocho de ellos y tráeme seis de las ofrendas que portan. Quiero saber qué pretenden entregar a su diosa.",
@@ -6209,6 +6335,21 @@ export const es_ES: EnTranslations = {
             "label": "Santuario del Gravewyrm"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "La Blight del Dragon",
+        "welcome": "La Blight del Dragon se extiende ante vosotros, ahogada en cenizas y el lejano eco del fuego ancestral.",
+        "pois": {
+          "0": {
+            "label": "Puesto de la Guardia de la Blight"
+          },
+          "1": {
+            "label": "Puesto Avanzado de Fenris"
+          },
+          "2": {
+            "label": "Las Fauces del Dragon"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const es_ES: EnTranslations = {
         "name": "Arena de banda de Nythraxis",
         "enterText": "Cruzas la puerta real sellada.",
         "leaveText": "Regresas al aire frío de Thornpeak."
+      },
+      "custom_dragons_maw": {
+        "name": "Las Fauces del Dragon",
+        "enterText": "El calor es sofocante. Algo inmenso se agita en la oscuridad del frente.",
+        "leaveText": "Emergeís de las Fauces del Dragon, el aire exterior frio contra vuestra piel."
       },
       "drowned_temple": {
         "name": "El Templo Ahogado",

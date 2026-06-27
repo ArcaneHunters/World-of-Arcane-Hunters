@@ -4395,6 +4395,33 @@ export const ko_KR: EnTranslations = {
       "monarch_crown_helm": {
         "name": "군주의 왕관"
       },
+      "custom_drake_scale": {
+        "name": "잿빛워커 드레이크 비늘"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "어둠날개 와이번 심장석"
+      },
+      "custom_blight_ember": {
+        "name": "역병 불씨"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "드레이크뼈 어깨보호대"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "불그슬린날개 두건"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "역병 추적자의 두건"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "이그나락시스 대검"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "영원한 잿빛 지팡이"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "이그나락시스의 송곳니"
+      },
       "bristleback_maul": {
         "name": "뻣센등뼈 철퇴"
       },
@@ -5069,6 +5096,21 @@ export const ko_KR: EnTranslations = {
       "acolyte_tessa": {
         "name": "수련사제 테사"
       },
+      "custom_ashwalker_drake": {
+        "name": "잿빛워커 드레이크"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "불그슬린날개 와이번"
+      },
+      "custom_blighted_sentinel": {
+        "name": "역병 감시자"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "용발톱 수호자"
+      },
+      "custom_ignaraxis": {
+        "name": "영원한 이그나락시스"
+      },
       "ironvein_foreman": {
         "name": "철맥 감독관"
       },
@@ -5283,6 +5325,21 @@ export const ko_KR: EnTranslations = {
         "name": "브라더 할벤",
         "title": "성물실 관리인",
         "greeting": "아래의 성물실이 또 움직였소."
+      },
+      "custom_commander_vael": {
+        "name": "바엘 지휘관",
+        "title": "부패지 감시관",
+        "greeting": "준비하세요, {playerName}. 이 역병은 잠들지 않습니다, 우리도 마찬가지입니다."
+      },
+      "custom_scout_fenris": {
+        "name": "정찰병 펜리스",
+        "title": "부패지 정찰병",
+        "greeting": "와이번 지역을 통과했나요? 좋습니다. 여기서 유능한 사람이 필요했어요."
+      },
+      "custom_elder_draxis": {
+        "name": "장로 드락시스",
+        "title": "드래곤슬레이어",
+        "greeting": "저는 삼십 년간 드래곤을 사냥했습니다, {playerName}. 이그나락시스는 다릅니다."
       },
       "tidewatcher_ondrel": {
         "name": "온드렐 베인",
@@ -6043,6 +6100,75 @@ export const ko_KR: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "증명의 땅",
+        "text": "잿빛워커 드레이크가 우리 야영지 가장자리까지 밀려왔습니다, {playerName}. 그 수를 줄이세요 -- 열 마리 -- 그리고 당신이 역병지에 있을 자격이 있음을 증명하세요.",
+        "completion": "드레이크 열 마리를 쓰러뜨렸군요. 나쁘지 않아요. 여기서 살아남을 수 있을 것 같네요, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "잿빛워커 드레이크 처치"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "드레이크의 표식",
+        "text": "드레이크 비늘은 판금 갑옷만큼 단단합니다, {playerName}. 다음 순찰대를 장비시키기 위해 여덟 개가 필요합니다. 드레이크들은 쉽게 넘겨주지 않습니다 -- 최대한 가져오세요.",
+        "completion": "여덟 개의 비늘. 우리가 만들 수 있는 어떤 것보다 불에 잘 견딥니다. 잘 하셨습니다.",
+        "objectives": {
+          "0": {
+            "label": "잿빛워커 드레이크 비늘"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "역병지로",
+        "text": "저 불그슬린날개 와이번들이 우리와 던전 사이에 둥지를 틀고 있습니다, {playerName}. 여덟 마리를 처치해야 하고, 지휘관의 연금술사를 위해 심장석도 다섯 개 필요합니다. 깊은 곳에 있지만 당신은 찾을 수 있을 겁니다.",
+        "completion": "둥지가 소탕되었습니다. 저 심장석들은 생각보다 훨씬 가치가 있을 겁니다.",
+        "objectives": {
+          "0": {
+            "label": "불그슬린날개 와이번 처치"
+          },
+          "1": {
+            "label": "불그슬린날개 심장석"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "폭풍의 눈",
+        "text": "역병 감시자들은 이그나락시스의 외곽 수호자들입니다, {playerName}. 그 생물 근처에서 수백 년간 뒤틀린 고대 용족입니다. 세 마리를 처치하고 그들의 핵심에서 역병 불씨를 가져오세요. 그것들을 처리할 수 있다면, 용아귀로 들어갈 준비가 된 겁니다.",
+        "completion": "세 감시자가 쓰러졌고 불씨도 손에 넣었습니다. 준비됐습니다, {playerName}. 주둔지로 돌아가서 장로 드락시스와 이야기하세요. 그는 오랫동안 이 순간을 기다려 왔습니다.",
+        "objectives": {
+          "0": {
+            "label": "역병 감시자 처치"
+          },
+          "1": {
+            "label": "역병 불씨"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "영원한 불꽃",
+        "text": "영원한 이그나락시스는 용아귀에서 시대를 넘어 잠들어 있었습니다, {playerName}. 우리 머리 위의 역병지는 그의 숨결이 형태를 갖춘 것입니다. 용아귀에 들어가, 그의 소굴에서 맞서고, 끝내세요. 동료들이 필요할 것입니다 -- 혼자 하는 사냥이 아닙니다.",
+        "completion": "영원한 불꽃이 꺼졌습니다, {playerName}. 삼십 년을 기다려 그 말을 할 수 있었습니다. 역병지는 이제 사라질 겁니다. 이것을 받으세요 -- 충분히 얻었습니다.",
+        "objectives": {
+          "0": {
+            "label": "영원한 이그나락시스 처치"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "역병지 순찰",
+        "text": "드레이크와 와이번이 접근로를 압도하게 내버려 둘 수는 없습니다, {playerName}. 역병지를 순찰하고, 드레이크 열다섯 마리와 와이번 여덟 마리를 처치한 후 복귀하세요. 지휘 체계가 큰 그림을 처리하는 동안 측면을 안전하게 유지합니다.",
+        "completion": "측면이 안전합니다. 누군가 나가서 차이를 만들어낼 때 병사들은 더 편안하게 숨쉽니다. 잘 하셨습니다, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "잿빛워커 드레이크 처치"
+          },
+          "1": {
+            "label": "불그슬린날개 와이번 처치"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "익사한 성가대",
         "text": "물거리들은 홀로 움직이지 않는다네. 그들 사이를 익사한 신도들이 걷고 있지 — 신전과 함께 가라앉은 그 광신도들은, 썩어버린 제의를 여전히 걸친 채 물가 바위에서 부르던 기도를 아직도 노래하고 있네. 그들 중 여덟을 침묵시키고, 그들이 지닌 제물 여섯 개를 내게 가져오게. 그들이 그 여신에게 무엇을 바치려는지 알고 싶네.",
@@ -6209,6 +6335,21 @@ export const ko_KR: EnTranslations = {
             "label": "무덤고룡 성소"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "드래곤의 역병지",
+        "welcome": "드래곤의 역병지가 앞에 펼쳐집니다, 재와 고대 불꽃의 먼 울림으로 뒤덮여 있습니다.",
+        "pois": {
+          "0": {
+            "label": "부패지 감시 초소"
+          },
+          "1": {
+            "label": "펜리스의 전초기지"
+          },
+          "2": {
+            "label": "용아귀"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const ko_KR: EnTranslations = {
         "name": "니트락시스 공격대 투기장",
         "enterText": "봉인된 왕실 문을 지나갑니다.",
         "leaveText": "쏜피크의 차가운 공기 속으로 돌아옵니다."
+      },
+      "custom_dragons_maw": {
+        "name": "용아귀",
+        "enterText": "열기가 숨막힙니다. 앞 어둠 속에서 거대한 무언가가 움직이고 있습니다.",
+        "leaveText": "용아귀에서 나오자, 밖의 공기가 피부에 차갑게 느껴집니다."
       },
       "drowned_temple": {
         "name": "익사한 신전",

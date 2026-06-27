@@ -48,6 +48,7 @@ import {
 // moved to social/fiesta.ts with that logic; sim.ts keeps only the type used by
 // the PlayerMeta interface + the power-up catalog the fiestaMatchInfo accessor reads.
 import { type AugmentSpecial, type AugmentTier, POWERUPS_BY_ID } from './content/augments';
+import { CUSTOM_CAMPS } from './content/custom';
 import {
   classHasSkin,
   EVENT_SKIN_TOKEN_ID,
@@ -994,26 +995,30 @@ export class Sim {
     }
     this.market.seed();
 
-    // Mobs from camps
+    // Mobs from camps -- custom camps use an isolated RNG so they don't shift
+    // the main rng stream (which would invalidate upstream test golden values).
+    const customCampSet = new Set(CUSTOM_CAMPS);
+    const customRng = new Rng(this.cfg.seed ^ 0x464f524b);
     for (const camp of CAMPS) {
       const template = MOBS[camp.mobId];
       // Aquatic/flagged swimmers may wade in the shallows; everyone else
       // still spawns on dry land even though combat movement can enter water.
       const minHeight = this.mobCanSpawnInWater(template) ? WATER_LEVEL - 0.5 : WATER_LEVEL + 0.4;
+      const rng = customCampSet.has(camp) ? customRng : this.rng;
       for (let i = 0; i < camp.count; i++) {
-        const ang = this.rng.range(0, Math.PI * 2);
-        const r = Math.sqrt(this.rng.next()) * camp.radius;
+        const ang = rng.range(0, Math.PI * 2);
+        const r = Math.sqrt(rng.next()) * camp.radius;
         const safe = this.findSafePos(
           camp.center.x + Math.sin(ang) * r,
           camp.center.z + Math.cos(ang) * r,
           minHeight,
         );
         const pos = this.groundPos(safe.x, safe.z);
-        const level = this.rng.int(template.minLevel, template.maxLevel);
+        const level = rng.int(template.minLevel, template.maxLevel);
         const mob = createMob(this.nextId++, template, level, pos);
-        mob.facing = this.rng.range(-Math.PI, Math.PI);
+        mob.facing = rng.range(-Math.PI, Math.PI);
         mob.prevFacing = mob.facing;
-        mob.wanderTimer = this.rng.range(2, 10);
+        mob.wanderTimer = rng.range(2, 10);
         this.addEntity(mob);
       }
     }

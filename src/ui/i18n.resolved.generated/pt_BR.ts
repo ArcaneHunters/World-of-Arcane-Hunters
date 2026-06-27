@@ -4395,6 +4395,33 @@ export const pt_BR: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Coroa do Monarca"
       },
+      "custom_drake_scale": {
+        "name": "Escama de Drake Cinzeiro"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Pedra do Coracao da Vibora Alasombria"
+      },
+      "custom_blight_ember": {
+        "name": "Brasa Maligna"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Espaldares de Osso de Drake"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Capuz Asa Chamuscada"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Capuz do Rastreador Maligno"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Espadao de Ignaraxis"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Cajado de Cinzas Eternas"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Presa de Ignaraxis"
+      },
       "bristleback_maul": {
         "name": "Malho Bristleback"
       },
@@ -5069,6 +5096,21 @@ export const pt_BR: EnTranslations = {
       "acolyte_tessa": {
         "name": "Acólita Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Drake Andador de Cinzas"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Vibora Asa Chamuscada"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Sentinela Maligna"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Guardiao Garra de Dragao"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis o Eterno"
+      },
       "ironvein_foreman": {
         "name": "Capataz Veio de Ferro"
       },
@@ -5283,6 +5325,21 @@ export const pt_BR: EnTranslations = {
         "name": "Irmão Halven",
         "title": "Guardião do Relicário",
         "greeting": "O relicário lá embaixo se moveu de novo."
+      },
+      "custom_commander_vael": {
+        "name": "Comandante Vael",
+        "title": "Oficial da Guarda da Praga",
+        "greeting": "Fiquem prontos, {playerName}. Esta praga nao dorme, e nos tambem nao."
+      },
+      "custom_scout_fenris": {
+        "name": "Batedora Fenris",
+        "title": "Batedora da Guarda da Praga",
+        "greeting": "Voces cruzaram o territorio das viboras? Bom. Eu precisava de alguem capaz aqui."
+      },
+      "custom_elder_draxis": {
+        "name": "Anciao Draxis",
+        "title": "Matadragoes",
+        "greeting": "Eu cacei dragoes por trinta anos, {playerName}. Ignaraxis nao e como os outros."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const pt_BR: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Campo de Provas",
+        "text": "Os drakes andadores de cinzas avancaram ate as margens do nosso acampamento, {playerName}. Reduza os seus numeros -- dez deles -- e prove que voce pertence a Praga.",
+        "completion": "Dez drakes abatidos. Nao e ruim. Talvez voce sobreviva aqui, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Andadores de Cinzas mortos"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Marcas do Drake",
+        "text": "As escamas de drake sao duras como armadura de placas, {playerName}. Preciso de oito delas para equipar a proxima patrulha. Os drakes nao as entregam facilmente -- pegue o que puder.",
+        "completion": "Oito escamas. Estas resistirao ao fogo melhor do que qualquer coisa que possamos forjar. Bom trabalho.",
+        "objectives": {
+          "0": {
+            "label": "Escamas de Drake Andador de Cinzas"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "Adentrando a Praga",
+        "text": "Essas viboras asa chamuscada estao aninhando entre nos e a masmorra, {playerName}. Oito delas precisam ir, e preciso de cinco das suas pedras do coracao para o alquimista do comandante. Elas estao fundo, mas sei que voce pode alcanca-las.",
+        "completion": "O ninho foi eliminado. Essas pedras do coracao valerao mais para nos do que voce imagina.",
+        "objectives": {
+          "0": {
+            "label": "Viboras Asa Chamuscada mortas"
+          },
+          "1": {
+            "label": "Pedras do Coracao de Vibora"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Olho da Tempestade",
+        "text": "As sentinelas malignas sao a guarda externa de Ignaraxis, {playerName}. Draconidos antigos deformados por seculos perto dessa criatura. Derrube tres deles e traga-me as brasas malignas de seus nucleos. Se voce conseguir lidar com eles, esta pronto para as Fauces.",
+        "completion": "Tres sentinelas derrubadas e brasas em maos. Voce esta pronto, {playerName}. Volte ao posto e fale com o Anciao Draxis. Ele esperou muito tempo por isso.",
+        "objectives": {
+          "0": {
+            "label": "Sentinelas Malignas mortas"
+          },
+          "1": {
+            "label": "Brasas Malignas"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "A Chama Eterna",
+        "text": "Ignaraxis o Eterno tem dormido nas Fauces do Dragao por uma era, {playerName}. A Praga acima de nos e seu halito dado forma. Entre nas Fauces, enfrente-o em seu covil e encerre tudo. Seus companeiros serao necessarios -- esta nao e uma cacada para um sozinho.",
+        "completion": "A Chama Eterna foi extinta, {playerName}. Esperei trinta anos para dizer essas palavras. A Praga vai se dissipar agora. Pegue isto -- voce ganhou de sobra.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis o Eterno morto"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Patrulha da Praga",
+        "text": "Nao podemos deixar os drakes e as viboras tomar os acessos, {playerName}. Patrulhe a Praga, abata quinze drakes e oito viboras e volte para relatar. Mante nossos flancos limpos enquanto a cadeia de comando cuida do quadro geral.",
+        "completion": "Flancos estao limpos. Os homens respiram mais facilmente quando alguem esta la fora fazendo a diferenca. Bom trabalho, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Drakes Andadores de Cinzas mortos"
+          },
+          "1": {
+            "label": "Viboras Asa Chamuscada mortas"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "O Coro Afogado",
         "text": "Os vadeadores não agem sozinhos. Entre eles caminham os Devotos Afogados — o culto que afundou com o templo, ainda em suas vestes apodrecidas, ainda cantando a prece desde as rochas da costa. Silencie oito deles e traga-me seis das oferendas que carregam. Eu gostaria de saber o que pretendem dar à sua deusa.",
@@ -6209,6 +6335,21 @@ export const pt_BR: EnTranslations = {
             "label": "Santuário do Gravewyrm"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "Praga do Dragao",
+        "welcome": "A Praga do Dragao se estende diante de voce, sufocada em cinzas e o distante eco do fogo ancestral.",
+        "pois": {
+          "0": {
+            "label": "Posto da Guarda da Praga"
+          },
+          "1": {
+            "label": "Posto Avancado de Fenris"
+          },
+          "2": {
+            "label": "Fauces do Dragao"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const pt_BR: EnTranslations = {
         "name": "Arena de raide de Nythraxis",
         "enterText": "Você atravessa a porta real selada.",
         "leaveText": "Você retorna ao ar frio de Thornpeak."
+      },
+      "custom_dragons_maw": {
+        "name": "Fauces do Dragao",
+        "enterText": "O calor e sufocante. Algo imenso se agita na escuridao a frente.",
+        "leaveText": "Voce emerge das Fauces do Dragao, o ar externo frio contra sua pele."
       },
       "drowned_temple": {
         "name": "O Templo Afogado",

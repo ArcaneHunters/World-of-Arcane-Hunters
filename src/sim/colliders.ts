@@ -15,6 +15,7 @@ import { type DelveModuleId, delveModuleColliders } from './delve_layout';
 import {
   ARENA_LAYOUT,
   CRYPT_LAYOUT,
+  DRAGONS_MAW_LAYOUT,
   layoutColliders,
   NYTHRAXIS_LAYOUT,
   SANCTUM_LAYOUT,
@@ -219,6 +220,7 @@ const SANCTUM_COLLIDERS: Collider[] = layoutColliders(SANCTUM_LAYOUT);
 const TEMPLE_COLLIDERS: Collider[] = layoutColliders(TEMPLE_LAYOUT);
 const ARENA_COLLIDERS: Collider[] = layoutColliders(ARENA_LAYOUT);
 const NYTHRAXIS_COLLIDERS: Collider[] = layoutColliders(NYTHRAXIS_LAYOUT);
+const DRAGONS_MAW_COLLIDERS: Collider[] = layoutColliders(DRAGONS_MAW_LAYOUT);
 
 // Interior collider sets keyed by DungeonDef.interior.
 const INTERIOR_COLLIDERS: Record<string, Collider[]> = {
@@ -226,6 +228,7 @@ const INTERIOR_COLLIDERS: Record<string, Collider[]> = {
   sanctum: SANCTUM_COLLIDERS,
   temple: TEMPLE_COLLIDERS,
   nythraxis: NYTHRAXIS_COLLIDERS,
+  dragons_maw: DRAGONS_MAW_COLLIDERS,
 };
 
 // ---------------------------------------------------------------------------
