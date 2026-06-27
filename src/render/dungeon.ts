@@ -54,6 +54,7 @@ export type DungeonInteriorVariant =
   | 'temple'
   | 'arena'
   | 'nythraxis'
+  | 'dragons_maw'
   // Collapsed Reliquary delve sub-themes (share the ember crypt-stone base, see
   // isDelveVariant; differ only in wall-side props, clutter, and the dais).
   | 'delve_ossuary'
@@ -97,6 +98,8 @@ const TORCH_COLORS: Record<Variant, TorchColors> = {
   // the Ashen Coliseum burns warm — amber braziers ringing the fighting sands
   arena: { flame: 0xffb24a, emissive: 0xcc5a14, light: 0xff9a3c },
   nythraxis: { flame: 0x8f5cff, emissive: 0x4b1c9a, light: 0x7b4dff },
+  // Dragon's Maw burns with dragonfire heat: deep amber-orange torches
+  dragons_maw: { flame: 0xff8020, emissive: 0xcc3a08, light: 0xff6020 },
   // delve reliquaries burn with grave-ember red: warm coals over cold stone
   delve_ossuary: { flame: 0xff7a3c, emissive: 0xcc3a14, light: 0xff6a3c },
   delve_bell: { flame: 0xff7a3c, emissive: 0xcc3a14, light: 0xff6a3c },
@@ -724,7 +727,7 @@ export class DungeonInteriors {
   private variantFor(interior: string, ox: number): Variant {
     if (interior === 'arena') return 'arena';
     if (interior === 'nythraxis') return 'nythraxis';
-    if (interior === 'dragons_maw') return 'sanctum';
+    if (interior === 'dragons_maw') return 'dragons_maw';
     if (interior === 'sanctum') return 'sanctum';
     if (interior === 'temple') return 'temple';
     const bastionX = instanceOrigin(1, 0).x;
@@ -846,6 +849,18 @@ export class DungeonInteriors {
           ['floor_dirt_large_rocky', 4],
           ['grate', 8],
           ['quad', 23],
+        ],
+        t,
+      );
+    }
+    if (variant === 'dragons_maw') {
+      return pickKind(
+        [
+          ['floor_tile_large', 38],
+          ['floor_tile_large_rocks', 24],
+          ['floor_dirt_large', 18],
+          ['floor_dirt_large_rocky', 12],
+          ['quad', 8],
         ],
         t,
       );
@@ -1000,6 +1015,17 @@ export class DungeonInteriors {
         t,
       );
     }
+    if (variant === 'dragons_maw') {
+      return pickKind(
+        [
+          ['wall', 42],
+          ['wall_pillar', 18],
+          ['wall_cracked', 32],
+          ['wall_arched', 8],
+        ],
+        t,
+      );
+    }
     if (variant === 'sanctum') {
       return pickKind(
         [
@@ -1123,7 +1149,7 @@ export class DungeonInteriors {
       for (let z = layout.zMin; z <= layout.zMax + 2; z += 8, i++) {
         const kind = this.wallKind(variant, hash2(side * 13.7, z));
         target.add(kind, side * wallX, 0, z, ry, MODULE_SCALE);
-        if (i % bannerEvery === 2 && kind !== 'wall_archedwindow_gated') {
+        if (i % bannerEvery === 2 && kind !== 'wall_archedwindow_gated' && variant !== 'dragons_maw') {
           target.add(
             this.bannerKind(variant, hash2(z, side * 7.3)),
             side * wallX,
@@ -1625,6 +1651,21 @@ export class DungeonInteriors {
       }
       p.add('gravestone', -3.4, 0.6, layout.dais.z + 4, Math.PI, 1.7);
       p.add('gravestone', 3.4, 0.6, layout.dais.z + 4, Math.PI, 1.7);
+      return;
+    }
+    if (variant === 'dragons_maw') {
+      // scorched cave walls: scattered bones and candles hugging the sides, no ritual furniture
+      const wallEdge = (layout.wallX ?? DUNGEON_WALL_X) - 1.6;
+      for (let z = layout.zMin + 20; z < layout.zMax - 10; z += 28) {
+        for (const side of [-1, 1]) {
+          const r = hash2(side * 4.7, z);
+          if (r < 0.3) continue;
+          const face = side < 0 ? Math.PI / 2 : -Math.PI / 2;
+          p.add(r < 0.6 ? 'bone_A' : 'skull', side * wallEdge, 0, z + 4, face, 1.4);
+          if (r > 0.7)
+            p.add('candle_lit', side * (wallEdge - 1.4), 0, z + 1, hash2(z, side) * Math.PI, 1.2);
+        }
+      }
       return;
     }
     // sanctum: necromantic ritual furniture per chamber

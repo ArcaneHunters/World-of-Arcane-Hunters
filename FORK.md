@@ -354,7 +354,7 @@ A full list of all upstream file modifications with exact code snippets is in
 - `src/render/characters/manifest.ts` -- added import + spreads for `src/render/characters/custom/`
 - `src/sim/types.ts` -- `DungeonDef.interior` union extended with `'dragons_maw'`
 - `src/sim/dungeon_layout.ts` -- added `DRAGONS_MAW_LAYOUT` for the Dragon's Maw custom dungeon interior
-- `src/render/dungeon.ts` -- added `'dragons_maw'` case to `buildInterior` (layout chain) and `variantFor`
+- `src/render/dungeon.ts` -- added full `'dragons_maw'` visual variant: `DungeonInteriorVariant` union, `TORCH_COLORS`, `variantFor`, `floorKind`, `wallKind`, `placeWalls` banner skip, `placeWallDressing` return block
 - `src/sim/colliders.ts` -- added `DRAGONS_MAW_COLLIDERS` and `dragons_maw` entry in `INTERIOR_COLLIDERS`
 - `src/sim/sim.ts` -- secondary RNG (`customRng = new Rng(seed ^ 0x464f524b)`) for CUSTOM_CAMPS mob init to prevent main RNG stream shift
 - `src/ui/world_entity_i18n.ts` -- imports Dragon's Blight entity IDs from `src/sim/content/custom/i18n_ids.ts` via spread

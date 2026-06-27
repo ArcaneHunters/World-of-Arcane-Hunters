@@ -741,36 +741,106 @@ export const DRAGONS_MAW_LAYOUT: DungeonLayout = {
 
 ---
 
-#### `src/render/dungeon.ts` -- Dragon's Maw renderer wiring
+#### `src/render/dungeon.ts` -- Dragon's Maw full visual variant
 
-Two changes to register `'dragons_maw'` in the renderer.
+Adds `'dragons_maw'` as a first-class `DungeonInteriorVariant` with its own torch
+colors, floor/wall mix, no banners, and cave-appropriate wall dressing. The prior
+approach (mapping it to `'sanctum'`) caused the renderer to apply sanctum-specific
+clutter skip-zones (z 60-74 and z 110-120) and sanctum ritual furniture at
+chamber-boundary positions, making the dungeon look multi-chambered and cluttered with
+necromantic shrines rather than an open dragon lair.
 
-**Import change:** Add `DRAGONS_MAW_LAYOUT` to the import from `'../sim/dungeon_layout'`.
-
-**`buildInterior` layout chain:** Add case before the `'sanctum'` branch:
+**`DungeonInteriorVariant` union** (add `'dragons_maw'`):
 ```typescript
-const layout =
-  opts?.layout ??
-  (interior === 'dragons_maw'
-    ? DRAGONS_MAW_LAYOUT
-    : interior === 'sanctum'
-      ? SANCTUM_LAYOUT
-      // ... rest unchanged
+export type DungeonInteriorVariant =
+  | 'crypt'
+  | 'bastion'
+  | 'sanctum'
+  | 'temple'
+  | 'arena'
+  | 'nythraxis'
+  | 'dragons_maw'   // <- added
+  | 'delve_ossuary'
+  | 'delve_bell'
+  | 'delve_hall'
+  | 'delve_finale';
 ```
 
-**`variantFor` method:** Add before the `'sanctum'` line:
+**`TORCH_COLORS`** (add after `nythraxis` entry):
+```typescript
+dragons_maw: { flame: 0xff8020, emissive: 0xcc3a08, light: 0xff6020 },
+```
+
+**`variantFor` method:** Change the `dragons_maw` line from:
 ```typescript
 if (interior === 'dragons_maw') return 'sanctum';
 ```
+to:
+```typescript
+if (interior === 'dragons_maw') return 'dragons_maw';
+```
 
-This reuses the Gravewyrm Sanctum's dark-stone visual palette (the closest available
-theme for a dragon lair). A future custom visual variant could use different torch
-colors, but that would require new shader/material work.
+**`buildInterior` layout chain:** (unchanged from previous entry -- keep the existing
+`interior === 'dragons_maw' ? DRAGONS_MAW_LAYOUT` case before `'sanctum'`)
+
+**`floorKind` method:** Add before the `'sanctum'` branch:
+```typescript
+if (variant === 'dragons_maw') {
+  return pickKind(
+    [
+      ['floor_tile_large', 38],
+      ['floor_tile_large_rocks', 24],
+      ['floor_dirt_large', 18],
+      ['floor_dirt_large_rocky', 12],
+      ['quad', 8],
+    ],
+    t,
+  );
+}
+```
+
+**`wallKind` method:** Add before the `'sanctum'` branch:
+```typescript
+if (variant === 'dragons_maw') {
+  return pickKind(
+    [
+      ['wall', 42],
+      ['wall_pillar', 18],
+      ['wall_cracked', 32],
+      ['wall_arched', 8],
+    ],
+    t,
+  );
+}
+```
+
+**`placeWalls` method:** Skip banners for `'dragons_maw'` (add `&& variant !== 'dragons_maw'`):
+```typescript
+if (i % bannerEvery === 2 && kind !== 'wall_archedwindow_gated' && variant !== 'dragons_maw') {
+```
+
+**`placeWallDressing` method:** Add a return block after the `'temple'` return, before the sanctum code:
+```typescript
+if (variant === 'dragons_maw') {
+  const wallEdge = (layout.wallX ?? DUNGEON_WALL_X) - 1.6;
+  for (let z = layout.zMin + 20; z < layout.zMax - 10; z += 28) {
+    for (const side of [-1, 1]) {
+      const r = hash2(side * 4.7, z);
+      if (r < 0.3) continue;
+      const face = side < 0 ? Math.PI / 2 : -Math.PI / 2;
+      p.add(r < 0.6 ? 'bone_A' : 'skull', side * wallEdge, 0, z + 4, face, 1.4);
+      if (r > 0.7)
+        p.add('candle_lit', side * (wallEdge - 1.4), 0, z + 1, hash2(z, side) * Math.PI, 1.2);
+    }
+  }
+  return;
+}
+```
 
 **Verification:**
 ```bash
 grep -c "dragons_maw" src/render/dungeon.ts
-# Expect: 2 (buildInterior case + variantFor case)
+# Expect: 7+ (type union, TORCH_COLORS, variantFor, buildInterior, floorKind, wallKind, placeWalls, placeWallDressing)
 ```
 
 ---
