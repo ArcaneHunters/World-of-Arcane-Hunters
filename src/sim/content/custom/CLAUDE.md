@@ -67,8 +67,8 @@ custom zone at z=900 and upstream later adds zone 4 at z=900-1260, that upstream
 wins the biome and zone lookups (it is spread before CUSTOM_ZONES in the ZONES array).
 
 **After any upstream merge:** compare the highest upstream zone zMax against your
-custom zones' zMin values. See `docs/custom-content/ADDING-CUSTOM-CONTENT.md` section 7
-for the full overlap detection and recovery procedure.
+custom zones' zMin values. See `docs/custom-content/zones.md` for the full overlap
+detection and recovery procedure.
 
 Add mob spawn points to `CUSTOM_CAMPS` with `center.z` inside your zone's band.
 
