@@ -14,13 +14,16 @@ Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 ## Index and coordinate rules
 
 **Index rule:** Upstream dungeons use indices 0-2 (Hollow Crypt, Sunken Bastion,
-Gravewyrm). Temple dungeons use 3+. **Custom dungeons must use index 10 or higher**
-to avoid conflicts with any future upstream dungeon additions.
+Gravewyrm). The Temple dungeon uses index 3. **Custom dungeons must use index 4 or 5.**
+
+**Critical constraint: `900 + index * 600` must be less than `ARENA_X_MIN` (4200).**
+`dungeonAt()` in `data.ts` returns null for any x >= 4200, and the renderer treats
+those positions as arena/delve space -- the dungeon will appear as a black void.
+This limits custom dungeon indices to 4 (x=3300) and 5 (x=3900).
 
 **x-origin formula:** `900 + index * 600`
-- index 10 = x origin at 6900
-- index 11 = x origin at 7500
-- index 12 = x origin at 8100
+- index 4 = x origin at 3300
+- index 5 = x origin at 3900
 
 Spawn coordinates inside the dungeon are **relative to the instance origin** (offset
 from that x value, with z near 0). The overworld `doorPos` uses regular world
@@ -34,7 +37,7 @@ coordinates and should be placed inside your custom zone's z band.
 |---|---|---|---|
 | `id` | string | yes | Unique ID with `custom_` prefix |
 | `name` | string | yes | Dungeon name (English) |
-| `index` | number | yes | Unique integer 10+ (determines x-band) |
+| `index` | number | yes | Unique integer, 4 or 5 for custom (determines x-band; must keep x < 4200) |
 | `doorPos` | `{x, z}` | yes | Overworld entrance portal position |
 | `entry` | `{x, z}` | yes | Player arrival point inside the dungeon (instance-local) |
 | `exitOffset` | `{x, z}` | yes | Exit portal position inside the dungeon (instance-local) |
@@ -112,7 +115,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_ashenmoor_crypt: {
     id: 'custom_ashenmoor_crypt',
     name: 'Ashenmoor Crypt',
-    index: 10,                              // x-origin = 900 + 10*600 = 6900
+    index: 4,                               // x-origin = 900 + 4*600 = 3300 (must be < 4200)
     doorPos: { x: -50, z: 2020 },          // overworld entrance (inside custom zone)
     entry: { x: 0, z: 20 },               // player appears here inside
     exitOffset: { x: 0, z: 5 },           // exit portal, instance-local
