@@ -4395,6 +4395,33 @@ export const zh_CN: EnTranslations = {
       "monarch_crown_helm": {
         "name": "君主之冠"
       },
+      "custom_drake_scale": {
+        "name": "灰行蜉蝣鳞"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "暗翼翼龙心石"
+      },
+      "custom_blight_ember": {
+        "name": "腐蚀余烬"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "蜉蝣龙骨护肩"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "焦翼兜帽"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "腐蚀猎手头巾"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "伊格纳拉克斯巨刃"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "永恒灰烬法杖"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "伊格纳拉克斯之牙"
+      },
       "bristleback_maul": {
         "name": "硬鬃重槌"
       },
@@ -5069,6 +5096,21 @@ export const zh_CN: EnTranslations = {
       "acolyte_tessa": {
         "name": "侍僧泰莎"
       },
+      "custom_ashwalker_drake": {
+        "name": "灰行德雷克"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "焦翼翼龙"
+      },
+      "custom_blighted_sentinel": {
+        "name": "腐蚀哨兵"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "龙爪守卫"
+      },
+      "custom_ignaraxis": {
+        "name": "永恒的伊格纳拉克斯"
+      },
       "ironvein_foreman": {
         "name": "铁脉工头"
       },
@@ -5283,6 +5325,21 @@ export const zh_CN: EnTranslations = {
         "name": "哈尔文修士",
         "title": "圣物库守护人",
         "greeting": "下方的圣物库又移位了。"
+      },
+      "custom_commander_vael": {
+        "name": "瓦尔指挥官",
+        "title": "腐蚀之地军官",
+        "greeting": "做好准备，{playerName}。这片腐蚀之地不曾入眠，我们也不会。"
+      },
+      "custom_scout_fenris": {
+        "name": "侦察员芬里斯",
+        "title": "腐蚀之地侦察员",
+        "greeting": "你穿越了翼龙地带？很好。我需要像你这样有能力的人。"
+      },
+      "custom_elder_draxis": {
+        "name": "长老德拉克西斯",
+        "title": "屠龙者",
+        "greeting": "我猎龙已三十年，{playerName}。伊格纳拉克斯与众不同。"
       },
       "tidewatcher_ondrel": {
         "name": "翁德雷尔·凡恩",
@@ -6043,6 +6100,75 @@ export const zh_CN: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "证明之地",
+        "text": "灰行德雷克已推进到我们营地边缘，{playerName}。削减它们的数量——杀死十只——证明你属于腐蚀之地。",
+        "completion": "十只德雷克倒下了。不错。你或许真能在这里活下去，{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "击杀灰行德雷克"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "德雷克的印记",
+        "text": "德雷克鳞片坚硬如板甲，{playerName}。我需要八片来装备下一支巡逻队。德雷克们不会轻易放手——能取多少就取多少。",
+        "completion": "八片鳞片。这些比我们能锻造的任何东西都更耐火。干得好。",
+        "objectives": {
+          "0": {
+            "label": "灰行德雷克鳞片"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "进入腐蚀之地",
+        "text": "那些焦翼翼龙正在我们和地下城之间筑巢，{playerName}。需要消灭八只，同时我需要五颗它们的心石给指挥官的炼金师。它们躲得很深，但我知道你能找到它们。",
+        "completion": "巢穴已清除。那些心石将比你想象的对我们更有价值。",
+        "objectives": {
+          "0": {
+            "label": "击杀焦翼翼龙"
+          },
+          "1": {
+            "label": "焦翼心石"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "风暴之眼",
+        "text": "腐蚀哨兵是伊格纳拉克斯的外围守卫，{playerName}。古老的龙族在那生物附近被数百年扭曲了。击倒三只，带来它们核心中的腐蚀余烬。如果你能对付它们，你就准备好进入龙颚了。",
+        "completion": "三只哨兵倒下，余烬在手。你准备好了，{playerName}。回到驻地去找长老德拉克西斯。他等待这一刻已经很久了。",
+        "objectives": {
+          "0": {
+            "label": "击杀腐蚀哨兵"
+          },
+          "1": {
+            "label": "腐蚀余烬"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "永恒之焰",
+        "text": "永恒的伊格纳拉克斯在龙颚中沉睡了数个时代，{playerName}。我们头顶的腐蚀之地就是他的呼吸具象化的形态。进入龙颚，在他的巢穴中面对他，终结这一切。你的同伴将是必要的——这不是一个人的狩猎。",
+        "completion": "永恒之焰已熄灭，{playerName}。我等待三十年才能说出这些话。腐蚀之地将会消退。拿着这个——你绝对值得。",
+        "objectives": {
+          "0": {
+            "label": "击杀永恒的伊格纳拉克斯"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "腐蚀之地巡逻",
+        "text": "我们不能让德雷克和翼龙淹没通道，{playerName}。巡逻腐蚀之地，击杀十五只德雷克和八只翼龙，然后回来报告。确保我们的侧翼安全，同时让指挥系统处理更大的局面。",
+        "completion": "侧翼安全。当有人出去发挥作用时，士兵们呼吸更畅快。干得好，{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "击杀灰行德雷克"
+          },
+          "1": {
+            "label": "击杀焦翼翼龙"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "溺亡唱诗班",
         "text": "那些涉行者并非孤身行动。它们之中游走着溺亡信徒——随神殿一同沉没的邪教徒，至今仍披着腐烂的法衣，仍在岸边礁石上吟唱祷词。让其中八名永远噤声，再为我带回它们随身携带的六件祭品。我想知道它们打算献给女神什么。",
@@ -6209,6 +6335,21 @@ export const zh_CN: EnTranslations = {
             "label": "墓龙圣所"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "龙之腐蚀之地",
+        "welcome": "龙之腐蚀之地在你面前延伸，被灰烬和远古火焰的回声所笼罩。",
+        "pois": {
+          "0": {
+            "label": "腐蚀之地哨所"
+          },
+          "1": {
+            "label": "芬里斯前哨"
+          },
+          "2": {
+            "label": "龙颚"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const zh_CN: EnTranslations = {
         "name": "尼思拉克西斯团队竞技场",
         "enterText": "你穿过封印的王室之门。",
         "leaveText": "你回到荆峰的寒冷空气中。"
+      },
+      "custom_dragons_maw": {
+        "name": "龙颚",
+        "enterText": "热浪令人窒息。前方的黑暗中有庞大的东西在蠕动。",
+        "leaveText": "你从龙颚中走出，外面的空气冰冷地拂过皮肤。"
       },
       "drowned_temple": {
         "name": "溺亡神殿",

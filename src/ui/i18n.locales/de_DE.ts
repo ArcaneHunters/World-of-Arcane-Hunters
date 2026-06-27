@@ -3074,6 +3074,16 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'entities.items.brightwood_venison.name': 'Hellholz-Wildbret',
   'entities.items.bramblehide_jerkin.name': 'Dornhaut-Wams',
   'entities.items.monarch_crown_helm.name': 'Krone des Monarchen',
+  // Dragon's Blight custom zone items
+  'entities.items.custom_drake_scale.name': 'Drachenschuppe des Aschlaufers',
+  'entities.items.custom_wyvern_heartstone.name': 'Herzstein des Dunkelschwingen-Wyverns',
+  'entities.items.custom_blight_ember.name': 'Seuchenkohle',
+  'entities.items.custom_drakebone_shoulders.name': 'Drachenknochen-Schultern',
+  'entities.items.custom_scorchwing_cowl.name': 'Sengflugelkapuze',
+  'entities.items.custom_blight_stalkers_hood.name': 'Kapuze des Seuchenanschleichers',
+  'entities.items.custom_ignaraxis_greatblade.name': 'Ignaraxis Grossschwert',
+  'entities.items.custom_cinderstave_eternal.name': 'Ewig-Aschenstab',
+  'entities.items.custom_fang_of_ignaraxis.name': 'Ignaraxis Reisszahn',
   // v0.10.0 release fill (Fiesta / skin-select / NPC voices / chat channels / Brightwood Glade)
   'hud.core.chatChannels.add': 'Chatkanal hinzufügen',
   'hud.core.chatChannels.addTitle': 'Kanal hinzufügen',

@@ -1239,6 +1239,20 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "Gravewyrm Sanctum"
     ],
     "welcome": "Captain Thessaly holds the wall at Highwatch — barely."
+  },
+  {
+    "id": "custom_dragons_blight",
+    "name": "Dragon's Blight",
+    "min": 18,
+    "max": 20,
+    "biome": "peaks",
+    "hub": "Blightwatch Post",
+    "pois": [
+      "Blightwatch Post",
+      "Fenris's Outpost",
+      "Dragon's Maw"
+    ],
+    "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire."
   }
 ];
 

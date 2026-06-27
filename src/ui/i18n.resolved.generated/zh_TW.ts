@@ -4395,6 +4395,33 @@ export const zh_TW: EnTranslations = {
       "monarch_crown_helm": {
         "name": "君主之冠"
       },
+      "custom_drake_scale": {
+        "name": "灰行蜉蝣鱗"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "暗翼翼龍心石"
+      },
+      "custom_blight_ember": {
+        "name": "腐蝕餘燼"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "蜉蝣龍骨護肩"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "焦翼兜帽"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "腐蝕獵手頭巾"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "伊格納拉克斯巨刃"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "永恆灰燼法杖"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "伊格納拉克斯之牙"
+      },
       "bristleback_maul": {
         "name": "硬鬃重槌"
       },
@@ -5069,6 +5096,21 @@ export const zh_TW: EnTranslations = {
       "acolyte_tessa": {
         "name": "侍僧泰莎"
       },
+      "custom_ashwalker_drake": {
+        "name": "灰行德雷克"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "焦翼翼龍"
+      },
+      "custom_blighted_sentinel": {
+        "name": "腐蝕哨兵"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "龍爪守衛"
+      },
+      "custom_ignaraxis": {
+        "name": "永恆的伊格納拉克斯"
+      },
       "ironvein_foreman": {
         "name": "鐵脈工頭"
       },
@@ -5283,6 +5325,21 @@ export const zh_TW: EnTranslations = {
         "name": "哈爾文修士",
         "title": "聖物庫守護人",
         "greeting": "下方的聖物庫又移位了。"
+      },
+      "custom_commander_vael": {
+        "name": "瓦爾指揮官",
+        "title": "腐蝕之地軍官",
+        "greeting": "做好準備，{playerName}。這片腐蝕之地不曾入眠，我們也不會。"
+      },
+      "custom_scout_fenris": {
+        "name": "偵察員芬里斯",
+        "title": "腐蝕之地偵察員",
+        "greeting": "你穿越了翼龍地帶？很好。我需要像你這樣有能力的人。"
+      },
+      "custom_elder_draxis": {
+        "name": "長老德拉克西斯",
+        "title": "屠龍者",
+        "greeting": "我獵龍已三十年，{playerName}。伊格納拉克斯與眾不同。"
       },
       "tidewatcher_ondrel": {
         "name": "翁德瑞爾·韋恩",
@@ -6043,6 +6100,75 @@ export const zh_TW: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "證明之地",
+        "text": "灰行德雷克已推進到我們營地邊緣，{playerName}。削減它們的數量——殺死十只——證明你屬於腐蝕之地。",
+        "completion": "十只德雷克倒下了。不錯。你或許真能在這裡活下去，{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "擊殺灰行德雷克"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "德雷克的印記",
+        "text": "德雷克鱗片堅硬如板甲，{playerName}。我需要八片來裝備下一支巡邏隊。德雷克們不會輕易放手——能取多少就取多少。",
+        "completion": "八片鱗片。這些比我們能鍛造的任何東西都更耐火。幹得好。",
+        "objectives": {
+          "0": {
+            "label": "灰行德雷克鱗片"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "進入腐蝕之地",
+        "text": "那些焦翼翼龍正在我們和地下城之間築巢，{playerName}。需要消滅八隻，同時我需要五顆它們的心石給指揮官的煉金師。它們躲得很深，但我知道你能找到它們。",
+        "completion": "巢穴已清除。那些心石將比你想象的對我們更有價值。",
+        "objectives": {
+          "0": {
+            "label": "擊殺焦翼翼龍"
+          },
+          "1": {
+            "label": "焦翼心石"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "風暴之眼",
+        "text": "腐蝕哨兵是伊格納拉克斯的外圍守衛，{playerName}。古老的龍族在那生物附近被數百年扭曲了。擊倒三隻，帶來它們核心中的腐蝕餘燼。如果你能對付它們，你就準備好進入龍顎了。",
+        "completion": "三隻哨兵倒下，餘燼在手。你準備好了，{playerName}。回到駐地去找長老德拉克西斯。他等待這一刻已經很久了。",
+        "objectives": {
+          "0": {
+            "label": "擊殺腐蝕哨兵"
+          },
+          "1": {
+            "label": "腐蝕餘燼"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "永恆之焰",
+        "text": "永恆的伊格納拉克斯在龍顎中沉睡了數個時代，{playerName}。我們頭頂的腐蝕之地就是他的呼吸具象化的形態。進入龍顎，在他的巢穴中面對他，終結這一切。你的同伴將是必要的——這不是一個人的狩獵。",
+        "completion": "永恆之焰已熄滅，{playerName}。我等待三十年才能說出這些話。腐蝕之地將會消退。拿著這個——你絕對值得。",
+        "objectives": {
+          "0": {
+            "label": "擊殺永恆的伊格納拉克斯"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "腐蝕之地巡邏",
+        "text": "我們不能讓德雷克和翼龍淹沒通道，{playerName}。巡邏腐蝕之地，擊殺十五隻德雷克和八隻翼龍，然後回來報告。確保我們的側翼安全，同時讓指揮系統處理更大的局面。",
+        "completion": "側翼安全。當有人出去發揮作用時，士兵們呼吸更暢快。幹得好，{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "擊殺灰行德雷克"
+          },
+          "1": {
+            "label": "擊殺焦翼翼龍"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "溺亡唱詩班",
         "text": "那些涉者並非單獨行動。在牠們之間行走的，是溺亡信徒——隨神殿一同沉沒的邪教徒，仍披著腐朽的法衣，仍從岸岩之間唱著那篇禱文。讓其中八人歸於沉寂，並為我帶回他們所攜的六件供品。我想知道他們要獻給女神的究竟是什麼。",
@@ -6209,6 +6335,21 @@ export const zh_TW: EnTranslations = {
             "label": "墓龍聖所"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "龍之腐蝕之地",
+        "welcome": "龍之腐蝕之地在你面前延伸，被灰燼和遠古火焰的回聲所籠罩。",
+        "pois": {
+          "0": {
+            "label": "腐蝕之地哨所"
+          },
+          "1": {
+            "label": "芬里斯前哨"
+          },
+          "2": {
+            "label": "龍顎"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const zh_TW: EnTranslations = {
         "name": "尼思拉克西斯團隊競技場",
         "enterText": "你穿過封印的王室之門。",
         "leaveText": "你回到荊峰的寒冷空氣中。"
+      },
+      "custom_dragons_maw": {
+        "name": "龍顎",
+        "enterText": "熱浪令人窒息。前方的黑暗中有龐大的東西在蠕動。",
+        "leaveText": "你從龍顎中走出，外面的空氣冰冷地拂過皮膚。"
       },
       "drowned_temple": {
         "name": "溺亡神殿",

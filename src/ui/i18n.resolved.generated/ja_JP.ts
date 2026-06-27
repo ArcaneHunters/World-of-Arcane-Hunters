@@ -4395,6 +4395,33 @@ export const ja_JP: EnTranslations = {
       "monarch_crown_helm": {
         "name": "君主の王冠"
       },
+      "custom_drake_scale": {
+        "name": "灰行きドレイクの鱗"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "暗翼ワイバーンの心石"
+      },
+      "custom_blight_ember": {
+        "name": "疫病の残り火"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "ドレイク骨の肩当て"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "焦げ翼のカウル"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "疫病の追跡者のフード"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "イグナラクシスの大剣"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "永遠の灰燼の杖"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "イグナラクシスの牙"
+      },
       "bristleback_maul": {
         "name": "ブリストルバックの大槌"
       },
@@ -5069,6 +5096,21 @@ export const ja_JP: EnTranslations = {
       "acolyte_tessa": {
         "name": "侍祭テッサ"
       },
+      "custom_ashwalker_drake": {
+        "name": "灰行きドレイク"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "焦げ翼ワイバーン"
+      },
+      "custom_blighted_sentinel": {
+        "name": "疫病の番人"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "竜爪の守護者"
+      },
+      "custom_ignaraxis": {
+        "name": "永遠なるイグナラクシス"
+      },
       "ironvein_foreman": {
         "name": "鉄脈の現場監督"
       },
@@ -5283,6 +5325,21 @@ export const ja_JP: EnTranslations = {
         "name": "ハルヴェン修道士",
         "title": "聖遺物庫の番人",
         "greeting": "下の聖遺物庫がまた動いた。"
+      },
+      "custom_commander_vael": {
+        "name": "ヴェール司令官",
+        "title": "ブライトウォッチ士官",
+        "greeting": "準備せよ、{playerName}。このブライトは眠らない、我々もだ。"
+      },
+      "custom_scout_fenris": {
+        "name": "斥候フェンリス",
+        "title": "ブライトウォッチ斥候",
+        "greeting": "ワイバーンの縄張りを抜けたか？よし。有能な者が必要だった。"
+      },
+      "custom_elder_draxis": {
+        "name": "長老ドラクシス",
+        "title": "竜殺し",
+        "greeting": "私は三十年ドラゴンを狩ってきた、{playerName}。イグナラクシスは他とは違う。"
       },
       "tidewatcher_ondrel": {
         "name": "オンドレル・ヴェイン",
@@ -6043,6 +6100,75 @@ export const ja_JP: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "試練の地",
+        "text": "灰行きドレイクが我々の野営地の縁まで押し寄せている、{playerName}。その数を減らせ——十匹——そしてブライトに居る資格を証明しろ。",
+        "completion": "十匹のドレイクが倒れた。悪くない。ここで生き延びられるかもな、{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "灰行きドレイクを倒す"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "ドレイクの印",
+        "text": "ドレイクの鱗は板金並みに硬い、{playerName}。次の哨戒を装備するために八枚必要だ。ドレイクたちは簡単には渡さない——取れるだけ取れ。",
+        "completion": "八枚の鱗。これらは我々が鍛造できるどんなものより火に強い。よくやった。",
+        "objectives": {
+          "0": {
+            "label": "灰行きドレイクの鱗"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "ブライトへ",
+        "text": "焦げ翼ワイバーンが我々とダンジョンの間に巣を作っている、{playerName}。八匹を排除し、司令官の錬金術師のために心石を五個持ってくる必要がある。深いところにいるが、君なら辿り着ける。",
+        "completion": "営巣地が制圧された。あの心石は思っている以上に価値がある。",
+        "objectives": {
+          "0": {
+            "label": "焦げ翼ワイバーンを倒す"
+          },
+          "1": {
+            "label": "焦げ翼の心石"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "嵐の目",
+        "text": "疫病の番人はイグナラクシスの外縁の守護者だ、{playerName}。あの生物の近くで数百年歪められた古い竜族だ。三体を倒してそのコアから疫病の残り火を持ってこい。それができれば、竜の顎に向かう準備ができている。",
+        "completion": "三体の番人が倒れ、残り火も手に入った。準備完了だ、{playerName}。駐屯地に戻って長老ドラクシスに話しかけろ。彼はこの瞬間を長い間待っていた。",
+        "objectives": {
+          "0": {
+            "label": "疫病の番人を倒す"
+          },
+          "1": {
+            "label": "疫病の残り火"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "永遠の炎",
+        "text": "永遠なるイグナラクシスは時代を超えて竜の顎に眠っている、{playerName}。我々の頭上のブライトは彼の息吹が形を成したものだ。竜の顎に入り、彼の巣穴で対峙し、終わらせろ。仲間が必要になる——一人での狩りではない。",
+        "completion": "永遠の炎が消えた、{playerName}。三十年待ってこの言葉を言える。ブライトはやがて消えるだろう。これを取れ——十分以上に値する。",
+        "objectives": {
+          "0": {
+            "label": "永遠なるイグナラクシスを倒す"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "ブライト巡邏",
+        "text": "ドレイクとワイバーンに通路を制圧させるわけにはいかない、{playerName}。ブライトを巡邏し、ドレイク十五体とワイバーン八体を倒して報告に来い。指揮系統が大局を処理する間、側面を清潔に保つ。",
+        "completion": "側面が安全になった。誰かが出て差を生み出しているとき、兵士たちはもっと楽に呼吸できる。よくやった、{playerName}。",
+        "objectives": {
+          "0": {
+            "label": "灰行きドレイクを倒す"
+          },
+          "1": {
+            "label": "焦げ翼ワイバーンを倒す"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "溺れし聖歌隊",
         "text": "渡り手どもは独りで動いているのではない。その中に溺れし信徒たちが歩いている——神殿とともに沈んだ教団だ。腐った祭服をまとったまま、岸の岩場から祈りを歌い続けている。八体を沈黙させ、奴らが携える供物を六つ持ち帰れ。奴らが女神に何を捧げようとしているのか、私は知りたいのだ。",
@@ -6209,6 +6335,21 @@ export const ja_JP: EnTranslations = {
             "label": "墓ワームの聖所"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "ドラゴンのブライト",
+        "welcome": "ドラゴンのブライトが前に広がる、灰と古代の炎の遠い残響に覆われている。",
+        "pois": {
+          "0": {
+            "label": "ブライトウォッチ駐屯地"
+          },
+          "1": {
+            "label": "フェンリスの前哨地"
+          },
+          "2": {
+            "label": "竜の顎"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const ja_JP: EnTranslations = {
         "name": "ナイスラクシスのレイドアリーナ",
         "enterText": "封印された王家の扉を通り抜けます。",
         "leaveText": "ソーンピークの冷たい空気へ戻ります。"
+      },
+      "custom_dragons_maw": {
+        "name": "竜の顎",
+        "enterText": "熱気が息苦しい。前方の闇の中で何か巨大なものが動いている。",
+        "leaveText": "竜の顎から出ると、外の空気が肌に冷たく感じられる。"
       },
       "drowned_temple": {
         "name": "溺れし神殿",

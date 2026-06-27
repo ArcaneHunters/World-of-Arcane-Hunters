@@ -4395,6 +4395,33 @@ export const de_DE: EnTranslations = {
       "monarch_crown_helm": {
         "name": "Krone des Monarchen"
       },
+      "custom_drake_scale": {
+        "name": "Drachenschuppe des Aschlaufers"
+      },
+      "custom_wyvern_heartstone": {
+        "name": "Herzstein des Dunkelschwingen-Wyverns"
+      },
+      "custom_blight_ember": {
+        "name": "Seuchenkohle"
+      },
+      "custom_drakebone_shoulders": {
+        "name": "Drachenknochen-Schultern"
+      },
+      "custom_scorchwing_cowl": {
+        "name": "Sengflugelkapuze"
+      },
+      "custom_blight_stalkers_hood": {
+        "name": "Kapuze des Seuchenanschleichers"
+      },
+      "custom_ignaraxis_greatblade": {
+        "name": "Ignaraxis Grossschwert"
+      },
+      "custom_cinderstave_eternal": {
+        "name": "Ewig-Aschenstab"
+      },
+      "custom_fang_of_ignaraxis": {
+        "name": "Ignaraxis Reisszahn"
+      },
       "bristleback_maul": {
         "name": "Bristleback-Schlägel"
       },
@@ -5069,6 +5096,21 @@ export const de_DE: EnTranslations = {
       "acolyte_tessa": {
         "name": "Akolythin Tessa"
       },
+      "custom_ashwalker_drake": {
+        "name": "Ashwalker Drake"
+      },
+      "custom_scorchwing_wyvern": {
+        "name": "Scorchwing Wyvern"
+      },
+      "custom_blighted_sentinel": {
+        "name": "Blighted Sentinel"
+      },
+      "custom_dragonclaw_warden": {
+        "name": "Dragonclaw Warden"
+      },
+      "custom_ignaraxis": {
+        "name": "Ignaraxis the Eternal"
+      },
       "ironvein_foreman": {
         "name": "Eisenader-Vorarbeiter"
       },
@@ -5283,6 +5325,21 @@ export const de_DE: EnTranslations = {
         "name": "Bruder Halven",
         "title": "Reliquiarhüter",
         "greeting": "Das Reliquiar unten hat sich erneut verschoben."
+      },
+      "custom_commander_vael": {
+        "name": "Commander Vael",
+        "title": "Blightwatch Officer",
+        "greeting": "Stand ready, {playerName}. This blight does not sleep, and neither do we."
+      },
+      "custom_scout_fenris": {
+        "name": "Scout Fenris",
+        "title": "Blightwatch Scout",
+        "greeting": "You made it through the wyvern grounds? Good. I could use someone capable out here."
+      },
+      "custom_elder_draxis": {
+        "name": "Elder Draxis",
+        "title": "Dragonslayer",
+        "greeting": "I have hunted dragons for thirty years, {playerName}. Ignaraxis is not like the others."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -6043,6 +6100,75 @@ export const de_DE: EnTranslations = {
           }
         }
       },
+      "custom_proving_ground": {
+        "title": "Proving Ground",
+        "text": "The ashwalker drakes have pushed to the edges of our camp, {playerName}. Thin their numbers -- ten of them -- and prove you belong in the Blight.",
+        "completion": "Ten drakes down. Not bad. You might just survive out here, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Ashwalker Drakes slain"
+          }
+        }
+      },
+      "custom_marks_of_the_drake": {
+        "title": "Marks of the Drake",
+        "text": "Drake scales are tough as plate, {playerName}. I need eight of them to outfit the next patrol. The drakes do not give them up easily -- take what you can.",
+        "completion": "Eight scales. These will hold up against fire better than anything we can forge. Well done.",
+        "objectives": {
+          "0": {
+            "label": "Ashwalker Drake Scales"
+          }
+        }
+      },
+      "custom_into_the_blight": {
+        "title": "Into the Blight",
+        "text": "Those scorchwing wyverns are nesting between us and the dungeon, {playerName}. Eight of them need to go, and I need five of their heartstones for the commander's alchemist. They're deep, but I know you can reach them.",
+        "completion": "The nesting ground is clear. Those heartstones will be worth more to us than you know.",
+        "objectives": {
+          "0": {
+            "label": "Scorchwing Wyverns slain"
+          },
+          "1": {
+            "label": "Scorchwing Heartstones"
+          }
+        }
+      },
+      "custom_eye_of_the_storm": {
+        "title": "Eye of the Storm",
+        "text": "The blighted sentinels are Ignaraxis's outer guard, {playerName}. Ancient dragonkin warped by centuries near that creature. Take down three of them and bring me the blight embers from their cores. If you can manage them, you're ready for the maw.",
+        "completion": "Three sentinels down and embers in hand. You're ready, {playerName}. Go speak with Elder Draxis back at the post. He has been waiting a long time for this.",
+        "objectives": {
+          "0": {
+            "label": "Blighted Sentinels slain"
+          },
+          "1": {
+            "label": "Blight Embers"
+          }
+        }
+      },
+      "custom_eternal_flame": {
+        "title": "The Eternal Flame",
+        "text": "Ignaraxis the Eternal has slumbered in the Dragon's Maw for an age, {playerName}. The Blight above us is his breath given form. Enter the maw, face him in his lair, and end it. Your companions will be necessary -- this is not a hunt for one alone.",
+        "completion": "The Eternal Flame is extinguished, {playerName}. I have waited thirty years to say those words. The Blight will fade now. Take this -- you've more than earned it.",
+        "objectives": {
+          "0": {
+            "label": "Ignaraxis the Eternal slain"
+          }
+        }
+      },
+      "custom_blight_patrol": {
+        "title": "Blight Patrol",
+        "text": "We cannot let the drakes and wyverns overrun the approaches, {playerName}. Patrol the Blight, cut down fifteen drakes and eight wyverns, and report back. Keeps our flanks clear while the chain of command handles the bigger picture.",
+        "completion": "Flanks are clear. The men breathe easier when someone is out there making a difference. Good work, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Ashwalker Drakes slain"
+          },
+          "1": {
+            "label": "Scorchwing Wyverns slain"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "Der Ertränkte Chor",
         "text": "Die Wäter handeln nicht allein. Unter ihnen wandeln die Ertränkten Andächtigen — der Kult, der mit dem Tempel versank, noch immer in seinen verfaulten Gewändern, noch immer das Gebet von den Uferfelsen singend. Bringe acht von ihnen zum Schweigen und bring mir sechs der Opfergaben, die sie bei sich tragen. Ich will wissen, was sie ihrer Göttin darbringen wollen.",
@@ -6209,6 +6335,21 @@ export const de_DE: EnTranslations = {
             "label": "Gravewyrm-Heiligtum"
           }
         }
+      },
+      "custom_dragons_blight": {
+        "name": "Dragon's Blight",
+        "welcome": "The Dragon's Blight stretches before you, choked with ash and the distant echo of ancient fire.",
+        "pois": {
+          "0": {
+            "label": "Blightwatch Post"
+          },
+          "1": {
+            "label": "Fenris's Outpost"
+          },
+          "2": {
+            "label": "Dragon's Maw"
+          }
+        }
       }
     },
     "dungeons": {
@@ -6236,6 +6377,11 @@ export const de_DE: EnTranslations = {
         "name": "Nythraxis-Schlachtzugsarena",
         "enterText": "Ihr durchschreitet die versiegelte königliche Tür.",
         "leaveText": "Ihr kehrt in die kalte Luft von Thornpeak zurück."
+      },
+      "custom_dragons_maw": {
+        "name": "Dragon's Maw",
+        "enterText": "The heat is suffocating. Something vast stirs in the darkness ahead.",
+        "leaveText": "You emerge from the Dragon's Maw, the air outside cold against your skin."
       },
       "drowned_temple": {
         "name": "Der Ertränkte Tempel",

@@ -72,14 +72,15 @@ Add a `ZoneDef` to `CUSTOM_ZONES`. Zones are a north-running strip:
 - Zone 2 (Mirefen Marsh): zMin 180, zMax 540
 - Zone 3 (Thornpeak Heights): zMin 540, zMax 900
 
-**Start custom zones at `zMin: 2000` or higher.** The z=2000+ buffer gives runway
-for upstream to add several more zones without conflicting with yours. If you place a
-custom zone at z=900 and upstream later adds zone 4 at z=900-1260, that upstream zone
-wins the biome and zone lookups (it is spread before CUSTOM_ZONES in the ZONES array).
+**Start custom zones immediately after the last upstream zone.** The game's zone
+system requires strict contiguity (`tests/progression.test.ts` checks
+`ZONES[i].zMax === ZONES[i+1].zMin`), so a gap between Zone 3 (zMax 900) and your
+custom zone will fail the test. Dragon's Blight therefore starts at `zMin: 900`.
 
-**After any upstream merge:** compare the highest upstream zone zMax against your
-custom zones' zMin values. See `docs/custom-content/zones.md` for the full overlap
-detection and recovery procedure.
+**After any upstream merge:** if upstream adds a new zone (e.g. Zone 4 at 900-1260),
+CUSTOM_ZONES will need their zMin/zMax shifted upward and all content z-positions
+updated to match. See `docs/custom-content/zones.md` and `docs/MAINTAINING-FORK.md`
+for the overlap detection and recovery procedure.
 
 Add mob spawn points to `CUSTOM_CAMPS` with `center.z` inside your zone's band.
 Full guide: `docs/custom-content/zones.md`
