@@ -688,6 +688,26 @@ RNG state where flame_shock misses. Re-apply the GCD check to make it robust.
 
 ---
 
+#### `src/sim/types.ts` -- Dragon's Maw interior type added to DungeonDef union
+
+The `DungeonDef.interior` field is a TypeScript literal union. Adding a new interior
+string requires extending this union or `tsc` rejects the custom dungeon definition.
+
+**Code change** (line with `interior:` inside `DungeonDef`):
+```typescript
+// Before:
+interior: 'crypt' | 'sanctum' | 'temple' | 'nythraxis';
+// After:
+interior: 'crypt' | 'sanctum' | 'temple' | 'nythraxis' | 'dragons_maw';
+```
+
+**Verification:** `grep "interior:.*dragons_maw" src/sim/types.ts` should return 1 hit.
+
+If this is lost in a merge, `tsc --noEmit` will report TS2322 on `index.ts` for the
+`'dragons_maw'` string. Re-add the union member to fix it.
+
+---
+
 #### `src/sim/dungeon_layout.ts` -- Dragon's Maw interior layout
 
 Added `DRAGONS_MAW_LAYOUT: DungeonLayout` (exported) for the Dragon's Maw dungeon.

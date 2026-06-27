@@ -86,13 +86,15 @@ Check your spawn coordinates against the layout geometry before using it:
 
 **Adding a new interior type for a future custom dungeon:**
 If none of the existing types fit, you can add a new one -- but it requires editing
-three upstream files and must be documented in `docs/MAINTAINING-FORK.md`:
-1. Define a `YOUR_LAYOUT: DungeonLayout` in `src/sim/dungeon_layout.ts` and export it
-2. Import it in `src/render/dungeon.ts` and add a case in `buildInterior` (layout chain)
+four upstream files and must be documented in `docs/MAINTAINING-FORK.md`:
+1. Add your string to the `interior` union in `DungeonDef` in `src/sim/types.ts`
+   (`'crypt' | 'sanctum' | 'temple' | 'nythraxis' | 'dragons_maw' | 'your_type'`)
+2. Define a `YOUR_LAYOUT: DungeonLayout` in `src/sim/dungeon_layout.ts` and export it
+3. Import it in `src/render/dungeon.ts` and add a case in `buildInterior` (layout chain)
    and `variantFor` (choose the closest existing visual variant)
-3. Import it in `src/sim/colliders.ts`, call `layoutColliders(YOUR_LAYOUT)`, and add
+4. Import it in `src/sim/colliders.ts`, call `layoutColliders(YOUR_LAYOUT)`, and add
    the result to `INTERIOR_COLLIDERS` under your string key
-4. Document all three upstream file changes in `docs/MAINTAINING-FORK.md`
+5. Document all four upstream file changes in `docs/MAINTAINING-FORK.md`
 
 ---
 

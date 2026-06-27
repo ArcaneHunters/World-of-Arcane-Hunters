@@ -118,9 +118,10 @@ or appear to float. Available types:
 `'temple'` interiors have narrow waist walls (OBBs) that block most of the x axis
 at specific z values. See `docs/custom-content/dungeons.md` for the exact ranges.
 
-If you need a new interior type, you must register it in three upstream files
-(dungeon_layout.ts, dungeon.ts, colliders.ts) and document it in
-`docs/MAINTAINING-FORK.md`. See `docs/custom-content/dungeons.md` for the procedure.
+If you need a new interior type, you must register it in four upstream files
+(types.ts union, dungeon_layout.ts layout, dungeon.ts renderer, colliders.ts)
+and document it in `docs/MAINTAINING-FORK.md`. See `docs/custom-content/dungeons.md`
+for the step-by-step procedure.
 
 Full guide: `docs/custom-content/dungeons.md`
 
