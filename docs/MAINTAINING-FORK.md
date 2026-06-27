@@ -741,16 +741,30 @@ export const DRAGONS_MAW_LAYOUT: DungeonLayout = {
 
 ---
 
-#### `src/render/dungeon.ts` -- Dragon's Maw full visual variant
+#### `src/render/dungeon.ts` -- hook points for dungeon_custom.ts
 
-Adds `'dragons_maw'` as a first-class `DungeonInteriorVariant` with its own torch
-colors, floor/wall mix, no banners, and cave-appropriate wall dressing. The prior
-approach (mapping it to `'sanctum'`) caused the renderer to apply sanctum-specific
-clutter skip-zones (z 60-74 and z 110-120) and sanctum ritual furniture at
-chamber-boundary positions, making the dungeon look multi-chambered and cluttered with
-necromantic shrines rather than an open dragon lair.
+`dungeon.ts` is an upstream file; all Dragon's Maw rendering logic lives in the
+fork-owned `src/render/dungeon_custom.ts` instead. This entry documents the small
+hook points that wire the custom file in. When an upstream merge loses one of these
+hooks, re-apply the change described here and verify tests pass.
 
-**`DungeonInteriorVariant` union** (add `'dragons_maw'`):
+**Import block** (add after the last local import, e.g. after `radialGlowTexture`):
+```typescript
+import {
+  type CustomDungeonVariantId,
+  CUSTOM_TORCH_COLORS,
+  CUSTOM_NO_BANNER_VARIANTS,
+  getCustomDungeonLayout,
+  isCustomDungeonVariant,
+  customFloorKind,
+  customWallKind,
+  customWallDressing as applyCustomWallDressing,
+} from './dungeon_custom';
+```
+
+**`DungeonInteriorVariant` union** -- replace the literal `'dragons_maw'` member with
+the imported type (keeps the union correct when new custom variants are added to
+`dungeon_custom.ts` without touching this union):
 ```typescript
 export type DungeonInteriorVariant =
   | 'crypt'
@@ -759,89 +773,104 @@ export type DungeonInteriorVariant =
   | 'temple'
   | 'arena'
   | 'nythraxis'
-  | 'dragons_maw'   // <- added
+  | CustomDungeonVariantId   // <- was the literal 'dragons_maw'
   | 'delve_ossuary'
   | 'delve_bell'
   | 'delve_hall'
   | 'delve_finale';
 ```
 
-**`TORCH_COLORS`** (add after `nythraxis` entry):
+**`TORCH_COLORS`** -- replace the hardcoded `dragons_maw` entry with a spread:
 ```typescript
-dragons_maw: { flame: 0xff8020, emissive: 0xcc3a08, light: 0xff6020 },
+  nythraxis: { flame: 0x8f5cff, emissive: 0x4b1c9a, light: 0x7b4dff },
+  ...CUSTOM_TORCH_COLORS,
+  // delve reliquaries ...
 ```
 
-**`variantFor` method:** Change the `dragons_maw` line from:
+**`buildInterior` layout chain** -- replace the `interior === 'dragons_maw' ?
+DRAGONS_MAW_LAYOUT :` case with the lookup helper (also remove `DRAGONS_MAW_LAYOUT`
+from the `dungeon_layout` import line):
 ```typescript
-if (interior === 'dragons_maw') return 'sanctum';
-```
-to:
-```typescript
-if (interior === 'dragons_maw') return 'dragons_maw';
-```
-
-**`buildInterior` layout chain:** (unchanged from previous entry -- keep the existing
-`interior === 'dragons_maw' ? DRAGONS_MAW_LAYOUT` case before `'sanctum'`)
-
-**`floorKind` method:** Add before the `'sanctum'` branch:
-```typescript
-if (variant === 'dragons_maw') {
-  return pickKind(
-    [
-      ['floor_tile_large', 38],
-      ['floor_tile_large_rocks', 24],
-      ['floor_dirt_large', 18],
-      ['floor_dirt_large_rocky', 12],
-      ['quad', 8],
-    ],
-    t,
-  );
-}
+    const layout =
+      opts?.layout ??
+      getCustomDungeonLayout(interior) ??
+      (interior === 'sanctum'
+        ? SANCTUM_LAYOUT
+        : interior === 'temple'
+          ? TEMPLE_LAYOUT
+          : interior === 'arena'
+            ? ARENA_LAYOUT
+            : interior === 'nythraxis'
+              ? NYTHRAXIS_LAYOUT
+              : CRYPT_LAYOUT);
 ```
 
-**`wallKind` method:** Add before the `'sanctum'` branch:
+**`variantFor` method** -- replace `if (interior === 'dragons_maw') return 'dragons_maw';`
+with the guard that covers all current and future custom variants:
 ```typescript
-if (variant === 'dragons_maw') {
-  return pickKind(
-    [
-      ['wall', 42],
-      ['wall_pillar', 18],
-      ['wall_cracked', 32],
-      ['wall_arched', 8],
-    ],
-    t,
-  );
-}
+    if (isCustomDungeonVariant(interior)) return interior;
 ```
 
-**`placeWalls` method:** Skip banners for `'dragons_maw'` (add `&& variant !== 'dragons_maw'`):
+**`floorKind` method** -- replace the `dragons_maw` if-block with a one-liner
+(insert before the `'sanctum'` branch):
 ```typescript
-if (i % bannerEvery === 2 && kind !== 'wall_archedwindow_gated' && variant !== 'dragons_maw') {
+    if (isCustomDungeonVariant(variant)) return customFloorKind(variant, t);
 ```
 
-**`placeWallDressing` method:** Add a return block after the `'temple'` return, before the sanctum code:
+**`wallKind` method** -- same pattern (insert before the `'sanctum'` branch):
 ```typescript
-if (variant === 'dragons_maw') {
-  const wallEdge = (layout.wallX ?? DUNGEON_WALL_X) - 1.6;
-  for (let z = layout.zMin + 20; z < layout.zMax - 10; z += 28) {
-    for (const side of [-1, 1]) {
-      const r = hash2(side * 4.7, z);
-      if (r < 0.3) continue;
-      const face = side < 0 ? Math.PI / 2 : -Math.PI / 2;
-      p.add(r < 0.6 ? 'bone_A' : 'skull', side * wallEdge, 0, z + 4, face, 1.4);
-      if (r > 0.7)
-        p.add('candle_lit', side * (wallEdge - 1.4), 0, z + 1, hash2(z, side) * Math.PI, 1.2);
+    if (isCustomDungeonVariant(variant)) return customWallKind(variant, t);
+```
+
+**`placeWalls` method** -- replace `variant !== 'dragons_maw'` with the set lookup:
+```typescript
+        if (i % bannerEvery === 2 && kind !== 'wall_archedwindow_gated' && !CUSTOM_NO_BANNER_VARIANTS.has(variant)) {
+```
+
+**`placeWallDressing` method** -- add an early-return block immediately after the
+`'arena'` early-return and before the rubble code:
+```typescript
+    // Custom variants own all their dressing (including rubble) in dungeon_custom.ts
+    if (isCustomDungeonVariant(variant)) {
+      applyCustomWallDressing(variant, (k, x, y, z, ry, sc) => p.add(k, x, y, z, ry, sc), layout);
+      return;
     }
-  }
-  return;
-}
 ```
+(The old `if (variant === 'dragons_maw') { ... return; }` block that was further down
+in `placeWallDressing` is removed entirely.)
 
 **Verification:**
 ```bash
-grep -c "dragons_maw" src/render/dungeon.ts
-# Expect: 7+ (type union, TORCH_COLORS, variantFor, buildInterior, floorKind, wallKind, placeWalls, placeWallDressing)
+grep -c "CUSTOM_TORCH_COLORS\|isCustomDungeonVariant\|applyCustomWallDressing\|dungeon_custom" src/render/dungeon.ts
+# Expect: 7+ (import block + TORCH_COLORS spread + variantFor + floorKind + wallKind + placeWalls + placeWallDressing)
+ls src/render/dungeon_custom.ts
+# Expect: file exists (it is fork-owned; upstream merges never touch it)
 ```
+
+---
+
+#### `src/render/dungeon_custom.ts` -- fork-owned Dragon's Maw rendering (new file)
+
+This file is fork-owned and never touched by upstream merges. It follows the same
+pattern as `src/render/characters/custom/index.ts`. All Dragon's Maw-specific
+rendering logic lives here; `dungeon.ts` only imports/delegates.
+
+The file must export:
+- `CustomDungeonVariantId` -- type union of all custom variant ids (`'dragons_maw'`)
+- `CUSTOM_TORCH_COLORS` -- torch colour objects keyed by `CustomDungeonVariantId`
+- `CUSTOM_DUNGEON_LAYOUTS` -- layout objects keyed by `CustomDungeonVariantId`
+- `getCustomDungeonLayout(interior)` -- lookup helper used by `buildInterior`
+- `isCustomDungeonVariant(interior)` -- type guard
+- `CUSTOM_NO_BANNER_VARIANTS` -- set of variants that suppress side-wall banners
+- `customFloorKind(variant, t)` -- floor tile kind dispatch
+- `customWallKind(variant, t)` -- wall module kind dispatch
+- `customWallDressing(variant, add, layout)` -- wall dressing placement via callback
+
+If this file is accidentally lost after a merge, recreate it from the source in
+the repository or from the commit history. Do not inline dragons_maw logic into
+`dungeon.ts` -- that defeats the purpose of the fork-owned file.
+
+**Verification:** `ls src/render/dungeon_custom.ts` should return the file path.
 
 ---
 
