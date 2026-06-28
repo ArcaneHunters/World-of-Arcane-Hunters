@@ -36,9 +36,10 @@ conflict (not silently overwrite).
 | File | What it is |
 |---|---|
 | `docs/SETUP-DIGITALOCEAN.md` | Complete DigitalOcean + Supabase deployment guide |
-| `docs/SETUP-LOCAL-MAC.md` | Local Mac development setup guide |
+| `docs/SETUP-LOCAL-MAC.md` | Local Mac development setup guide (includes no-Docker/UTM VM path) |
 | `docs/SETUP-CLOUDFLARE.md` | Cloudflare DNS, proxy, WAF, and Turnstile guide |
 | `docs/MAINTAINING-FORK.md` | This file |
+| `.env.local.example` | Minimal env template for no-Docker local dev (UTM VM, plain Linux, CI); complements `.env.example` which targets Docker Compose |
 | `docs/CUSTOM-CONTENT.md` | Guide for adding custom game content via `src/sim/content/custom/` |
 | `docs/SETUP-LOCAL-SUPABASE.md` | Local development guide with local/production Supabase switching |
 | `FORK.md` | Fork rules — loaded by reference from `CLAUDE.md` |
