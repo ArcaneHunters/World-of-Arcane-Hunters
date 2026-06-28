@@ -1,14 +1,18 @@
 # Custom Content: Mobs
 
-Covers overworld mobs (`CUSTOM_MOBS`) and dungeon-only mobs (`CUSTOM_DUNGEON_MOBS`).
-Both use the same field shape; only the export name differs. To make overworld mobs
-appear in the world you also need a camp entry -- see [camps.md](./camps.md).
+Covers overworld mobs and dungeon-only mobs.
+Both use the same field shape. To make overworld mobs appear in the world you also
+need a camp entry -- see [camps.md](./camps.md).
+
+Content lives in the zone's `mobs.ts` file. For Dragon's Blight:
+- Overworld mobs: `src/sim/content/custom/dragons_blight/mobs.ts` (`DRAGONS_BLIGHT_MOBS`)
+- Dungeon mobs: `src/sim/content/custom/dragons_blight/mobs.ts` (`DRAGONS_BLIGHT_DUNGEON_MOBS`)
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
 ---
 
-## Fields (both CUSTOM_MOBS and CUSTOM_DUNGEON_MOBS)
+## Fields (both overworld and dungeon mobs)
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -50,11 +54,11 @@ the open world.
 
 ### Step-by-step
 
-1. Open `src/sim/content/custom/index.ts`.
-2. Add your mob inside the `CUSTOM_MOBS` object:
+1. Open `src/sim/content/custom/dragons_blight/mobs.ts` (or the equivalent file for your zone).
+2. Add your mob inside the `DRAGONS_BLIGHT_MOBS` object:
 
 ```typescript
-export const CUSTOM_MOBS: Record<string, MobTemplate> = {
+export const DRAGONS_BLIGHT_MOBS: Record<string, MobTemplate> = {
   custom_direwolf: {
     id: 'custom_direwolf',
     name: 'Dire Wolf',
@@ -79,12 +83,12 @@ export const CUSTOM_MOBS: Record<string, MobTemplate> = {
 };
 ```
 
-3. Add a camp entry in `CUSTOM_CAMPS` to place this mob in the world (see [camps.md](./camps.md)).
+3. Add a camp entry in `DRAGONS_BLIGHT_CAMPS` to place this mob in the world (see [camps.md](./camps.md)).
 4. Run `npm test` to verify no errors.
 
 ---
 
-## Dungeon mobs (CUSTOM_DUNGEON_MOBS)
+## Dungeon mobs
 
 Dungeon mobs exist only inside dungeon instances and never appear in the overworld.
 They use the same field shape as overworld mobs. Use `elite: true` or `boss: true`
@@ -93,11 +97,11 @@ for tougher encounters; dungeon mobs often have fixed levels (`hpPerLevel: 0`,
 
 ### Step-by-step
 
-1. Open `src/sim/content/custom/index.ts`.
-2. Add your mob inside the `CUSTOM_DUNGEON_MOBS` object:
+1. Open `src/sim/content/custom/dragons_blight/mobs.ts` (or the equivalent for your zone).
+2. Add your mob inside the `DRAGONS_BLIGHT_DUNGEON_MOBS` object:
 
 ```typescript
-export const CUSTOM_DUNGEON_MOBS: Record<string, MobTemplate> = {
+export const DRAGONS_BLIGHT_DUNGEON_MOBS: Record<string, MobTemplate> = {
   custom_crypt_guardian: {
     id: 'custom_crypt_guardian',
     name: 'Crypt Guardian',

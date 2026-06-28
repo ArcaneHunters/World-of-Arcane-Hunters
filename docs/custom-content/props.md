@@ -1,8 +1,10 @@
 # Custom Content: Props
 
 Props are buildings, wells, tents, fences, campfires, and other static objects
-that block movement and appear visually in the world. All custom props go in the
-`CUSTOM_PROPS` export in `src/sim/content/custom/index.ts`.
+that block movement and appear visually in the world. Props for Dragon's Blight go
+in `DRAGONS_BLIGHT_PROPS` in `src/sim/content/custom/dragons_blight/props.ts`.
+The assembly barrel (`src/sim/content/custom/index.ts`) merges these into
+`CUSTOM_PROPS` via `mergeCustomProps()`.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -99,11 +101,12 @@ mines: [
 
 1. Plan the layout of your zone hub on paper or in a grid. The hub `z` is the
    centre point; build outward from there.
-2. Populate the relevant prop arrays inside `CUSTOM_PROPS`. All unused arrays
-   must still be present as empty arrays:
+2. Open `src/sim/content/custom/dragons_blight/props.ts` and populate the relevant
+   prop arrays inside `DRAGONS_BLIGHT_PROPS`. All unused arrays must still be
+   present as empty arrays:
 
 ```typescript
-export const CUSTOM_PROPS: ZonePropsDef = {
+export const DRAGONS_BLIGHT_PROPS: ZonePropsDef = {
   buildings: [
     { kind: 'inn',   x: 0,   z: 2060, w: 12, d: 10, rot: 0 },
     { kind: 'house', x: -15, z: 2058, w: 8,  d: 7,  rot: 0 },

@@ -1,8 +1,11 @@
 # Custom Content: Quests
 
 Quests are given by NPCs and have kill, collect, or interact objectives.
-All custom quests go in `CUSTOM_QUESTS` and the ordering goes in
-`CUSTOM_QUEST_ORDER`, both exported from `src/sim/content/custom/index.ts`.
+Quests for Dragon's Blight go in `DRAGONS_BLIGHT_QUESTS` and the ordering in
+`DRAGONS_BLIGHT_QUEST_ORDER`, both in
+`src/sim/content/custom/dragons_blight/quests.ts`. The assembly barrel
+(`src/sim/content/custom/index.ts`) spreads these into `CUSTOM_QUESTS` and
+`CUSTOM_QUEST_ORDER`.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -84,7 +87,7 @@ List every custom quest ID in the order players should receive them. This contro
 level-gate progression and quest-log display order.
 
 ```typescript
-export const CUSTOM_QUEST_ORDER: string[] = [
+export const DRAGONS_BLIGHT_QUEST_ORDER: string[] = [
   'custom_hunt_wolves',    // first quest in the chain
   'custom_clear_crypt',    // unlocked after hunt_wolves via requiresQuest
 ];
@@ -94,11 +97,11 @@ export const CUSTOM_QUEST_ORDER: string[] = [
 
 ## Step-by-step
 
-1. Open `src/sim/content/custom/index.ts`.
-2. Add your quest inside `CUSTOM_QUESTS`:
+1. Open `src/sim/content/custom/dragons_blight/quests.ts`.
+2. Add your quest inside `DRAGONS_BLIGHT_QUESTS`:
 
 ```typescript
-export const CUSTOM_QUESTS: Record<string, QuestDef> = {
+export const DRAGONS_BLIGHT_QUESTS: Record<string, QuestDef> = {
   custom_hunt_wolves: {
     id: 'custom_hunt_wolves',
     name: 'A Wolf Problem',
@@ -126,5 +129,5 @@ export const CUSTOM_QUESTS: Record<string, QuestDef> = {
    (see [npcs.md](./npcs.md)).
 4. For a `collect` objective, verify the item exists in `CUSTOM_ITEMS` and the
    mob's `loot` entry has `questId` set (see [items.md](./items.md) and [mobs.md](./mobs.md)).
-5. Add the quest ID to `CUSTOM_QUEST_ORDER` in the correct chain position.
+5. Add the quest ID to `DRAGONS_BLIGHT_QUEST_ORDER` in the correct chain position.
 6. Run `npm test` to verify no errors.

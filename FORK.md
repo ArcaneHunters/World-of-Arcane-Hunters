@@ -137,6 +137,14 @@ ls docs/SETUP-DIGITALOCEAN.md docs/SETUP-LOCAL-MAC.md docs/SETUP-CLOUDFLARE.md \
    docs/custom-content/map-layout.md docs/custom-content/developer-commands.md \
    FORK.md \
    src/sim/content/custom/index.ts src/sim/content/custom/CLAUDE.md \
+   src/sim/content/custom/dragons_blight/items.ts \
+   src/sim/content/custom/dragons_blight/mobs.ts \
+   src/sim/content/custom/dragons_blight/npcs.ts \
+   src/sim/content/custom/dragons_blight/quests.ts \
+   src/sim/content/custom/dragons_blight/zones.ts \
+   src/sim/content/custom/dragons_blight/camps.ts \
+   src/sim/content/custom/dragons_blight/props.ts \
+   src/sim/content/custom/dragons_blight/dungeons.ts \
    src/render/characters/custom/index.ts src/render/characters/custom/CLAUDE.md \
    public/models/creatures/custom/.gitkeep \
    scripts/brand_inject.mjs src/ui/i18n.catalog/fork_brand.ts
@@ -388,6 +396,7 @@ A full list of all upstream file modifications with exact code snippets is in
 - `docs/custom-content/complete-example.md` -- complete zone template
 - `docs/custom-content/map-layout.md` -- step-by-step guide for relocating and adding camps, buildings, respawn points, and all prop types
 - `docs/custom-content/developer-commands.md` -- all dev/debug commands for local development
+- `src/sim/content/custom/dragons_blight/` -- per-zone content module (items, mobs, npcs, quests, zones, camps, props, dungeons)
 - `src/render/dungeon_custom.ts` -- fork-owned Dragon's Maw dungeon rendering: `CustomDungeonVariantId` type, torch colours, layout lookup, floor/wall kind tables, wall dressing (hooked into `dungeon.ts` via small delegates)
 - `src/render/characters/custom/index.ts` -- custom creature visual overrides (CUSTOM_VISUALS + CUSTOM_MOB_KEYS)
 - `src/render/characters/custom/CLAUDE.md` -- authoring guide for the custom visual directory

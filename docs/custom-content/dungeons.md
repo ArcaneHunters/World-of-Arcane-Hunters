@@ -1,9 +1,12 @@
 # Custom Content: Dungeons
 
 Dungeons are instanced interior areas entered through a portal in the overworld.
-Each instance has its own coordinate space. Custom dungeons go in `CUSTOM_DUNGEON_DEFS`
-and their exclusive mobs go in `CUSTOM_DUNGEON_MOBS`, both in
-`src/sim/content/custom/index.ts`.
+Each instance has its own coordinate space. Dungeons for Dragon's Blight go in
+`DRAGONS_BLIGHT_DUNGEON_DEFS` in `src/sim/content/custom/dragons_blight/dungeons.ts`.
+Dungeon-exclusive mobs go in `DRAGONS_BLIGHT_DUNGEON_MOBS` in
+`src/sim/content/custom/dragons_blight/mobs.ts`. The assembly barrel
+(`src/sim/content/custom/index.ts`) spreads these into `CUSTOM_DUNGEON_DEFS` and
+`CUSTOM_DUNGEON_MOBS`.
 
 For the dungeon mob field reference, see [mobs.md](./mobs.md).
 
@@ -104,15 +107,17 @@ four upstream files and must be documented in `docs/MAINTAINING-FORK.md`:
 
 ## Step-by-step
 
-1. Add the dungeon mobs to `CUSTOM_DUNGEON_MOBS` (see [mobs.md](./mobs.md)).
+1. Add the dungeon mobs to `DRAGONS_BLIGHT_DUNGEON_MOBS` in `dragons_blight/mobs.ts`
+   (see [mobs.md](./mobs.md)).
 2. Choose an index (10+ and unique per dungeon). Calculate the x-origin:
    `900 + index * 600`.
 3. Plan instance-local spawn coordinates (x offsets from 0, z starting near 20-40
    for the first encounter).
-4. Add the dungeon inside `CUSTOM_DUNGEON_DEFS`:
+4. Open `src/sim/content/custom/dragons_blight/dungeons.ts` and add the dungeon
+   inside `DRAGONS_BLIGHT_DUNGEON_DEFS`:
 
 ```typescript
-export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
+export const DRAGONS_BLIGHT_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_ashenmoor_crypt: {
     id: 'custom_ashenmoor_crypt',
     name: 'Ashenmoor Crypt',
@@ -135,7 +140,7 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
 ```
 
 5. Optionally place a prop (building or visual marker) near `doorPos` in
-   `CUSTOM_PROPS` to mark the dungeon entrance (see [props.md](./props.md)).
+   `DRAGONS_BLIGHT_PROPS` to mark the dungeon entrance (see [props.md](./props.md)).
 6. Run `npm test` to verify no errors.
 
 ---

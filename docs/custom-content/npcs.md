@@ -1,7 +1,8 @@
 # Custom Content: NPCs
 
 NPCs stand at a fixed world position and can offer quests, sell items, or both.
-All custom NPCs go in the `CUSTOM_NPCS` export in `src/sim/content/custom/index.ts`.
+Custom NPCs live in the zone's `npcs.ts` file. For Dragon's Blight:
+`src/sim/content/custom/dragons_blight/npcs.ts` (`DRAGONS_BLIGHT_NPCS`)
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -25,11 +26,11 @@ Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
 ## Step-by-step
 
-1. Open `src/sim/content/custom/index.ts`.
-2. Add your NPC inside the `CUSTOM_NPCS` object:
+1. Open `src/sim/content/custom/dragons_blight/npcs.ts` (or the equivalent for your zone).
+2. Add your NPC inside the `DRAGONS_BLIGHT_NPCS` object:
 
 ```typescript
-export const CUSTOM_NPCS: Record<string, NpcDef> = {
+export const DRAGONS_BLIGHT_NPCS: Record<string, NpcDef> = {
   // Quest giver NPC
   custom_ranger_quinn: {
     id: 'custom_ranger_quinn',

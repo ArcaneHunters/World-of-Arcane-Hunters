@@ -43,9 +43,17 @@ conflict (not silently overwrite).
 | `docs/CUSTOM-CONTENT.md` | Guide for adding custom game content via `src/sim/content/custom/` |
 | `docs/SETUP-LOCAL-SUPABASE.md` | Local development guide with local/production Supabase switching |
 | `FORK.md` | Fork rules — loaded by reference from `CLAUDE.md` |
-| `src/sim/content/custom/index.ts` | Custom game content scaffold (mobs, items, zones, quests, etc.) |
+| `src/sim/content/custom/index.ts` | Assembly barrel: imports from per-zone sub-modules and re-exports `CUSTOM_*` groups consumed by `data.ts` |
+| `src/sim/content/custom/dragons_blight/items.ts` | Dragon's Blight items (quest drops, rewards, epics) |
+| `src/sim/content/custom/dragons_blight/mobs.ts` | Dragon's Blight overworld mobs + dungeon mobs |
+| `src/sim/content/custom/dragons_blight/npcs.ts` | Dragon's Blight NPCs |
+| `src/sim/content/custom/dragons_blight/quests.ts` | Dragon's Blight quest chain + order |
+| `src/sim/content/custom/dragons_blight/zones.ts` | Dragon's Blight ZoneDef |
+| `src/sim/content/custom/dragons_blight/camps.ts` | Dragon's Blight mob spawn camps |
+| `src/sim/content/custom/dragons_blight/props.ts` | Dragon's Blight props, objects, and roads |
+| `src/sim/content/custom/dragons_blight/dungeons.ts` | Dragon's Maw dungeon definition |
 | `src/sim/content/custom/i18n_ids.ts` | Fork-owned i18n extension point: exports ID arrays and English names imported by upstream `world_entity_i18n.ts` and `items.ts` |
-| `src/sim/content/custom/CLAUDE.md` | Local authoring guide for the custom content directory |
+| `src/sim/content/custom/CLAUDE.md` | Local authoring guide for the custom content directory (updated to describe per-zone structure) |
 | `src/render/characters/custom/index.ts` | Custom creature visual overrides (CUSTOM_VISUALS + CUSTOM_MOB_KEYS) |
 | `src/render/characters/custom/CLAUDE.md` | Local authoring guide for the custom visual directory |
 | `public/models/creatures/custom/` | Fork-owned directory for custom GLB model files |

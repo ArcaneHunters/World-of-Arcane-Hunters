@@ -3,7 +3,10 @@
 Camps place overworld mobs at specific world coordinates. Each camp entry defines
 one mob type, a centre point, a scatter radius, and a spawn count.
 
-All camp entries go in the `CUSTOM_CAMPS` export in `src/sim/content/custom/index.ts`.
+Camp entries for Dragon's Blight go in `DRAGONS_BLIGHT_CAMPS` in
+`src/sim/content/custom/dragons_blight/camps.ts`. The assembly barrel
+(`src/sim/content/custom/index.ts`) spreads these into `CUSTOM_CAMPS`, which
+`data.ts` appends to the engine's full camp list.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -33,14 +36,15 @@ and changes the world layout. Always append new camps to the END of the array.
 
 1. Decide where in the world you want mobs to appear. For custom zones, use
    coordinates with `z` inside your zone's `zMin`/`zMax` band (see [zones.md](./zones.md)).
-2. Add camp entries at the BOTTOM of the `CUSTOM_CAMPS` array:
+2. Open `src/sim/content/custom/dragons_blight/camps.ts` and add entries at the
+   BOTTOM of `DRAGONS_BLIGHT_CAMPS`:
 
 ```typescript
-export const CUSTOM_CAMPS: CampDef[] = [
+export const DRAGONS_BLIGHT_CAMPS: CampDef[] = [
   // Existing camps stay here unchanged -- never reorder these
-  { mobId: 'custom_direwolf', center: { x: 30,  z: 2040 }, radius: 25, count: 6 },
+  { mobId: 'custom_ashwalker_drake', center: { x: 40, z: 930 }, radius: 25, count: 6 },
   // New camps go at the end
-  { mobId: 'custom_direwolf', center: { x: -40, z: 2090 }, radius: 20, count: 4 },
+  { mobId: 'custom_ashwalker_drake', center: { x: -30, z: 1220 }, radius: 20, count: 4 },
 ];
 ```
 
