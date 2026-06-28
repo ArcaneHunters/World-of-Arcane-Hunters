@@ -36,7 +36,9 @@ All props and camps must have a Z coordinate within your zone's `zMin`/`zMax` ba
 
 ## Creature camps
 
-Camps are defined in `CUSTOM_CAMPS` in `src/sim/content/custom/index.ts`.
+Camps are defined in `DRAGONS_BLIGHT_CAMPS` in
+`src/sim/content/custom/dragons_blight/camps.ts`. The assembly barrel assembles
+these into `CUSTOM_CAMPS` which the engine uses.
 
 ### CRITICAL: Append-only rule
 
@@ -71,10 +73,10 @@ After (moved west and slightly north):
 
 ### Adding a new camp
 
-Append at the END of `CUSTOM_CAMPS`. Never insert in the middle.
+Append at the END of `DRAGONS_BLIGHT_CAMPS`. Never insert in the middle.
 
 ```typescript
-export const CUSTOM_CAMPS: CampDef[] = [
+export const DRAGONS_BLIGHT_CAMPS: CampDef[] = [
   // ... existing camps stay exactly here, unchanged ...
 
   // NEW: extra ironpelt pack near the northern edge -- append at end
@@ -94,7 +96,8 @@ export const CUSTOM_CAMPS: CampDef[] = [
 ## Zone respawn point (graveyard)
 
 The zone respawn point determines where players appear after dying and selecting
-"Release Spirit". It is set on the `ZoneDef` object in `CUSTOM_ZONES`.
+"Release Spirit". It is set on the `ZoneDef` object in `DRAGONS_BLIGHT_ZONES`
+(`src/sim/content/custom/dragons_blight/zones.ts`).
 
 This is distinct from the decorative graveyard prop clusters (see "Decorative
 graveyards" below). The zone graveyard is a single coordinate; the prop
@@ -111,8 +114,8 @@ respawn inside a building.
 
 ### Relocating the respawn point
 
-Find the `graveyard` field in your zone's `ZoneDef` entry in `CUSTOM_ZONES` and
-update the coordinates:
+Find the `graveyard` field in your zone's `ZoneDef` entry in `DRAGONS_BLIGHT_ZONES`
+and update the coordinates:
 
 Before:
 ```typescript
@@ -135,7 +138,8 @@ graveyard: { x: -28, z: 965 },
 
 ## Buildings
 
-Buildings are defined in `CUSTOM_PROPS.buildings`. The renderer draws a 3D
+Buildings are defined in `DRAGONS_BLIGHT_PROPS.buildings`
+(`src/sim/content/custom/dragons_blight/props.ts`). The renderer draws a 3D
 structure; the sim creates a movement-blocking collision box.
 
 ### BuildingDef fields
@@ -151,7 +155,7 @@ structure; the sim creates a movement-blocking collision box.
 
 ### Relocating a building
 
-Find the building entry in `CUSTOM_PROPS.buildings` and change `x`/`z`:
+Find the building entry in `DRAGONS_BLIGHT_PROPS.buildings` and change `x`/`z`:
 
 Before:
 ```typescript
@@ -196,11 +200,11 @@ buildings: [
 ## Decorative graveyards
 
 Decorative graveyards are clusters of 6 headstones, placed as visual props in
-`CUSTOM_PROPS.graveyards`. They are separate from the zone respawn point.
+`DRAGONS_BLIGHT_PROPS.graveyards`. They are separate from the zone respawn point.
 
 ### Relocating a decorative graveyard
 
-Find the entry in `CUSTOM_PROPS.graveyards` and update the coordinates:
+Find the entry in `DRAGONS_BLIGHT_PROPS.graveyards` and update the coordinates:
 
 Before:
 ```typescript
@@ -233,7 +237,7 @@ these decorative clusters so the visual and the mechanic align.
 
 ## Wells
 
-Wells are decorative cylindrical structures in `CUSTOM_PROPS.wells`.
+Wells are decorative cylindrical structures in `DRAGONS_BLIGHT_PROPS.wells`.
 
 ### WellDef fields
 
@@ -266,7 +270,7 @@ wells: [
 
 ## Stalls
 
-Stalls are market tent structures in `CUSTOM_PROPS.stalls`.
+Stalls are market tent structures in `DRAGONS_BLIGHT_PROPS.stalls`.
 
 ### StallDef fields
 
@@ -300,7 +304,7 @@ stalls: [
 
 ## Tents
 
-Tents are in `CUSTOM_PROPS.tents`. Commonly used for outpost camps away from
+Tents are in `DRAGONS_BLIGHT_PROPS.tents`. Commonly used for outpost camps away from
 the main hub.
 
 ### TentDef fields
@@ -335,7 +339,7 @@ tents: [
 
 ## Campfires
 
-Campfires are defined as `[x, z]` pairs in `CUSTOM_PROPS.campfires`.
+Campfires are defined as `[x, z]` pairs in `DRAGONS_BLIGHT_PROPS.campfires`.
 
 ### Relocating a campfire
 
@@ -367,7 +371,7 @@ campfires: [
 
 ## Crates
 
-Crates are `[x, z]` pairs in `CUSTOM_PROPS.crates`. They are decorative
+Crates are `[x, z]` pairs in `DRAGONS_BLIGHT_PROPS.crates`. They are decorative
 scatter objects.
 
 ### Relocating crates
@@ -400,8 +404,8 @@ crates: [
 
 ## Fences
 
-Fences are line segments defined in `CUSTOM_PROPS.fences`. Each fence runs from
-point `(x1, z1)` to `(x2, z2)` and blocks movement along that line.
+Fences are line segments defined in `DRAGONS_BLIGHT_PROPS.fences`. Each fence runs
+from point `(x1, z1)` to `(x2, z2)` and blocks movement along that line.
 
 ### FenceDef fields
 
@@ -435,7 +439,7 @@ connected at their endpoints if you want a continuous barrier.
 
 ## Mud huts
 
-Mud huts are `[x, z]` pairs in `CUSTOM_PROPS.mudHuts`. Used for tribal or
+Mud huts are `[x, z]` pairs in `DRAGONS_BLIGHT_PROPS.mudHuts`. Used for tribal or
 primitive settlement aesthetics.
 
 ### Adding mud huts (new example -- none in Dragon's Blight currently)
@@ -464,7 +468,7 @@ mudHuts: [[60, 1060]],
 
 ## Ruin rings
 
-Ruin rings are circular formations of ruined columns in `CUSTOM_PROPS.ruinRings`.
+Ruin rings are circular formations of ruined columns in `DRAGONS_BLIGHT_PROPS.ruinRings`.
 
 ### RuinRingDef fields
 
@@ -498,7 +502,7 @@ ruinRings: [
 
 ## Mines
 
-Mines are entrance structures in `CUSTOM_PROPS.mines`. Used for mine-shaft
+Mines are entrance structures in `DRAGONS_BLIGHT_PROPS.mines`. Used for mine-shaft
 aesthetics.
 
 ### MineDef fields
@@ -519,12 +523,13 @@ mines: [
 
 ---
 
-## Full CUSTOM_PROPS example
+## Full DRAGONS_BLIGHT_PROPS example
 
-The complete structure showing all prop types together for Dragon's Blight:
+The complete structure showing all prop types together for Dragon's Blight
+(`src/sim/content/custom/dragons_blight/props.ts`):
 
 ```typescript
-export const CUSTOM_PROPS: ZonePropsDef = {
+export const DRAGONS_BLIGHT_PROPS: ZonePropsDef = {
   buildings: [
     { kind: 'inn',   x: 0,   z: 962, w: 12, d: 10, rot: 0 },
     { kind: 'house', x: -18, z: 958, w: 10, d: 8,  rot: 0 },

@@ -1,6 +1,7 @@
 # Custom Content: Items
 
-All custom items go in the `CUSTOM_ITEMS` export in `src/sim/content/custom/index.ts`.
+Custom items live in the zone's `items.ts` file. For Dragon's Blight:
+`src/sim/content/custom/dragons_blight/items.ts` (`DRAGONS_BLIGHT_ITEMS`)
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -67,11 +68,11 @@ elixir: {
 
 ## Step-by-step
 
-1. Open `src/sim/content/custom/index.ts`.
-2. Add your item inside the `CUSTOM_ITEMS` object:
+1. Open `src/sim/content/custom/dragons_blight/items.ts` (or the equivalent for your zone).
+2. Add your item inside the `DRAGONS_BLIGHT_ITEMS` object:
 
 ```typescript
-export const CUSTOM_ITEMS: Record<string, ItemDef> = {
+export const DRAGONS_BLIGHT_ITEMS: Record<string, ItemDef> = {
   custom_wolf_pelt: {
     id: 'custom_wolf_pelt',
     name: 'Wolf Pelt',

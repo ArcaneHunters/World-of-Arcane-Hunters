@@ -1,8 +1,10 @@
 # Custom Content: Roads
 
 Roads are polyline paths that paint a texture strip onto the terrain to visually
-indicate a trail or road between locations. All custom roads go in the `CUSTOM_ROADS`
-export in `src/sim/content/custom/index.ts`.
+indicate a trail or road between locations. Roads for Dragon's Blight go in
+`DRAGONS_BLIGHT_ROADS` in `src/sim/content/custom/dragons_blight/props.ts`.
+The assembly barrel (`src/sim/content/custom/index.ts`) spreads these into
+`CUSTOM_ROADS`.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -14,7 +16,7 @@ Each road is an array of `{x, z}` waypoints. The renderer connects them into a
 painted strip on the terrain. There is no limit on waypoints per road.
 
 ```typescript
-export const CUSTOM_ROADS: { x: number; z: number }[][] = [
+export const DRAGONS_BLIGHT_ROADS: { x: number; z: number }[][] = [
   // First road: a polyline from point A to point B
   [
     { x: 0, z: 2000 },
@@ -37,11 +39,12 @@ export const CUSTOM_ROADS: { x: number; z: number }[][] = [
 
 1. Plan the paths you want to mark on the terrain: hub-to-hub connections,
    dungeon approach paths, camp approach paths.
-2. Add road definitions inside `CUSTOM_ROADS`. Each inner array is one road
-   segment; add as many segments as needed:
+2. Open `src/sim/content/custom/dragons_blight/props.ts` and add road definitions
+   inside `DRAGONS_BLIGHT_ROADS`. Each inner array is one road segment; add as
+   many segments as needed:
 
 ```typescript
-export const CUSTOM_ROADS: { x: number; z: number }[][] = [
+export const DRAGONS_BLIGHT_ROADS: { x: number; z: number }[][] = [
   // Main road through the zone
   [
     { x: 0, z: 2000 },  // zone entry

@@ -1,8 +1,10 @@
 # Custom Content: Zones
 
 Zones are north-running world bands that define terrain, level range, hub settlement,
-and respawn point for an area. All custom zones go in the `CUSTOM_ZONES` export in
-`src/sim/content/custom/index.ts`.
+and respawn point for an area. Zone definitions for Dragon's Blight go in
+`DRAGONS_BLIGHT_ZONES` in `src/sim/content/custom/dragons_blight/zones.ts`.
+The assembly barrel (`src/sim/content/custom/index.ts`) spreads these into
+`CUSTOM_ZONES`, which `data.ts` appends to the engine's zone list.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -54,10 +56,11 @@ The radius is the settlement flat zone (terrain geometry flattens within it).
 
 1. Decide the z band. Start at 2000 for your first zone (see overlap avoidance below).
    If you add a second zone, start it at the first zone's `zMax`.
-2. Add your zone inside the `CUSTOM_ZONES` array:
+2. Open `src/sim/content/custom/dragons_blight/zones.ts` (or the equivalent for
+   your zone) and add your entry inside `DRAGONS_BLIGHT_ZONES`:
 
 ```typescript
-export const CUSTOM_ZONES: ZoneDef[] = [
+export const DRAGONS_BLIGHT_ZONES: ZoneDef[] = [
   {
     id: 'custom_ashenmoor',
     name: 'The Ashenmoor',
@@ -79,8 +82,8 @@ export const CUSTOM_ZONES: ZoneDef[] = [
 ];
 ```
 
-3. Add camp entries in `CUSTOM_CAMPS` with `center.z` inside this zone's band
-   (see [camps.md](./camps.md)).
+3. Add camp entries in `DRAGONS_BLIGHT_CAMPS` (or your zone's camps file) with
+   `center.z` inside this zone's band (see [camps.md](./camps.md)).
 4. Place NPCs near the hub `z` coordinate (see [npcs.md](./npcs.md)).
 5. Run `npm test` to verify no errors.
 
@@ -112,7 +115,7 @@ After any upstream merge, run:
 grep -n "zMin\|zMax" src/sim/content/zone*.ts src/sim/content/temple.ts 2>/dev/null
 
 # Then check your custom zones:
-grep -n "zMin\|zMax" src/sim/content/custom/index.ts
+grep -rn "zMin\|zMax" src/sim/content/custom/dragons_blight/zones.ts
 ```
 
 Compare the highest upstream `zMax` against the lowest custom `zMin`. If any upstream
@@ -120,19 +123,19 @@ Compare the highest upstream `zMax` against the lowest custom `zMin`. If any ups
 
 ### Fixing an overlap
 
-Only files you own need to change. Open `src/sim/content/custom/index.ts` and shift
-all custom z values northward by a consistent delta:
+Only files you own need to change. Open the per-zone files under
+`src/sim/content/custom/dragons_blight/` and shift all z values northward by a
+consistent delta:
 
-1. Increase every `CUSTOM_ZONES` entry's `zMin` and `zMax` to clear the new upstream
-   `zMax` by at least 100 units (e.g. upstream new zMax=1260, shift custom start to
-   1400 or higher -- or simply restore to 2000+ for a permanent safe margin).
-2. Update every `CUSTOM_CAMPS` entry: shift `center.z` by the same delta.
-3. Update `hub.z`, `graveyard.z`, all `lakes[].z`, and all `pois[].z` inside
-   `CUSTOM_ZONES` by the same delta.
-4. Update any `CUSTOM_NPCS` `pos.z`, `CUSTOM_ROADS` point z values, `CUSTOM_PROPS`
-   building/well/etc z values, and `CUSTOM_OBJECTS` `positions[].z` that were inside
-   the old z band.
+1. In `zones.ts`: increase `zMin` and `zMax` to clear the new upstream `zMax` by at
+   least 100 units (e.g. upstream new zMax=1260, shift custom start to 1400 or higher
+   -- or simply restore to 2000+ for a permanent safe margin).
+2. In `camps.ts`: shift every `center.z` by the same delta.
+3. In `zones.ts`: update `hub.z`, `graveyard.z`, all `lakes[].z`, and all `pois[].z`.
+4. In `npcs.ts`: shift every NPC `pos.z`. In `props.ts`: shift all building/well/
+   stall/etc z values. In `props.ts` `DRAGONS_BLIGHT_ROADS`: shift all point z
+   values. In `props.ts` `DRAGONS_BLIGHT_OBJECTS`: shift all `positions[].z`.
 5. Run `npm test` to confirm no errors.
 
-The fix is always safe: all custom content lives in the fork-owned `custom/index.ts`
-and no upstream merge can overwrite it.
+The fix is always safe: all custom content lives in fork-owned files under
+`src/sim/content/custom/` and no upstream merge can overwrite them.

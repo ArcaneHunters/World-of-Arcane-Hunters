@@ -2,8 +2,9 @@
 
 Ground objects are sparkle-animated interactables that players right-click to collect
 an item. They are used for quest items, crafting materials, and collectibles.
-All custom ground objects go in the `CUSTOM_OBJECTS` export in
-`src/sim/content/custom/index.ts`.
+Ground objects for Dragon's Blight go in `DRAGONS_BLIGHT_OBJECTS` in
+`src/sim/content/custom/dragons_blight/props.ts`. The assembly barrel
+(`src/sim/content/custom/index.ts`) spreads these into `CUSTOM_OBJECTS`.
 
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
@@ -21,12 +22,13 @@ Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
 ## Step-by-step
 
-1. Create the item the object grants in `CUSTOM_ITEMS` (see [items.md](./items.md)).
+1. Create the item the object grants in `DRAGONS_BLIGHT_ITEMS` (see [items.md](./items.md)).
    For quest items use `kind: 'quest'`.
-2. Add the ground object inside `CUSTOM_OBJECTS`:
+2. Open `src/sim/content/custom/dragons_blight/props.ts` and add the ground object
+   inside `DRAGONS_BLIGHT_OBJECTS`:
 
 ```typescript
-export const CUSTOM_OBJECTS: GroundObjectDef[] = [
+export const DRAGONS_BLIGHT_OBJECTS: GroundObjectDef[] = [
   {
     itemId: 'custom_emberbloom',
     name: 'Emberbloom Flower',

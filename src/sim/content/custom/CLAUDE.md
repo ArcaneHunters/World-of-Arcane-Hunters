@@ -10,25 +10,64 @@ quests, NPCs, and dungeons. It is the ONLY place to add content.
 **Never add custom content to the upstream files** (`zone1.ts`, `classes.ts`,
 `dungeons.ts`, etc.). Always add it here so upstream merges cannot conflict.
 
-## How it works
+## Structure
 
-`index.ts` exports named constant groups (`CUSTOM_MOBS`, `CUSTOM_ITEMS`, etc.).
-`src/sim/data.ts` imports and appends these to the engine's flat lookup tables.
-The engine (`sim.ts`) sees your content identically to upstream content.
+Content is organized into per-zone subdirectories:
 
-## Adding content
+```
+custom/
+├── index.ts              -- barrel: assembles CUSTOM_* from zone sub-modules
+├── i18n_ids.ts           -- fork-owned i18n ID extension point
+├── CLAUDE.md             -- this file
+└── dragons_blight/       -- Zone 4 (zMin:900, zMax:1260, levels 18-20)
+    ├── items.ts          -- DRAGONS_BLIGHT_ITEMS
+    ├── mobs.ts           -- DRAGONS_BLIGHT_MOBS + DRAGONS_BLIGHT_DUNGEON_MOBS
+    ├── npcs.ts           -- DRAGONS_BLIGHT_NPCS
+    ├── quests.ts         -- DRAGONS_BLIGHT_QUESTS + DRAGONS_BLIGHT_QUEST_ORDER
+    ├── zones.ts          -- DRAGONS_BLIGHT_ZONES
+    ├── camps.ts          -- DRAGONS_BLIGHT_CAMPS
+    ├── props.ts          -- DRAGONS_BLIGHT_PROPS + DRAGONS_BLIGHT_OBJECTS + DRAGONS_BLIGHT_ROADS
+    └── dungeons.ts       -- DRAGONS_BLIGHT_DUNGEON_DEFS
+```
 
-Full step-by-step guides, field references, and examples for every content type
-live in `docs/custom-content/`. Links are provided in each section below.
+`index.ts` is the assembly barrel: it imports each zone's exports and spreads them
+into the `CUSTOM_*` constants that `src/sim/data.ts` imports. The engine sees your
+content identically to upstream content.
+
+## Adding a new zone
+
+1. Create a new subdirectory: `custom/<zone_slug>/`
+2. Copy the file set from `dragons_blight/` as a template.
+3. In each file, rename the export prefix (e.g. `DRAGONS_BLIGHT_` -> `MY_ZONE_`).
+4. In `index.ts`, import the new zone's exports and spread them into each CUSTOM_* group.
+5. For CUSTOM_CAMPS, append the new zone's camps AFTER all existing entries (see Determinism below).
+6. For CUSTOM_PROPS, add the new zone's props to the `mergeCustomProps(...)` call.
+7. Update `i18n_ids.ts` with the new zone's entity IDs.
+
+## Adding content to Dragon's Blight
+
+Edit the relevant file in `dragons_blight/`:
+
+| Content | File |
+|---|---|
+| Overworld mobs | `dragons_blight/mobs.ts` (`DRAGONS_BLIGHT_MOBS`) |
+| Dungeon-only mobs | `dragons_blight/mobs.ts` (`DRAGONS_BLIGHT_DUNGEON_MOBS`) |
+| Items (quest, armor, weapons) | `dragons_blight/items.ts` |
+| NPCs | `dragons_blight/npcs.ts` |
+| Quests + order | `dragons_blight/quests.ts` |
+| Zone definition | `dragons_blight/zones.ts` |
+| Camps (spawn points) | `dragons_blight/camps.ts` |
+| Props, objects, roads | `dragons_blight/props.ts` |
+| Dungeon defs | `dragons_blight/dungeons.ts` |
 
 ### New mobs / creatures
-Add to `CUSTOM_MOBS` in `index.ts`. Each entry is a `MobTemplate` from `../types`.
-Dungeon-only mobs go in `CUSTOM_DUNGEON_MOBS` (same shape, never appear overworld).
+
+Add to `DRAGONS_BLIGHT_MOBS` in `dragons_blight/mobs.ts`. Dungeon-only mobs go
+in `DRAGONS_BLIGHT_DUNGEON_MOBS`.
 
 ID rules:
-- Use a descriptive snake_case id with a `custom_` prefix: `custom_direwolf`
-- The prefix prevents future upstream names from colliding with yours
-- The id must match the `id` field in the `MobTemplate` record
+- Use `custom_` prefix: `custom_direwolf` (prevents upstream name collisions)
+- The id must match the `id` field in the record
 
 ```typescript
 custom_direwolf: {
@@ -47,92 +86,63 @@ custom_direwolf: {
 },
 ```
 
-To make mobs spawn in the world, add a `CampDef` entry to `CUSTOM_CAMPS`.
+To make mobs spawn in the world, add a `CampDef` entry to `DRAGONS_BLIGHT_CAMPS`
+in `dragons_blight/camps.ts`.
 Full guide: `docs/custom-content/mobs.md` -- `docs/custom-content/camps.md`
 
 ### New items
-Add to `CUSTOM_ITEMS` in `index.ts`. Each entry is an `ItemDef` from `../types`.
-Use `custom_` prefix. Items used only as quest objectives can have `kind: 'quest'`.
+
+Add to `DRAGONS_BLIGHT_ITEMS` in `dragons_blight/items.ts`. Use `custom_` prefix.
 Full guide: `docs/custom-content/items.md`
 
 ### New NPCs
-Add to `CUSTOM_NPCS` in `index.ts`. Each entry is a `NpcDef` from `../types`.
-NPCs stand at a fixed world position and can give quests, sell items, or both.
+
+Add to `DRAGONS_BLIGHT_NPCS` in `dragons_blight/npcs.ts`.
 Full guide: `docs/custom-content/npcs.md`
 
 ### New zones / maps
-Add a `ZoneDef` to `CUSTOM_ZONES`. Zones are a north-running strip:
-- `zMin`/`zMax` define the z-axis band (must be higher than the last upstream zone)
-- `biome` controls terrain color and texture (`'vale'`, `'marsh'`, `'peaks'`)
-- `hub` is the main settlement (terrain flattens there)
-- `graveyard` is where players respawn in this zone
+
+Add a `ZoneDef` to `DRAGONS_BLIGHT_ZONES` in `dragons_blight/zones.ts` OR create
+a new zone subdirectory for a completely separate zone.
 
 **Upstream zone boundaries (verified from source):**
 - Zone 1 (Eastbrook Vale): zMin -180, zMax 180
 - Zone 2 (Mirefen Marsh): zMin 180, zMax 540
 - Zone 3 (Thornpeak Heights): zMin 540, zMax 900
 
-**Start custom zones immediately after the last upstream zone.** The game's zone
+**Custom zone starts immediately after the last upstream zone.** The game's zone
 system requires strict contiguity (`tests/progression.test.ts` checks
-`ZONES[i].zMax === ZONES[i+1].zMin`), so a gap between Zone 3 (zMax 900) and your
-custom zone will fail the test. Dragon's Blight therefore starts at `zMin: 900`.
+`ZONES[i].zMax === ZONES[i+1].zMin`). Dragon's Blight therefore starts at `zMin: 900`.
 
-**After any upstream merge:** if upstream adds a new zone (e.g. Zone 4 at 900-1260),
-CUSTOM_ZONES will need their zMin/zMax shifted upward and all content z-positions
-updated to match. See `docs/custom-content/zones.md` and `docs/MAINTAINING-FORK.md`
-for the overlap detection and recovery procedure.
-
-Add mob spawn points to `CUSTOM_CAMPS` with `center.z` inside your zone's band.
 Full guide: `docs/custom-content/zones.md`
 
 ### New quests
-Add to `CUSTOM_QUESTS` (a `QuestDef`) and list the id in `CUSTOM_QUEST_ORDER`
-(determines quest-log order and level-gate progression).
+
+Add to `DRAGONS_BLIGHT_QUESTS` and include the id in `DRAGONS_BLIGHT_QUEST_ORDER`
+in `dragons_blight/quests.ts`.
 Full guide: `docs/custom-content/quests.md`
 
 ### New dungeons
-Add a `DungeonDef` to `CUSTOM_DUNGEON_DEFS` and any dungeon-only mobs to
-`CUSTOM_DUNGEON_MOBS`.
+
+Add a `DungeonDef` to `DRAGONS_BLIGHT_DUNGEON_DEFS` in `dragons_blight/dungeons.ts`
+and add dungeon-only mobs to `DRAGONS_BLIGHT_DUNGEON_MOBS` in `dragons_blight/mobs.ts`.
 
 Dungeon index rules:
 - Upstream uses indices 0-5: Hollow Crypt=0, Sunken Bastion=1, Gravewyrm=2,
   Drowned Temple=3, Nythraxis Crypt=4, Nythraxis Raid Arena=5
 - **Custom dungeons: use index 6 only** (the single remaining valid slot)
 - The x-origin is `900 + index * 600` -- index 6 = x: 4500
-- **Critical:** x-origin MUST be below `ARENA_X_MIN`. This fork shifts ARENA_X from
-  upstream's 4200 to 4700 (see `docs/MAINTAINING-FORK.md`) specifically to open index 6.
-  Without that change, `dungeonAt()` returns null for x >= 4200, causing a black void.
-
-**The `interior` field is critical.** It must be one of the registered interior
-types -- each one maps to a specific room geometry AND collision set. Using a
-wrong or unregistered string silently falls back to the crypt geometry with crypt
-colliders, which won't match your spawn positions and can make mobs clip into walls
-or appear to float. Available types:
-
-| `interior` | Geometry | Use for |
-|---|---|---|
-| `'crypt'` | Single nave, z -19..112 | Classic undead dungeon |
-| `'sanctum'` | Three chambers, waists at z 67/115 | Humanoid cult stronghold |
-| `'temple'` | Two chambers, waist at z 66 | Flooded or ruin temple |
-| `'nythraxis'` | Wide raid room (230u), z -19..126 | Raid boss encounters |
-| `'dragons_maw'` | Single open lair, z -19..150, no waists | Dragon or cave lair |
-
-**Verify spawn x offsets don't overlap waist colliders.** The `'sanctum'` and
-`'temple'` interiors have narrow waist walls (OBBs) that block most of the x axis
-at specific z values. See `docs/custom-content/dungeons.md` for the exact ranges.
-
-If you need a new interior type, you must register it in four upstream files
-(types.ts union, dungeon_layout.ts layout, dungeon.ts renderer, colliders.ts)
-and document it in `docs/MAINTAINING-FORK.md`. See `docs/custom-content/dungeons.md`
-for the step-by-step procedure.
+- **Critical:** x-origin MUST be below `ARENA_X_MIN` (4700 in this fork).
 
 Full guide: `docs/custom-content/dungeons.md`
 
 ### Props and static world objects
-Add buildings, wells, crates, etc. to `CUSTOM_PROPS` (a `ZonePropsDef`).
-Add interactable ground objects (herbs, ore) to `CUSTOM_OBJECTS`.
-Add terrain road markings to `CUSTOM_ROADS`.
-Full guides: `docs/custom-content/props.md` -- `docs/custom-content/ground-objects.md` -- `docs/custom-content/roads.md`
+
+Add buildings, wells, crates, etc. to `DRAGONS_BLIGHT_PROPS`.
+Add interactable ground objects to `DRAGONS_BLIGHT_OBJECTS`.
+Add terrain road markings to `DRAGONS_BLIGHT_ROADS`.
+All are in `dragons_blight/props.ts`.
+Full guides: `docs/custom-content/props.md` -- `docs/custom-content/map-layout.md`
 
 ## What you CANNOT add without touching upstream files
 
@@ -144,42 +154,36 @@ Full guides: `docs/custom-content/props.md` -- `docs/custom-content/ground-objec
 | Quests | Yes | None |
 | NPCs | Yes | None |
 | Dungeons | Yes | None |
-| **New player classes** | **No** | `src/sim/types.ts` (the `PlayerClass` union type must be extended) |
-
-Adding a new player CLASS requires extending `PlayerClass` in `src/sim/types.ts`
-(an upstream file) because `CLASSES: Record<PlayerClass, ClassDef>` is statically
-typed to the union. Document any such change in `docs/MAINTAINING-FORK.md`.
+| **New player classes** | **No** | `src/sim/types.ts` (the `PlayerClass` union type) |
 
 ## Determinism
 
-Content is appended LAST in every table (`data.ts` handles this). Do not reorder
-existing entries in `CUSTOM_CAMPS` -- each camp draws world-gen RNG in array order,
-so insertion before an existing camp shifts all later camps' spawn positions.
+Camps are appended LAST in every table (`data.ts` handles this). Do not reorder
+existing entries in `DRAGONS_BLIGHT_CAMPS` or any zone's camps array -- each camp
+draws world-gen RNG in array order, so insertion before an existing camp shifts all
+later camps' spawn positions.
+
+When adding a second zone, append its camps AFTER Dragon's Blight camps in `index.ts`:
+```typescript
+export const CUSTOM_CAMPS: CampDef[] = [
+  ...DRAGONS_BLIGHT_CAMPS,   // existing -- never reorder within this
+  ...NEXT_ZONE_CAMPS,        // new zone appended after
+];
+```
 
 All mob IDs, item IDs, quest IDs referenced in your content must exist in the tables
-before the sim starts -- cross-reference within the same `index.ts` is fine.
+before the sim starts.
 
 ## i18n wiring for new content
 
-Custom content requires adding IDs to `src/sim/content/custom/i18n_ids.ts`,
-the fork-owned extension point. The two upstream i18n files (`world_entity_i18n.ts`
-and `items.ts`) import from it via spreads, so upstream merges to those files will
-never wipe your custom entries.
+Custom content requires adding IDs to `src/sim/content/custom/i18n_ids.ts`:
 
 1. **Mobs, NPCs, quests, zones, dungeons:** add their IDs to the matching
    `CUSTOM_MOB_IDS` / `CUSTOM_NPC_IDS` / `CUSTOM_QUEST_IDS` / `CUSTOM_ZONE_IDS` /
-   `CUSTOM_DUNGEON_IDS` arrays in `src/sim/content/custom/i18n_ids.ts`.
-   The build auto-generates English from the sim data; you do not need to touch
-   locale files (they are English-filled at PR tier and translated by the
-   maintainer at release tier).
+   `CUSTOM_DUNGEON_IDS` arrays.
 
-2. **Items in `CUSTOM_ITEMS`:** add each item ID to `CUSTOM_ITEM_ENTITY_IDS` and
-   its English name (in the matching position) to `CUSTOM_ITEM_EN_NAMES` in
-   `src/sim/content/custom/i18n_ids.ts`. The arrays are positional: index N of
-   `CUSTOM_ITEM_EN_NAMES` is the English display name for index N of
-   `CUSTOM_ITEM_ENTITY_IDS`. **Never edit `src/ui/world_entity_i18n.ts` or
-   `src/ui/i18n.catalog/items.ts` directly** -- those upstream files import from
-   `i18n_ids.ts` via spreads and will be overwritten on merge.
+2. **Items:** add each item ID to `CUSTOM_ITEM_ENTITY_IDS` and its English name
+   (in the matching position) to `CUSTOM_ITEM_EN_NAMES`. The arrays are positional.
 
 After editing `i18n_ids.ts`, regenerate and verify:
 ```bash
@@ -187,45 +191,21 @@ npm run i18n:gen && node scripts/i18n_resolved_hash.mjs --write
 npx vitest run tests/i18n_status_registry.test.ts tests/i18n_resolved_equivalence.test.ts
 ```
 
-## Determinism and secondary RNG isolation
+## Secondary RNG isolation
 
-`src/sim/sim.ts` initializes all mob spawn positions during construction. To avoid
-the custom camps shifting the main RNG stream (which would break parity tests and
-any test that depends on downstream RNG state), custom camp mob initialization uses
-a secondary RNG instance:
-
-```typescript
-const customCampSet = new Set(CUSTOM_CAMPS);
-const customRng = new Rng(this.cfg.seed ^ 0x464f524b);
-for (const camp of CAMPS) {
-  const rng = customCampSet.has(camp) ? customRng : this.rng;
-  // ... draws ang, r, level, facing, wanderTimer from rng
-}
-```
-
-This means:
-- Adding more `CUSTOM_CAMPS` entries does NOT affect `this.rng` (the main stream).
-- The parity golden traces still need regeneration after adding camps (the secondary
-  stream affects entity positions and IDs, which are part of the snapshot).
-- `tests/delves.test.ts` uses the upstream `rollFor(42)` value; adding camps will
-  NOT change this value (the fix is already in place).
-
-## Testing
-
-After adding content:
-```bash
-npm test                                 # run the full test suite
-npx vitest run tests/sim.test.ts         # focused sim test
-```
-
-**Adding camps to `CUSTOM_CAMPS`** draws from the secondary `customRng` stream, so the
-main RNG is NOT affected. However, parity golden traces must still be regenerated because
-new entity IDs and positions appear in the snapshots:
+`src/sim/sim.ts` initializes mob spawn positions using a secondary RNG instance for
+`CUSTOM_CAMPS` (seeded with `this.cfg.seed ^ 0x464f524b`) to avoid shifting the main
+RNG stream. Adding more entries to any zone's camps does NOT affect `this.rng`.
+Parity golden traces still need regeneration after adding camps.
 
 ```bash
 UPDATE_PARITY=1 npx vitest run tests/parity
-# Then re-run npm test to confirm all pass.
+npm test
 ```
 
-Content that references non-existent IDs (a mob's `loot` itemId, a quest's
-`targetMobId`) will cause runtime errors when the sim tries to resolve them.
+## Testing
+
+```bash
+npm test                            # full test suite
+npx vitest run tests/sim.test.ts   # focused sim test
+```

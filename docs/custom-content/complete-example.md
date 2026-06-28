@@ -4,27 +4,41 @@ This ties all content types together into one coherent custom zone with mobs,
 NPCs, quests, camps, props, roads, and a dungeon. Copy and adapt this as a
 starting template for your first custom zone.
 
+The example creates a zone called "The Ashenmoor" with its own subdirectory:
+`src/sim/content/custom/ashenmoor/`
+
 Back to index: [ADDING-CUSTOM-CONTENT.md](./ADDING-CUSTOM-CONTENT.md)
 
 ---
 
+## File layout
+
+```
+src/sim/content/custom/
+  index.ts            <- assembly barrel (update this to import your zone)
+  ashenmoor/
+    items.ts
+    mobs.ts
+    npcs.ts
+    quests.ts
+    zones.ts
+    camps.ts
+    props.ts
+    dungeons.ts
+```
+
+---
+
+## ashenmoor/items.ts
+
 ```typescript
-// src/sim/content/custom/index.ts
+import type { ItemDef } from '../../../types';
 
-import type {
-  CampDef, DungeonDef, GroundObjectDef, ItemDef, MobTemplate, NpcDef,
-  QuestDef, ZoneDef, ZonePropsDef,
-} from '../../types';
-
-// ---------------------------------------------------------------------------
-// Items
-// ---------------------------------------------------------------------------
-export const CUSTOM_ITEMS: Record<string, ItemDef> = {
+export const ASHENMOOR_ITEMS: Record<string, ItemDef> = {
   custom_wolf_pelt: {
     id: 'custom_wolf_pelt',
     name: 'Wolf Pelt',
     kind: 'quest',
-    slot: undefined,
     quality: 'common',
     sellValue: 0,
     noVendorSell: true,
@@ -49,11 +63,16 @@ export const CUSTOM_ITEMS: Record<string, ItemDef> = {
     quality: 'common',
   },
 };
+```
 
-// ---------------------------------------------------------------------------
-// Overworld mobs
-// ---------------------------------------------------------------------------
-export const CUSTOM_MOBS: Record<string, MobTemplate> = {
+---
+
+## ashenmoor/mobs.ts
+
+```typescript
+import type { MobTemplate } from '../../../types';
+
+export const ASHENMOOR_MOBS: Record<string, MobTemplate> = {
   custom_direwolf: {
     id: 'custom_direwolf',
     name: 'Dire Wolf',
@@ -73,10 +92,7 @@ export const CUSTOM_MOBS: Record<string, MobTemplate> = {
   },
 };
 
-// ---------------------------------------------------------------------------
-// Dungeon mobs
-// ---------------------------------------------------------------------------
-export const CUSTOM_DUNGEON_MOBS: Record<string, MobTemplate> = {
+export const ASHENMOOR_DUNGEON_MOBS: Record<string, MobTemplate> = {
   custom_crypt_guardian: {
     id: 'custom_crypt_guardian',
     name: 'Crypt Guardian',
@@ -96,11 +112,16 @@ export const CUSTOM_DUNGEON_MOBS: Record<string, MobTemplate> = {
     scale: 1.4, color: 0x777799,
   },
 };
+```
 
-// ---------------------------------------------------------------------------
-// NPCs
-// ---------------------------------------------------------------------------
-export const CUSTOM_NPCS: Record<string, NpcDef> = {
+---
+
+## ashenmoor/npcs.ts
+
+```typescript
+import type { NpcDef } from '../../../types';
+
+export const ASHENMOOR_NPCS: Record<string, NpcDef> = {
   custom_ranger_quinn: {
     id: 'custom_ranger_quinn',
     name: 'Ranger Quinn',
@@ -123,11 +144,16 @@ export const CUSTOM_NPCS: Record<string, NpcDef> = {
     greeting: 'Stock up before you head out.',
   },
 };
+```
 
-// ---------------------------------------------------------------------------
-// Quests
-// ---------------------------------------------------------------------------
-export const CUSTOM_QUESTS: Record<string, QuestDef> = {
+---
+
+## ashenmoor/quests.ts
+
+```typescript
+import type { QuestDef } from '../../../types';
+
+export const ASHENMOOR_QUESTS: Record<string, QuestDef> = {
   custom_hunt_wolves: {
     id: 'custom_hunt_wolves',
     name: 'A Wolf Problem',
@@ -150,39 +176,59 @@ export const CUSTOM_QUESTS: Record<string, QuestDef> = {
   },
 };
 
-export const CUSTOM_QUEST_ORDER: string[] = [
+export const ASHENMOOR_QUEST_ORDER: string[] = [
   'custom_hunt_wolves',
 ];
+```
 
-// ---------------------------------------------------------------------------
-// Camps -- ALWAYS append new camps at the end; never reorder existing entries
-// ---------------------------------------------------------------------------
-export const CUSTOM_CAMPS: CampDef[] = [
+---
+
+## ashenmoor/zones.ts
+
+```typescript
+import type { ZoneDef } from '../../../types';
+
+export const ASHENMOOR_ZONES: ZoneDef[] = [
+  {
+    id: 'custom_ashenmoor',
+    name: 'The Ashenmoor',
+    zMin: 2000, zMax: 2360,
+    levelRange: [18, 25],
+    biome: 'marsh',
+    hub: { x: 0, z: 2060, radius: 30, name: 'Ashenmoor Camp' },
+    graveyard: { x: -10, z: 2070 },
+    lakes: [{ x: 60, z: 2120, radius: 40 }],
+    pois: [
+      { x: 0, z: 2060, label: 'Ashenmoor Camp' },
+    ],
+    welcome: 'The Ashenmoor stretches before you, bleak and fog-shrouded.',
+  },
+];
+```
+
+---
+
+## ashenmoor/camps.ts
+
+```typescript
+import type { CampDef } from '../../../types';
+
+// IMPORTANT: Never reorder or insert camps before existing entries.
+// Each camp draws from the secondary customRng stream in array position order.
+export const ASHENMOOR_CAMPS: CampDef[] = [
   { mobId: 'custom_direwolf', center: { x: 30,  z: 2040 }, radius: 25, count: 6 },
   { mobId: 'custom_direwolf', center: { x: -40, z: 2090 }, radius: 20, count: 4 },
 ];
+```
 
-// ---------------------------------------------------------------------------
-// Ground objects
-// ---------------------------------------------------------------------------
-export const CUSTOM_OBJECTS: GroundObjectDef[] = [];
+---
 
-// ---------------------------------------------------------------------------
-// Roads
-// ---------------------------------------------------------------------------
-export const CUSTOM_ROADS: { x: number; z: number }[][] = [
-  // Main approach road to hub
-  [
-    { x: 0, z: 2000 },
-    { x: 1, z: 2030 },
-    { x: 0, z: 2060 },
-  ],
-];
+## ashenmoor/props.ts
 
-// ---------------------------------------------------------------------------
-// Props
-// ---------------------------------------------------------------------------
-export const CUSTOM_PROPS: ZonePropsDef = {
+```typescript
+import type { GroundObjectDef, ZonePropsDef } from '../../../types';
+
+export const ASHENMOOR_PROPS: ZonePropsDef = {
   buildings: [
     { kind: 'inn', x: 0, z: 2060, w: 12, d: 10, rot: 0 },
   ],
@@ -199,30 +245,25 @@ export const CUSTOM_PROPS: ZonePropsDef = {
   graveyards: [],
 };
 
-// ---------------------------------------------------------------------------
-// Zones
-// ---------------------------------------------------------------------------
-export const CUSTOM_ZONES: ZoneDef[] = [
-  {
-    id: 'custom_ashenmoor',
-    name: 'The Ashenmoor',
-    zMin: 2000, zMax: 2360,
-    levelRange: [18, 25],
-    biome: 'marsh',
-    hub: { x: 0, z: 2060, radius: 30, name: 'Ashenmoor Camp' },
-    graveyard: { x: -10, z: 2070 },
-    lakes: [{ x: 60, z: 2120, radius: 40 }],
-    pois: [
-      { x: 0, z: 2060, label: 'Ashenmoor Camp' },
-    ],
-    welcome: 'The Ashenmoor stretches before you, bleak and fog-shrouded.',
-  },
-];
+export const ASHENMOOR_OBJECTS: GroundObjectDef[] = [];
 
-// ---------------------------------------------------------------------------
-// Dungeons
-// ---------------------------------------------------------------------------
-export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
+export const ASHENMOOR_ROADS: { x: number; z: number }[][] = [
+  [
+    { x: 0, z: 2000 },
+    { x: 1, z: 2030 },
+    { x: 0, z: 2060 },
+  ],
+];
+```
+
+---
+
+## ashenmoor/dungeons.ts
+
+```typescript
+import type { DungeonDef } from '../../../types';
+
+export const ASHENMOOR_DUNGEON_DEFS: Record<string, DungeonDef> = {
   custom_ashenmoor_crypt: {
     id: 'custom_ashenmoor_crypt',
     name: 'Ashenmoor Crypt',
@@ -243,3 +284,42 @@ export const CUSTOM_DUNGEON_DEFS: Record<string, DungeonDef> = {
   },
 };
 ```
+
+---
+
+## Wiring into index.ts
+
+After creating the zone subdirectory, register the new zone in the assembly barrel:
+
+```typescript
+// src/sim/content/custom/index.ts  (excerpt showing where to add)
+
+import { ASHENMOOR_ITEMS } from './ashenmoor/items';
+import { ASHENMOOR_MOBS, ASHENMOOR_DUNGEON_MOBS } from './ashenmoor/mobs';
+import { ASHENMOOR_NPCS } from './ashenmoor/npcs';
+import { ASHENMOOR_QUESTS, ASHENMOOR_QUEST_ORDER } from './ashenmoor/quests';
+import { ASHENMOOR_ZONES } from './ashenmoor/zones';
+import { ASHENMOOR_CAMPS } from './ashenmoor/camps';
+import { ASHENMOOR_PROPS, ASHENMOOR_OBJECTS, ASHENMOOR_ROADS } from './ashenmoor/props';
+import { ASHENMOOR_DUNGEON_DEFS } from './ashenmoor/dungeons';
+
+// Spread into the CUSTOM_* exports:
+export const CUSTOM_ITEMS = { ...DRAGONS_BLIGHT_ITEMS, ...ASHENMOOR_ITEMS };
+export const CUSTOM_MOBS  = { ...DRAGONS_BLIGHT_MOBS,  ...ASHENMOOR_MOBS  };
+// ... and so on for each export
+
+// For CUSTOM_CAMPS: Dragon's Blight camps MUST come first (RNG draw order)
+export const CUSTOM_CAMPS: CampDef[] = [
+  ...DRAGONS_BLIGHT_CAMPS,
+  ...ASHENMOOR_CAMPS,        // new zone appended after existing zone(s)
+];
+
+// For CUSTOM_PROPS: add the new zone to mergeCustomProps
+export const CUSTOM_PROPS: ZonePropsDef = mergeCustomProps(
+  DRAGONS_BLIGHT_PROPS,
+  ASHENMOOR_PROPS,
+);
+```
+
+The external contract of `index.ts` (the `CUSTOM_*` exports) is unchanged;
+`data.ts` and `sim.ts` see the same names regardless of how many zones exist.
