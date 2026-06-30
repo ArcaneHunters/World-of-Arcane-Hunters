@@ -9845,8 +9845,10 @@ export class Hud {
     )}</div>`;
     if (this.reportHooks && pid !== this.sim.playerId)
       html += `<div class="ctx-item" data-act="report">${esc(t('hud.chat.context.report'))}</div>`;
-    if (isLeader && isMember && pid !== this.sim.playerId)
+    if (isLeader && isMember && pid !== this.sim.playerId) {
+      html += `<div class="ctx-item" data-act="promote">${esc(t('hudChrome.party.promoteLeader'))}</div>`;
       html += `<div class="ctx-item" data-act="kick">${esc(t('hud.chat.context.removeParty'))}</div>`;
+    }
     html += `<div class="ctx-item" data-act="close">${esc(t('hud.chat.context.cancel'))}</div>`;
     el.innerHTML = html;
     hydratePortraits(el);
@@ -9865,6 +9867,7 @@ export class Hud {
           ignored ? this.sim.blockRemove(name) : this.sim.blockAdd(name);
         } else this.toggleChatIgnore(name);
       } else if (act === 'report') this.openReportWindow({ pid, name });
+      else if (act === 'promote') this.sim.partyPromote(pid);
       else if (act === 'kick') this.sim.partyKick(pid);
     });
   }

@@ -206,6 +206,22 @@ describe('master loot', () => {
     expect(sim.partyInfo?.master.enabled).toBe(true);
   });
 
+  it('master loot pinned to the leader follows a promote-to-leader handoff', () => {
+    const sim = makeSim();
+    const { a, b, mob } = partyOnCorpse(sim, PREMIUM);
+    sim.setPartyLootMaster(true, 0, 'uncommon', a); // 0 = leader is master looter
+
+    sim.partyPromote(b, a); // hand leadership from a to b
+    expect(sim.partyOf(b)?.leader).toBe(b);
+
+    sim.events.length = 0;
+    sim.lootCorpse(mob.id, a);
+    const prompts = sim.events.filter((e) => e.type === 'masterLoot');
+    expect(prompts).toHaveLength(1);
+    // The assignment prompt now reaches the NEW leader (b), not the old leader (a).
+    expect((prompts[0] as { pid: number }).pid).toBe(b);
+  });
+
   it('disabled master loot keeps the existing need/greed behavior', () => {
     const sim = makeSim();
     const { a, mob } = partyOnCorpse(sim, PREMIUM);
