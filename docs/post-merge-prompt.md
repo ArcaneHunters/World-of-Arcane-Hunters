@@ -318,6 +318,23 @@ surrounding code, update `docs/MAINTAINING-FORK.md`:
    fields, renamed fields), update the field reference table and example in the relevant
    per-type guide.
 
+8. **`docs/post-merge-prompt.md` (this file)**: if any of the above changes affected
+   what future merges need to check, update this prompt so the next run reflects the
+   new reality. Specifically:
+   - A new fork-owned file -> add it to the Step 1 `ls` command.
+   - A new upstream file modification -> add a grep line to Step 2.
+   - A new interface field that will need re-checking -> add it to Step 4's "Common
+     upstream interface changes" list.
+   - A new brand token or new upstream placeholder URL -> add it to Step 5's grep
+     and to the Step 6 guidance.
+   - A new test that hardcodes a fork value -> add it to Step 8's key-tests list.
+   - A new entry in the MAINTAINING-FORK.md short list -> add a row to the
+     "Quick-reference: what this fork changes" table at the bottom of this file.
+   - A new fork-owned file -> add a bullet to the "Quick-reference: fork-owned new
+     files" list at the bottom of this file.
+   This keeps the prompt self-maintaining: one merge cycle of work, and the next
+   session starts with an accurate checklist.
+
 ### Step 11 -- commit and push
 
 ```bash
