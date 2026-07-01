@@ -1727,7 +1727,7 @@ export async function saveCharacterState(
   );
 }
 
-// Persist a character row AND the global World Market blob in ONE transaction.
+// Persist a character row AND this realm's World Market blob in ONE transaction.
 // The two live in different tables (characters / world_state), but a Market
 // listing is an escrow: the item leaves the seller's bags (character state) and
 // becomes a listing (market state) in the same Sim action. Saving them as two
@@ -1751,7 +1751,10 @@ export async function saveCharacterAndMarketState(
     await client.query(
       `INSERT INTO world_state (key, data, updated_at) VALUES ($1, $2, now())
        ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
-      ['market', JSON.stringify(market)],
+      // Same realm-scoped key loadMarketState/saveMarketState use: the leave
+      // flush must land where the market is read back, or the escrowed listing
+      // is written to a key nothing loads and the item is stranded on next boot.
+      [marketStateKey(REALM), JSON.stringify(market)],
     );
     await client.query('COMMIT');
   } catch (err) {
