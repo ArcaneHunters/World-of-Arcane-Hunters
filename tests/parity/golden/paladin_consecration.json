@@ -8,8 +8,8 @@
     "updateGroundAoEs first-in-tick (~2256)",
     "pulseGroundAoE both callers (immediate ~4097 + deferred ~3052)"
   ],
-  "draws": 1083,
-  "drawDigest": "c2ffdf4d",
+  "draws": 1086,
+  "drawDigest": "a6b82c8b",
   "frames": [
     {
       "tick": 0,
@@ -180,41 +180,41 @@
       "state": "d17b7ddb",
       "events": "741638a5",
       "rng": {
-        "draws": 744,
-        "digest": "fa8390f1"
+        "draws": 743,
+        "digest": "ea787bc4"
       }
     },
     {
       "tick": 180,
       "time": 9,
       "nextId": 454,
-      "state": "bf0cb201",
-      "events": "1b45cb69",
+      "state": "a7b1c217",
+      "events": "501cc0ae",
       "rng": {
-        "draws": 914,
-        "digest": "a5046d92"
+        "draws": 915,
+        "digest": "09b14084"
       }
     },
     {
       "tick": 200,
       "time": 10,
       "nextId": 454,
-      "state": "019bc362",
+      "state": "a4331104",
       "events": "741638a5",
       "rng": {
-        "draws": 1082,
-        "digest": "323fc8dd"
+        "draws": 1085,
+        "digest": "5b542e1d"
       }
     },
     {
       "tick": 201,
       "time": 10.05,
       "nextId": 454,
-      "state": "0578096a",
+      "state": "afd1ac2c",
       "events": "741638a5",
       "rng": {
-        "draws": 1083,
-        "digest": "c2ffdf4d"
+        "draws": 1086,
+        "digest": "a6b82c8b"
       },
       "label": "final",
       "players": [
@@ -226,7 +226,7 @@
           "cls": "paladin",
           "companionUpgrades": {},
           "counters": {
-            "damageDealt": 171
+            "damageDealt": 168
           },
           "delveClears": {},
           "delveDaily": {},
@@ -305,7 +305,7 @@
           "fallStartY": 1.5,
           "fiveSecondRule": 99,
           "hostile": true,
-          "hp": 39829,
+          "hp": 39832,
           "id": 453,
           "inCombat": true,
           "kind": "mob",
@@ -341,7 +341,7 @@
           "threat": [
             [
               452,
-              172
+              169
             ]
           ],
           "wanderTarget": {
