@@ -5,6 +5,10 @@ node_modules
 dist/
 dist-env/
 dist-server/
+release/
+release-steam/
+# generated main-process runtime bundles (scripts/electron-vendor.mjs)
+electron/vendor/
 media-cache/
 
 # i18n per-locale emit crash leftovers (the build sweeps these; never commit one)
@@ -48,6 +52,7 @@ __pycache__/
 .env.*
 !.env.example
 !.env.local.example
+AuthKey_*.p8
 # Meshy asset-gen tooling embeds an API key, never commit it
 scripts/generate_treasure_chest.mjs
 
