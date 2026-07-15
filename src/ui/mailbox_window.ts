@@ -22,11 +22,14 @@ import { formatMoney, formatNumber, t } from './i18n';
 import { QUALITY_COLOR } from './icons';
 import {
   buildMailboxView,
+  clampParcelQty,
   type MailInboxBody,
   type MailInboxRow,
   type MailSendBody,
   type MailTab,
   mailSendBlocked,
+  recipientSuggestions,
+  wrappedSuggestionIndex,
 } from './mailbox_view';
 import type { PainterHostPresentation } from './painter_host';
 import { svgIcon } from './ui_icons';
@@ -38,6 +41,12 @@ const COPPER_PER_SILVER = 100;
 // Grace before "no mailInfo" closes the window: online, the mail mirror rides
 // the staggered heavy self refresh, so it can lag the open by up to ~2s.
 const MAIL_INFO_GRACE_MS = 3_000;
+// Recipient autocomplete timings: debounce before querying, delay clear after
+// blur so a pending mousedown on a suggestion can still fire first.
+const RECIPIENT_SUGGEST_DEBOUNCE_MS = 160;
+const RECIPIENT_SUGGEST_BLUR_CLEAR_MS = 150;
+// Maximum number of autocomplete suggestions shown.
+const RECIPIENT_SUGGEST_MAX = 8;
 
 export interface MailboxWindowDeps extends PainterHostPresentation {
   root(): HTMLElement;
@@ -59,6 +68,12 @@ export class MailboxWindow {
   private lastSig = '';
   private openerFocus: HTMLElement | null = null;
   private openedAt = 0;
+  // Recipient autocomplete state (Send tab only).
+  private recipientSuggestTimer: number | undefined;
+  private recipientSuggest: {
+    items: { name: string; cls: string; level: number }[];
+    index: number;
+  } = { items: [], index: -1 };
 
   constructor(private readonly deps: MailboxWindowDeps) {}
 
@@ -90,6 +105,8 @@ export class MailboxWindow {
 
   close(): void {
     if (!this.opened) return;
+    window.clearTimeout(this.recipientSuggestTimer);
+    this.recipientSuggest = { items: [], index: -1 };
     this.opened = false;
     this.openedId = null;
     this.attachments = [];
@@ -114,14 +131,35 @@ export class MailboxWindow {
       return;
     }
     if (this.attachments.some((s) => s.itemId === itemId)) return;
-    const count = this.deps
-      .world()
-      .inventory.filter((s) => s.itemId === itemId)
-      .reduce((n, s) => n + s.count, 0);
+    const count = this.ownedCountFor(itemId);
     if (count < 1) return;
     this.attachments.push({ itemId, count });
     audio.click();
     this.render();
+  }
+
+  /**
+   * Total owned across all bag slots of one item id (the stepper's ceiling).
+   * Mirrors the sim's fungible-only stock check (countFungibleItem in
+   * sim.ts skips instanced slots), so the ceiling never exceeds what the
+   * send path can actually deduct.
+   */
+  private ownedCountFor(itemId: string): number {
+    return this.deps
+      .world()
+      .inventory.filter((s) => s.itemId === itemId && !s.instance)
+      .reduce((n, s) => n + s.count, 0);
+  }
+
+  /** Nudge a staged parcel's quantity from the +/- stepper (#1444). */
+  private adjustParcelQty(itemId: string, delta: number): void {
+    const slot = this.attachments.find((s) => s.itemId === itemId);
+    if (!slot) return;
+    const next = clampParcelQty(slot.count, delta, this.ownedCountFor(itemId));
+    if (next === slot.count) return;
+    slot.count = next;
+    audio.click();
+    this.renderParcels();
   }
 
   /** Mail command outcome relayed by the HUD (handleEvents). */
@@ -357,10 +395,14 @@ export class MailboxWindow {
   }
 
   private renderSend(body: HTMLElement, view: MailSendBody): void {
+    window.clearTimeout(this.recipientSuggestTimer);
+    this.recipientSuggest = { items: [], index: -1 };
     body.innerHTML =
       `<div class="mail-send-form">` +
       `<div class="mail-field"><label for="mail-to">${esc(t('hudChrome.mailbox.toLabel'))}</label>` +
-      `<input id="mail-to" type="text" maxlength="32" autocomplete="off" placeholder="${esc(t('hudChrome.mailbox.toPlaceholder'))}"></div>` +
+      `<div class="mail-to-wrap">` +
+      `<div class="mail-to-suggest" id="mail-to-suggest" role="listbox"></div>` +
+      `<input id="mail-to" type="text" maxlength="32" autocomplete="off" placeholder="${esc(t('hudChrome.mailbox.toPlaceholder'))}" role="combobox" aria-autocomplete="list" aria-controls="mail-to-suggest" aria-expanded="false"></div></div>` +
       `<div class="mail-field"><label for="mail-subject">${esc(t('hudChrome.mailbox.subjectLabel'))}</label>` +
       `<input id="mail-subject" type="text" maxlength="64" autocomplete="off"></div>` +
       `<div class="mail-field"><label for="mail-body">${esc(t('hudChrome.mailbox.bodyLabel'))}</label>` +
@@ -393,6 +435,7 @@ export class MailboxWindow {
         coin.addEventListener('mouseup', (e) => e.preventDefault(), { once: true });
       });
     }
+    this.wireRecipientSuggest(body);
     body.querySelector('#mail-send-btn')?.addEventListener('click', () => {
       const root = this.deps.root();
       const read = (id: string) =>
@@ -421,9 +464,151 @@ export class MailboxWindow {
     });
   }
 
+  // Wire the recipient field combobox: debounced searchCharacters, keyboard
+  // navigation (ArrowDown/Up/Enter/Escape), hover highlight, click-to-select,
+  // and blur-with-delay so mousedown on a suggestion fires before the list clears.
+  private wireRecipientSuggest(body: HTMLElement): void {
+    const input = body.querySelector<HTMLInputElement>('#mail-to');
+    if (!input) return;
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      window.clearTimeout(this.recipientSuggestTimer);
+      if (!q) {
+        this.renderRecipientSuggest(body, []);
+        return;
+      }
+      this.recipientSuggestTimer = window.setTimeout(async () => {
+        const results = await this.deps.world().searchCharacters(q);
+        const filtered = recipientSuggestions(
+          results,
+          this.deps.world().player.name,
+          RECIPIENT_SUGGEST_MAX,
+        );
+        this.renderRecipientSuggest(body, filtered);
+      }, RECIPIENT_SUGGEST_DEBOUNCE_MS);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const ke = e as KeyboardEvent;
+      const open = this.recipientSuggest.items.length > 0;
+      if (ke.key === 'ArrowDown' && open) {
+        ke.preventDefault();
+        this.moveRecipientSuggest(body, 1);
+      } else if (ke.key === 'ArrowUp' && open) {
+        ke.preventDefault();
+        this.moveRecipientSuggest(body, -1);
+      } else if (ke.key === 'Escape' && open) {
+        ke.preventDefault();
+        this.renderRecipientSuggest(body, []);
+      } else if (ke.key === 'Enter' && open && this.recipientSuggest.index >= 0) {
+        ke.preventDefault();
+        const picked = this.recipientSuggest.items[this.recipientSuggest.index]?.name;
+        if (picked) this.selectRecipient(body, input, picked);
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      window.setTimeout(
+        () => this.renderRecipientSuggest(body, []),
+        RECIPIENT_SUGGEST_BLUR_CLEAR_MS,
+      );
+    });
+  }
+
+  private selectRecipient(body: HTMLElement, input: HTMLInputElement, name: string): void {
+    input.value = name;
+    this.renderRecipientSuggest(body, []);
+  }
+
+  private renderRecipientSuggest(
+    body: HTMLElement,
+    results: { name: string; cls: string; level: number }[],
+  ): void {
+    const box = body.querySelector<HTMLElement>('#mail-to-suggest');
+    const input = body.querySelector<HTMLInputElement>('#mail-to');
+    if (!box) return;
+    this.recipientSuggest = { items: results, index: -1 };
+    if (results.length === 0) {
+      box.style.display = 'none';
+      box.innerHTML = '';
+      input?.setAttribute('aria-expanded', 'false');
+      input?.removeAttribute('aria-activedescendant');
+      return;
+    }
+    box.innerHTML = results
+      .map(
+        (r, i) =>
+          `<div id="mail-to-sugg-${i}" class="soc-sugg-item" data-i="${i}" data-name="${esc(r.name)}" role="option" aria-selected="false"><span class="soc-name">${esc(r.name)}</span></div>`,
+      )
+      .join('');
+    this.placeRecipientSuggest(body, box);
+    box.style.display = 'block';
+    input?.setAttribute('aria-expanded', 'true');
+    input?.removeAttribute('aria-activedescendant');
+    box.querySelectorAll('.soc-sugg-item').forEach((it) => {
+      it.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        const name = (it as HTMLElement).dataset.name ?? '';
+        if (name && input) this.selectRecipient(body, input, name);
+      });
+      it.addEventListener('mousemove', () => {
+        this.recipientSuggest.index = Number((it as HTMLElement).dataset.i);
+        this.highlightRecipientSuggest(body);
+      });
+    });
+  }
+
+  private moveRecipientSuggest(body: HTMLElement, delta: number): void {
+    const n = this.recipientSuggest.items.length;
+    if (n === 0) return;
+    this.recipientSuggest.index = wrappedSuggestionIndex(this.recipientSuggest.index, delta, n);
+    this.highlightRecipientSuggest(body);
+  }
+
+  private placeRecipientSuggest(body: HTMLElement, box: HTMLElement): void {
+    const wrap = body.querySelector<HTMLElement>('.mail-to-wrap');
+    if (!wrap) return;
+    box.classList.remove('up');
+    box.style.maxHeight = '';
+    const bodyRect = body.getBoundingClientRect();
+    const wrapRect = wrap.getBoundingClientRect();
+    const gap = 3;
+    const spaceBelow = Math.floor(bodyRect.bottom - wrapRect.bottom - gap);
+    const spaceAbove = Math.floor(wrapRect.top - bodyRect.top - gap);
+    const openUp = spaceBelow < 110 && spaceAbove > spaceBelow;
+    if (openUp) box.classList.add('up');
+    const available = openUp ? spaceAbove : spaceBelow;
+    const maxHeight = Math.min(210, Math.max(80, available));
+    box.style.maxHeight = `${maxHeight}px`;
+  }
+
+  private highlightRecipientSuggest(body: HTMLElement): void {
+    const box = body.querySelector<HTMLElement>('#mail-to-suggest');
+    const input = body.querySelector<HTMLInputElement>('#mail-to');
+    if (!box) return;
+    box.querySelectorAll('.soc-sugg-item').forEach((it) => {
+      const on = Number((it as HTMLElement).dataset.i) === this.recipientSuggest.index;
+      it.classList.toggle('active', on);
+      it.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) (it as HTMLElement).scrollIntoView({ block: 'nearest' });
+    });
+    if (this.recipientSuggest.index >= 0) {
+      input?.setAttribute('aria-activedescendant', `mail-to-sugg-${this.recipientSuggest.index}`);
+    } else {
+      input?.removeAttribute('aria-activedescendant');
+    }
+  }
+
   private renderParcels(): void {
     const parcels = this.deps.root().querySelector<HTMLElement>('#mail-parcels');
     if (!parcels) return;
+    // A +/- click rebuilds this whole container, which would otherwise drop
+    // keyboard focus to <body>; remember which control (by item + role) had
+    // it so the rebuilt equivalent can reclaim it below.
+    const focusedEl = document.activeElement as HTMLElement | null;
+    const focusKey =
+      focusedEl && parcels.contains(focusedEl) ? (focusedEl.dataset.focusKey ?? null) : null;
     parcels.innerHTML = '';
     if (this.attachments.length === 0) {
       const hint = document.createElement('span');
@@ -432,27 +617,104 @@ export class MailboxWindow {
       parcels.appendChild(hint);
       return;
     }
+    const itemControls = new Map<
+      string,
+      { minus?: HTMLButtonElement; plus?: HTMLButtonElement; remove?: HTMLButtonElement }
+    >();
     for (const slot of this.attachments) {
       const item = ITEMS[slot.itemId];
       if (!item) continue;
       const qColor = QUALITY_COLOR[item.quality ?? 'common'] ?? QUALITY_DEFAULT_COLOR;
-      const chip = document.createElement('button');
-      chip.type = 'button';
+      const chip = document.createElement('span');
       chip.className = 'mail-parcel-chip';
-      const stack =
-        slot.count > 1 ? ` x${formatNumber(slot.count, { maximumFractionDigits: 0 })}` : '';
-      chip.innerHTML = `${this.deps.itemIcon(item)}<span style="color:${qColor}">${esc(itemDisplayName(item))}${esc(stack)}</span>${svgIcon('close', { cls: 'mail-parcel-remove' })}`;
-      chip.setAttribute(
+      const name = document.createElement('span');
+      name.className = 'mail-parcel-name';
+      // Keyboard-focusable so Tab can reach it: attachTooltip's keyboard path
+      // is a focusin listener on this exact element.
+      name.tabIndex = 0;
+      name.innerHTML = `${this.deps.itemIcon(item)}<span style="color:${qColor}">${esc(itemDisplayName(item))}</span>`;
+      this.deps.attachTooltip(name, () => this.deps.itemTooltip(item));
+      chip.appendChild(name);
+      const owned = this.ownedCountFor(slot.itemId);
+      const controls: {
+        minus?: HTMLButtonElement;
+        plus?: HTMLButtonElement;
+        remove?: HTMLButtonElement;
+      } = {};
+      if (owned > 1) {
+        const step = document.createElement('span');
+        step.className = 'mail-parcel-qty';
+        const minus = document.createElement('button');
+        minus.type = 'button';
+        minus.className = 'mail-parcel-step';
+        minus.textContent = '−';
+        minus.disabled = slot.count <= 1;
+        minus.dataset.focusKey = `${slot.itemId}:minus`;
+        minus.setAttribute(
+          'aria-label',
+          t('hudChrome.mailbox.parcelQtyDecreaseAria', { item: itemDisplayName(item) }),
+        );
+        minus.addEventListener('click', () => this.adjustParcelQty(slot.itemId, -1));
+        const qty = document.createElement('span');
+        qty.className = 'mail-parcel-qty-value';
+        qty.setAttribute('aria-live', 'polite');
+        qty.textContent = t('itemUi.bags.stackCount', {
+          count: formatNumber(slot.count, { maximumFractionDigits: 0 }),
+        });
+        const plus = document.createElement('button');
+        plus.type = 'button';
+        plus.className = 'mail-parcel-step';
+        plus.textContent = '+';
+        plus.disabled = slot.count >= owned;
+        plus.dataset.focusKey = `${slot.itemId}:plus`;
+        plus.setAttribute(
+          'aria-label',
+          t('hudChrome.mailbox.parcelQtyIncreaseAria', { item: itemDisplayName(item) }),
+        );
+        plus.addEventListener('click', () => this.adjustParcelQty(slot.itemId, 1));
+        step.append(minus, qty, plus);
+        chip.appendChild(step);
+        controls.minus = minus;
+        controls.plus = plus;
+      }
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'mail-parcel-remove-btn';
+      remove.innerHTML = svgIcon('close', { cls: 'mail-parcel-remove' });
+      remove.dataset.focusKey = `${slot.itemId}:remove`;
+      remove.setAttribute(
         'aria-label',
         t('hudChrome.mailbox.removeParcelAria', { item: itemDisplayName(item) }),
       );
-      chip.addEventListener('click', () => {
+      remove.addEventListener('click', () => {
         this.attachments = this.attachments.filter((s) => s.itemId !== slot.itemId);
         audio.click();
         this.renderParcels();
       });
-      this.deps.attachTooltip(chip, () => this.deps.itemTooltip(item));
+      chip.appendChild(remove);
+      controls.remove = remove;
+      itemControls.set(slot.itemId, controls);
       parcels.appendChild(chip);
+    }
+    if (focusKey) {
+      const [itemId, role] = focusKey.split(':');
+      const controls = itemControls.get(itemId);
+      const preferred = controls
+        ? role === 'minus'
+          ? controls.minus
+          : role === 'plus'
+            ? controls.plus
+            : controls.remove
+        : undefined;
+      // The just-activated control (or its whole item) can vanish on rebuild
+      // (disabled at a bound, or the stepper dropped once owned <= 1): fall
+      // back to the nearest still-focusable control for the same item.
+      let target: HTMLButtonElement | undefined;
+      if (preferred && !preferred.disabled) target = preferred;
+      else if (controls?.minus && !controls.minus.disabled) target = controls.minus;
+      else if (controls?.plus && !controls.plus.disabled) target = controls.plus;
+      else target = controls?.remove;
+      target?.focus();
     }
   }
 }

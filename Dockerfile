@@ -18,22 +18,12 @@ COPY public ./public
 COPY private ./private
 # Public client config is inlined into the bundle at build time (Vite reads
 # VITE_* from the environment). Empty defaults keep optional UI disabled:
-# Turnstile widget off. Passed through from compose build args.
+# Turnstile widget off; wallet UI enabled unless explicitly disabled.
+# Passed through from compose build args.
 ARG VITE_TURNSTILE_SITEKEY=""
-# Fork brand URLs: injected at build time so the deployed bundle carries real
-# links without source edits. Defaults to TODO- placeholders (safe for dev/CI).
-# Set these as --build-arg in docker build (see .github/workflows/deploy.yml)
-# using GitHub Actions repository variables.
-ARG VITE_SITE_URL="https://TODO-your-domain.com"
-ARG VITE_DISCORD_URL="https://discord.gg/TODO"
-ARG VITE_DONATE_URL="https://github.com/sponsors/TODO"
-# Analytics IDs: leave empty to strip all analytics from the build output.
-# Set as --build-arg via GitHub Actions repo variables to enable your own tracking.
-# VITE_GA_ID:         Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)
-# VITE_META_PIXEL_ID: Meta (Facebook) Pixel numeric ID
-ARG VITE_GA_ID=""
-ARG VITE_META_PIXEL_ID=""
+ARG VITE_WALLET_DISABLED=""
 RUN VITE_TURNSTILE_SITEKEY="$VITE_TURNSTILE_SITEKEY" \
+    VITE_WALLET_DISABLED="$VITE_WALLET_DISABLED" \
     npm run build && cp -a dist/media ./media-build && rm -rf dist/media && npm run build:server && npm run build:bot
 
 FROM node:22-alpine
@@ -43,6 +33,8 @@ COPY --from=build /app/dist ./dist
 COPY --from=build /app/media-build ./media-build
 COPY --from=build /app/dist-server ./dist-server
 COPY --from=build /app/dist-bot ./dist-bot
+COPY --from=build /app/scripts/prod_cpu_game_helper.mjs /app/ops/
+COPY --from=build /app/scripts/prod_cpu_profile_client.mjs /app/ops/
 RUN mkdir -p /app/dist/media && chown -R node:node /app/dist/media
 EXPOSE 8787
 USER node

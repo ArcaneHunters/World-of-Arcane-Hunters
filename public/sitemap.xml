@@ -121,7 +121,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://TODO-your-domain.com/wiki/economy</loc>
+    <loc>https://worldofclaudecraft.com/wiki/professions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldofclaudecraft.com/wiki/economy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -146,12 +151,27 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://TODO-your-domain.com/wiki/reference/controls</loc>
+    <loc>https://worldofclaudecraft.com/wiki/vale-cup</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://TODO-your-domain.com/wiki/reference/combat</loc>
+    <loc>https://worldofclaudecraft.com/wiki/deeds</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldofclaudecraft.com/wiki/reference/controls</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldofclaudecraft.com/wiki/reference/settings</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://worldofclaudecraft.com/wiki/reference/combat</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

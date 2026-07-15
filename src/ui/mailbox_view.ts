@@ -91,6 +91,18 @@ export function buildMailboxView(input: {
   };
 }
 
+// Clamps a parcel's staged quantity after a +/- stepper click (#1444): never
+// below 1 (use the remove chip to drop it entirely) and never above what the
+// bag actually holds, so the stepper cannot stage more than is owned. The
+// floor wins over the ceiling if the bag empties to 0 between paints (the
+// item is still staged, just no longer purchasable): the sim's own
+// countFungibleItem re-check refuses the send regardless, so this is a
+// display-only edge case, never a dupe/loss vector.
+export function clampParcelQty(current: number, delta: number, owned: number): number {
+  const max = Math.max(1, Math.floor(owned));
+  return Math.min(max, Math.max(1, Math.floor(current) + Math.floor(delta)));
+}
+
 // The full price of sending: the attached coin plus the flat postage.
 export function mailSendCost(attachedCopper: number, postage: number): number {
   return Math.max(0, Math.floor(attachedCopper)) + postage;
@@ -121,4 +133,27 @@ export interface MailIndicatorView {
 export function mailIndicatorView(unread: number): MailIndicatorView {
   const count = Number.isFinite(unread) ? Math.max(0, Math.floor(unread)) : 0;
   return { visible: count > 0, count };
+}
+
+export interface RecipientSuggestion {
+  name: string;
+  cls: string;
+  level: number;
+}
+
+export function recipientSuggestions(
+  results: RecipientSuggestion[],
+  selfName: string,
+  max: number,
+): RecipientSuggestion[] {
+  const self = selfName.trim();
+  const limit = Math.max(0, Math.floor(max));
+  if (limit === 0) return [];
+  return results.filter((r) => r.name !== self).slice(0, limit);
+}
+
+export function wrappedSuggestionIndex(current: number, delta: number, total: number): number {
+  if (total <= 0) return -1;
+  if (current < 0) return delta > 0 ? 0 : total - 1;
+  return (current + delta + total) % total;
 }

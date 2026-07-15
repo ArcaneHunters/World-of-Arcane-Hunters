@@ -7,9 +7,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   buildMailboxView,
+  clampParcelQty,
   mailIndicatorView,
   mailSendBlocked,
   mailSendCost,
+  recipientSuggestions,
+  wrappedSuggestionIndex,
 } from '../src/ui/mailbox_view';
 import type { MailInfo } from '../src/world_api';
 
@@ -119,6 +122,28 @@ describe('buildMailboxView', () => {
   });
 });
 
+describe('clampParcelQty (#1444 attach-a-quantity stepper)', () => {
+  it('increments within the owned ceiling', () => {
+    expect(clampParcelQty(3, 1, 5)).toBe(4);
+  });
+
+  it('refuses to step past what the bag holds', () => {
+    expect(clampParcelQty(5, 1, 5)).toBe(5);
+  });
+
+  it('decrements but never below 1 (use remove to drop the parcel)', () => {
+    expect(clampParcelQty(1, -1, 5)).toBe(1);
+  });
+
+  it('clamps a stale staged count down if the bag total shrank underneath it', () => {
+    expect(clampParcelQty(9, 0, 5)).toBe(5);
+  });
+
+  it('floors at 1 even if the bag emptied to 0 underneath the staged parcel (the sim refuses the send regardless)', () => {
+    expect(clampParcelQty(3, -1, 0)).toBe(1);
+  });
+});
+
 describe('mailSendBlocked / mailSendCost', () => {
   it('computes the full send cost (coin + postage)', () => {
     expect(mailSendCost(500, 30)).toBe(530);
@@ -141,5 +166,39 @@ describe('mailIndicatorView', () => {
     expect(mailIndicatorView(0)).toEqual({ visible: false, count: 0 });
     expect(mailIndicatorView(3)).toEqual({ visible: true, count: 3 });
     expect(mailIndicatorView(Number.NaN)).toEqual({ visible: false, count: 0 });
+  });
+});
+
+describe('recipientSuggestions', () => {
+  const results = [
+    { name: 'Player', cls: 'warrior', level: 20 },
+    { name: 'Alice', cls: 'mage', level: 18 },
+    { name: 'Bob', cls: 'priest', level: 12 },
+    { name: 'Cara', cls: 'rogue', level: 16 },
+  ];
+
+  it('excludes the current player name and caps results', () => {
+    expect(recipientSuggestions(results, 'Player', 2).map((r) => r.name)).toEqual(['Alice', 'Bob']);
+  });
+
+  it('returns no suggestions when max is zero or negative', () => {
+    expect(recipientSuggestions(results, 'Player', 0)).toEqual([]);
+    expect(recipientSuggestions(results, 'Player', -3)).toEqual([]);
+  });
+});
+
+describe('wrappedSuggestionIndex', () => {
+  it('starts at the first item on down and last item on up from no selection', () => {
+    expect(wrappedSuggestionIndex(-1, 1, 4)).toBe(0);
+    expect(wrappedSuggestionIndex(-1, -1, 4)).toBe(3);
+  });
+
+  it('wraps around in both directions', () => {
+    expect(wrappedSuggestionIndex(3, 1, 4)).toBe(0);
+    expect(wrappedSuggestionIndex(0, -1, 4)).toBe(3);
+  });
+
+  it('returns -1 for an empty list', () => {
+    expect(wrappedSuggestionIndex(0, 1, 0)).toBe(-1);
   });
 });
